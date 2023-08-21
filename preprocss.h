@@ -1,0 +1,143 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   preprocss.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/17 16:41:14 by TheTerror         #+#    #+#             */
+/*   Updated: 2023/08/20 16:04:23 by TheTerror        ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PREPROCSS_H
+# define PREPROCSS_H
+
+# include "./libft/libft.h"
+
+# define _SIZE_X_HONOR 1920		//screen's widht of the PC HONOR MAGICBOOK
+# define _SIZE_Y_HONOR 1080		//screen's height of the PC HONOR MAGICBOOK
+# define _SIZE_X_MAC 3840		//screen's widht of 42's MAC
+# define _SIZE_Y_MAC 2160		//screen's height of 42's MAC
+
+# define _SIZE_X _SIZE_X_HONOR 		//window's x size
+# define _SIZE_Y _SIZE_Y_HONOR 		//window's y size
+# define _WIDHT  _SIZE_X			//image's widht
+# define _HEIGHT _SIZE_Y 			//image's height
+
+# define __NTR -100 		//Nothing To Report
+# define __ON_DESTROY 17 	//Button x window killer
+# define __ON_KEYUP 03
+# define __ON_MOUSEDOWN 04
+# define __KEYRELEASEMASK 2L
+# define __BUTTONPRESSMASK 4L
+
+/*KEYCODES*/
+# define __ESC 65307 		//ESCape key
+# define __H_ 104 			//h key
+# define __L_ 108 			//l key
+# define __ZOOMIN 4 		//mouse wheel
+# define __ZOOMOUT 5 		//mouse wheel
+# define __LEFT 65361 		//left key
+# define __RIGHT 65363 		//right key
+# define __UP 65362 		//up key
+# define __DOWN 65364 		//down key
+# define __LEFTBUTTON 1 	//mouse's left button
+# define __RIGHTBUTTON 3 	//mouse's right button
+# define __WHEELBUTTON 2 	//mouse's wheel button
+
+
+typedef struct s_coordinates
+{
+	double	x;
+	double	y;
+	double	z;
+}				t_coord;
+
+typedef struct s_vector
+{
+	double	x;
+	double	y;
+	double	z;
+	t_coord	o;
+	t_coord	e;
+}				t_vec;
+
+typedef struct s_img
+{
+	char	*addr;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	int		color;
+	void	*img;
+}				t_img;
+
+typedef struct s_ambient
+{
+	double	ratio;
+	int		r;
+	int		g;
+	int		b;
+}				t_amb;
+
+typedef struct s_camera
+{
+	t_coord	pov;
+	t_vec	dir;
+	double	fov;
+}				t_cam;
+
+typedef struct s_light
+{
+	t_coord	pol;
+	double	ratio;
+	int		r;
+	int		g;
+	int		b;
+}				t_light;
+
+typedef struct s_sphere
+{
+	t_coord	o;
+	double	d;
+	int		r;
+	int		g;
+	int		b;
+}				t_sp;
+
+typedef struct s_plane
+{
+	t_coord	p;
+	t_vec	dir;
+	int		r;
+	int		g;
+	int		b;
+}				t_pl;
+
+typedef struct s_cylindre
+{
+	t_coord	o;
+	t_vec	dir;
+	double	d;
+	double	h;
+	int		r;
+	int		g;
+	int		b;
+}				t_cy;
+
+typedef struct s_variables
+{
+	void	*xptr;
+	void	*win;
+	t_img	*im;
+	char	*file;
+	t_amb	*a;
+	t_cam	*c;
+	t_light	*l;
+	t_sp	**sp;
+	t_pl	**pl;
+	t_cy	**cy;
+}				t_vars;
+
+#endif
