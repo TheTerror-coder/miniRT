@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:36:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/18 18:54:38 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 20:36:15 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ void	ft_setvec_coords(t_vec *vector);
 double	ft_vecdotvec(t_vec *vec2, t_vec *vec1, const double angle);
 t_vec	*ft_vecdotpt(t_vec *vector, t_coord *point);
 t_vec	*ft_vecdotconst(t_vec *vector, const double k);
+double	ft_degtorad(double alpha);
+double	ft_radtodeg(double alpha);
 
 #endif

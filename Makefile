@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:29:00 by TheTerror         #+#    #+#              #
-#    Updated: 2023/08/20 17:40:52 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2023/08/21 20:25:26 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ LIBFT_LIB = $(LIBFT_PATH)libft.a
 LIBFT_PATH = 		./libft/
 OBJ_PATH = 		./.objs/
 MEMTOOLS_PATH = 		./memtools/
+MATHTOOLS_PATH = 		./mathtools/
 PARSING_PATH = 		./parsing/
 
 
@@ -30,6 +31,7 @@ MLX_LINK_OPTIONS =	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -
 RM =				rm -rf
 
 SRC_MEMTOOLS = $(addprefix $(MEMTOOLS_PATH), initmem.c freemem.c init_elms.c free_elms.c)
+SRC_MATHTOOLS = $(addprefix $(MATHTOOLS_PATH), converts.c vectors.c subtractions.c products.c)
 SRC_PARSING = $(addprefix $(PARSING_PATH), parsing.c ambient.c camera.c light.c \
 			sphere.c plane.c cylindre.c)
 SRC = main.c minirt.c ft_mlx_utils.c events.c utils.c display.c ft_atod.c $(SRC_MEMTOOLS) $(SRC_PARSING)

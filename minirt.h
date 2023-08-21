@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:48 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/20 17:39:31 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 17:07:11 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ t_bool	ft_error(char *str);
 t_bool	ft_isnumber(const char *str);
 double	ft_atod(const char *nptr);
 t_bool	ft_displayelms(t_vars *v);
+t_bool	ft_minirt(t_vars *v);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 # endif

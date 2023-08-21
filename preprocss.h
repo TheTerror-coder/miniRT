@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:41:14 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/20 16:04:23 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 20:25:30 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef struct s_variables
 	t_sp	**sp;
 	t_pl	**pl;
 	t_cy	**cy;
+	t_vec	ray;
 }				t_vars;
 
 #endif

@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   converts.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/17 16:30:47 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/21 17:12:17 by TheTerror        ###   ########lyon.fr   */
+/*   Created: 2023/08/21 20:23:31 by TheTerror         #+#    #+#             */
+/*   Updated: 2023/08/21 20:35:19 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "mathtools.h"
 
-int	main(int argc, char **argv)
+double	ft_degtorad(double alpha)
 {
-	t_vars	*v;
+	double	pi;
 
-	v = ft_init_v();
-	if (!ft_parse(v, argc, argv))
-		ft_exitprocss(v, EXIT_FAILURE);
-	if (!ft_set_mlx(v))
-		ft_exitprocss(v, EXIT_FAILURE);
-	ft_minirt(v);
-	ft_events(v);
-	mlx_loop(v->xptr);
-	return (0);
+	pi = 3.14159265358979323846264338327950288;
+	return ((alpha * pi) / 180);
 }
 
-void	ft_exitprocss(t_vars *v, int status)
+double	ft_radtodeg(double alpha)
 {
-	ft_free_v(v);
-	exit(status);
+	double	pi;
+
+	pi = 3.14159265358979323846264338327950288;
+	return ((alpha * 180) / pi);
 }
