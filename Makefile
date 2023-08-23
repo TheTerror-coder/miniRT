@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:29:00 by TheTerror         #+#    #+#              #
-#    Updated: 2023/08/21 20:25:26 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2023/08/23 21:27:32 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,9 @@ LIBFT_LIB = $(LIBFT_PATH)libft.a
 
 LIBFT_PATH = 		./libft/
 OBJ_PATH = 		./.objs/
-MEMTOOLS_PATH = 		./memtools/
+INTERS_PATH = 		./inters/
 MATHTOOLS_PATH = 		./mathtools/
+MEMTOOLS_PATH = 		./memtools/
 PARSING_PATH = 		./parsing/
 
 
@@ -30,11 +31,14 @@ MLX_OBJ_OPTIONS =	-I/usr/include -Imlx_linux -O3
 MLX_LINK_OPTIONS =	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 RM =				rm -rf
 
+SRC_INTERS = $(addprefix $(INTERS_PATH), ray_sphere.c ray_plane.c)
+SRC_MATHTOOLS = $(addprefix $(MATHTOOLS_PATH), converts.c vectors.c subtractions.c products.c \
+			ft_square.c)
 SRC_MEMTOOLS = $(addprefix $(MEMTOOLS_PATH), initmem.c freemem.c init_elms.c free_elms.c)
-SRC_MATHTOOLS = $(addprefix $(MATHTOOLS_PATH), converts.c vectors.c subtractions.c products.c)
 SRC_PARSING = $(addprefix $(PARSING_PATH), parsing.c ambient.c camera.c light.c \
 			sphere.c plane.c cylindre.c)
-SRC = main.c minirt.c ft_mlx_utils.c events.c utils.c display.c ft_atod.c $(SRC_MEMTOOLS) $(SRC_PARSING)
+SRC = main.c minirt.c ft_mlx_utils.c events.c utils.c display.c ft_atod.c $(SRC_MEMTOOLS) \
+			$(SRC_PARSING) $(SRC_MATHTOOLS) $(SRC_INTERS)
 
 # OBJ = $(addprefix $(OBJ_PATH), $(notdir $(SRC:%.c=%.o)))
 OBJ = $(SRC:%.c=%.o)

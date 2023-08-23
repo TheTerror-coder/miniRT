@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:41:14 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/21 20:25:30 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 20:27:15 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@
 # define __WHEELBUTTON 2 	//mouse's wheel button
 
 
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}				t_rgb;
+
 typedef struct s_coordinates
 {
 	double	x;
@@ -76,9 +83,7 @@ typedef struct s_img
 typedef struct s_ambient
 {
 	double	ratio;
-	int		r;
-	int		g;
-	int		b;
+	t_rgb	rgb;
 }				t_amb;
 
 typedef struct s_camera
@@ -92,27 +97,21 @@ typedef struct s_light
 {
 	t_coord	pol;
 	double	ratio;
-	int		r;
-	int		g;
-	int		b;
+	t_rgb	rgb;
 }				t_light;
 
 typedef struct s_sphere
 {
 	t_coord	o;
 	double	d;
-	int		r;
-	int		g;
-	int		b;
+	t_rgb	rgb;
 }				t_sp;
 
 typedef struct s_plane
 {
 	t_coord	p;
 	t_vec	dir;
-	int		r;
-	int		g;
-	int		b;
+	t_rgb	rgb;
 }				t_pl;
 
 typedef struct s_cylindre
@@ -121,10 +120,16 @@ typedef struct s_cylindre
 	t_vec	dir;
 	double	d;
 	double	h;
-	int		r;
-	int		g;
-	int		b;
+	t_rgb	rgb;
 }				t_cy;
+
+typedef struct s_ray
+{
+	t_coord	o;
+	t_vec	dir;
+	int		color;
+	double	len;
+}				t_ray;
 
 typedef struct s_variables
 {
@@ -138,7 +143,7 @@ typedef struct s_variables
 	t_sp	**sp;
 	t_pl	**pl;
 	t_cy	**cy;
-	t_vec	ray;
+	t_ray	ray;
 }				t_vars;
 
 #endif

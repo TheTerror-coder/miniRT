@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 19:54:01 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/20 17:31:51 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 16:17:38 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,14 @@ t_bool	ft_error(char *str)
 	ft_putendl_fd("error", STDERR_FILENO);
 	ft_putendl_fd(str, STDERR_FILENO);
 	return (__FALSE);
+}
+
+int	ft_color(t_rgb *rgb)
+{
+	int	result;
+
+	result = rgb->r<<16;
+	result += rgb->g<<8;
+	result += rgb->b;
+	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/20 18:21:23 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 16:24:51 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,12 @@ t_bool	ft_set_plcolor(t_pl *pl, char *infocolor)
 				ft_error("plane: expecting only decimal numbers"));
 		i++;
 	}
-	pl->r = ft_atoi(colors[0]);
-	pl->g = ft_atoi(colors[1]);
-	pl->b = ft_atoi(colors[2]);
+	pl->rgb.r = ft_atoi(colors[0]);
+	pl->rgb.g = ft_atoi(colors[1]);
+	pl->rgb.b = ft_atoi(colors[2]);
 	ft_free2str(&colors);
-	if (pl->r < 0 || pl->r > 255 || pl->g < 0 || pl->g > 255 || \
-		pl->b < 0 || pl->b > 255)
+	if (pl->rgb.r < 0 || pl->rgb.r > 255 || pl->rgb.g < 0 || pl->rgb.g > 255 || \
+		pl->rgb.b < 0 || pl->rgb.b > 255)
 		return (ft_error("plane: incorrect color format"));
 	return (__TRUE);
 }

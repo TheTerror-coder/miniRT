@@ -1,23 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   subtractions.c                                     :+:      :+:    :+:   */
+/*   ray_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/17 20:30:44 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/23 16:35:01 by TheTerror        ###   ########lyon.fr   */
+/*   Created: 2023/08/23 21:27:05 by TheTerror         #+#    #+#             */
+/*   Updated: 2023/08/23 21:27:20 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mathtools.h"
+#include "inters.h"
 
-t_coord	ft_pointsdiff(t_coord *end, t_coord *origin)
-{
-	t_coord	res;
-
-	res.x = end->x - origin->x;
-	res.y = end->y - origin->y;
-	res.z = end->z - origin->z;
-	return (res);
-}

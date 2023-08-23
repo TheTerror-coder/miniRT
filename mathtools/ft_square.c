@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   subtractions.c                                     :+:      :+:    :+:   */
+/*   ft_square.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/17 20:30:44 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/23 16:35:01 by TheTerror        ###   ########lyon.fr   */
+/*   Created: 2023/08/23 15:54:01 by TheTerror         #+#    #+#             */
+/*   Updated: 2023/08/23 15:55:37 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mathtools.h"
 
-t_coord	ft_pointsdiff(t_coord *end, t_coord *origin)
+double	ft_square(double n)
 {
-	t_coord	res;
-
-	res.x = end->x - origin->x;
-	res.y = end->y - origin->y;
-	res.z = end->z - origin->z;
-	return (res);
+	return (n * n);
 }

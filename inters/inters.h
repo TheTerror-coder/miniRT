@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   subtractions.c                                     :+:      :+:    :+:   */
+/*   inters.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/17 20:30:44 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/23 16:35:01 by TheTerror        ###   ########lyon.fr   */
+/*   Created: 2023/08/23 20:21:23 by TheTerror         #+#    #+#             */
+/*   Updated: 2023/08/23 20:26:15 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mathtools.h"
+#ifndef INTERS_H
+# define INTERS_H
 
-t_coord	ft_pointsdiff(t_coord *end, t_coord *origin)
-{
-	t_coord	res;
+# include "../minirt.h"
 
-	res.x = end->x - origin->x;
-	res.y = end->y - origin->y;
-	res.z = end->z - origin->z;
-	return (res);
-}
+t_bool	ft_ray_inter_sp(t_vars *v, t_sp *sp);
+
+#endif

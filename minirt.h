@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:48 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/21 17:07:11 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 20:22:44 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 # include<sys/stat.h>
 # include<fcntl.h>
 # include<stdio.h>
-# include "./mlx_linux/mlx.h"
-# include "./memtools/memtools.h"
+# include "./inters/inters.h"
 # include "./mathtools/mathtools.h"
+# include "./memtools/memtools.h"
+# include "./mlx_linux/mlx.h"
 # include "./parsing/parsing.h"
 
 t_bool	ft_set_mlx(t_vars *v);
@@ -33,5 +34,6 @@ double	ft_atod(const char *nptr);
 t_bool	ft_displayelms(t_vars *v);
 t_bool	ft_minirt(t_vars *v);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+int	ft_color(t_rgb *rgb);
 
 # endif

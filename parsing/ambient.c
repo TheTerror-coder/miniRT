@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 21:35:58 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/20 18:06:11 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 16:21:07 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ t_bool	ft_set_acolor(t_vars *v, char *infocolor)
 				ft_error("ambient light: expecting only decimal numbers"));
 		i++;
 	}
-	v->a->r = ft_atoi(colors[0]);
-	v->a->g = ft_atoi(colors[1]);
-	v->a->b = ft_atoi(colors[2]);
+	v->a->rgb.r = ft_atoi(colors[0]);
+	v->a->rgb.g = ft_atoi(colors[1]);
+	v->a->rgb.b = ft_atoi(colors[2]);
 	ft_free2str(&colors);
-	if (v->a->r < 0 || v->a->r > 255 || v->a->g < 0 || v->a->g > 255 || \
-		v->a->b < 0 || v->a->b > 255)
+	if (v->a->rgb.r < 0 || v->a->rgb.r > 255 || v->a->rgb.g < 0 || v->a->rgb.g > 255 || \
+		v->a->rgb.b < 0 || v->a->rgb.b > 255)
 		return (ft_error("ambient light: incorrect color format"));
 	return (__TRUE);
 }

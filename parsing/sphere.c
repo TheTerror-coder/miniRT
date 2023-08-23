@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:53:48 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/20 18:21:17 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 16:23:40 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ t_bool	ft_set_spcolor(t_sp *sp, char *infocolor)
 				ft_error("sphere: expecting only decimal numbers"));
 		i++;
 	}
-	sp->r = ft_atoi(colors[0]);
-	sp->g = ft_atoi(colors[1]);
-	sp->b = ft_atoi(colors[2]);
+	sp->rgb.r = ft_atoi(colors[0]);
+	sp->rgb.g = ft_atoi(colors[1]);
+	sp->rgb.b = ft_atoi(colors[2]);
 	ft_free2str(&colors);
-	if (sp->r < 0 || sp->r > 255 || sp->g < 0 || sp->g > 255 || \
-		sp->b < 0 || sp->b > 255)
+	if (sp->rgb.r < 0 || sp->rgb.r > 255 || sp->rgb.g < 0 || sp->rgb.g > 255 || \
+		sp->rgb.b < 0 || sp->rgb.b > 255)
 		return (ft_error("sphere: incorrect color format"));
 	return (__TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:49 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/20 18:13:18 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 16:25:47 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,12 +116,12 @@ t_bool	ft_set_cycolor(t_cy *cy, char *infocolor)
 				ft_error("cylindre: expecting only decimal numbers"));
 		i++;
 	}
-	cy->r = ft_atoi(colors[0]);
-	cy->g = ft_atoi(colors[1]);
-	cy->b = ft_atoi(colors[2]);
+	cy->rgb.r = ft_atoi(colors[0]);
+	cy->rgb.g = ft_atoi(colors[1]);
+	cy->rgb.b = ft_atoi(colors[2]);
 	ft_free2str(&colors);
-	if (cy->r < 0 || cy->r > 255 || cy->g < 0 || cy->g > 255 || \
-		cy->b < 0 || cy->b > 255)
+	if (cy->rgb.r < 0 || cy->rgb.r > 255 || cy->rgb.g < 0 || cy->rgb.g > 255 || \
+		cy->rgb.b < 0 || cy->rgb.b > 255)
 		return (ft_error("cylindre: incorrect color format"));
 	return (__TRUE);
 }
