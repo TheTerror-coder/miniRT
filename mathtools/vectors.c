@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:30:44 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/23 18:35:20 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/25 17:10:24 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,18 @@ double	ft_vectornormsqr(t_vec *vector)
 	z2 = vector->z * vector->z;
 	res = x2 + y2 + z2;
 	return (res);
+}
+
+void	ft_vectornormalize(t_vec *vec, t_vec *normvec)
+{
+	double	norm;
+	t_vec	res;
+
+	norm = ft_vectornorm(vec);
+	res.x = vec->x / norm;
+	res.y = vec->y / norm;
+	res.z = vec->z / norm;
+	normvec->x = res.x;
+	normvec->y = res.y;
+	normvec->z = res.z;
 }

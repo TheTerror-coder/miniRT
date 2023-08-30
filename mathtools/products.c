@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:30:44 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/23 16:36:24 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/25 20:56:02 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,10 @@ t_vec	ft_vecdotpt(t_vec *vector, t_coord *point)
 	return (res);
 }
 
-double	ft_vecdotvec(t_vec *vec2, t_vec *vec1, const double angle)
+double	ft_vecdotvec(t_vec *vec1, t_vec *vec2)
 {
-	double	norm1;
-	double	norm2;
 	double	res;
 
-	norm1 = ft_vectornorm(vec1);
-	norm2 = ft_vectornorm(vec2);
-	res = norm1 * norm2 * cos(angle);
+	res = (vec1->x * vec2->x) + (vec1->y * vec2->y) + (vec1->z * vec2->z);
 	return (res);
 }
