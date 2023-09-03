@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:29:00 by TheTerror         #+#    #+#              #
-#    Updated: 2023/08/23 21:27:32 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2023/08/30 20:06:00 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRC_MATHTOOLS = $(addprefix $(MATHTOOLS_PATH), converts.c vectors.c subtractions
 SRC_MEMTOOLS = $(addprefix $(MEMTOOLS_PATH), initmem.c freemem.c init_elms.c free_elms.c)
 SRC_PARSING = $(addprefix $(PARSING_PATH), parsing.c ambient.c camera.c light.c \
 			sphere.c plane.c cylindre.c)
-SRC = main.c minirt.c ft_mlx_utils.c events.c utils.c display.c ft_atod.c $(SRC_MEMTOOLS) \
+SRC = main.c minirt.c ft_mlx_utils.c events.c utils.c display.c ft_atod.c ./rays/ray.c $(SRC_MEMTOOLS) \
 			$(SRC_PARSING) $(SRC_MATHTOOLS) $(SRC_INTERS)
 
 # OBJ = $(addprefix $(OBJ_PATH), $(notdir $(SRC:%.c=%.o)))

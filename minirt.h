@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:48 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/23 20:22:44 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/30 20:51:07 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ t_bool	ft_displayelms(t_vars *v);
 t_bool	ft_minirt(t_vars *v);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int	ft_color(t_rgb *rgb);
+t_bool	ft_setray(t_vars *v, int i, int j);
 
 # endif
