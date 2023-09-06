@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:30:44 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/25 17:10:24 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/09/06 01:17:37 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	ft_vectornormalize(t_vec *vec, t_vec *normvec)
 	t_vec	res;
 
 	norm = ft_vectornorm(vec);
+	if (!norm)
+		norm = 1;
 	res.x = vec->x / norm;
 	res.y = vec->y / norm;
 	res.z = vec->z / norm;
