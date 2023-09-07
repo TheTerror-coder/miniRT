@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:30:44 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/09/06 01:17:37 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/09/06 22:25:46 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,7 @@ double	ft_vectornorm(t_vec *vector)
 
 void	ft_setvec_coords(t_vec *vector)
 {
-	t_coord	pt;
-
-	pt = ft_pointsdiff(&vector->e, &vector->o);
-	vector->x = pt.x;
-	vector->y = pt.y;
-	vector->z = pt.z;
+	ft_pointsdiff(&vector->e, &vector->o, vector);
 }
 
 double	ft_vectornormsqr(t_vec *vector)

@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:36:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/25 20:56:52 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/09/06 22:02:09 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../minirt.h"
 
-t_coord	ft_pointsdiff(t_coord *end, t_coord *origin);
+void	ft_pointsdiff(t_coord *end, t_coord *origin, t_vec *res);
 double	ft_vectornorm(t_vec *vector);
 double	ft_vectornormsqr(t_vec *vector);
 void	ft_setvec_coords(t_vec *vector);

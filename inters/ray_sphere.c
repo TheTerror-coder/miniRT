@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 20:19:01 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/09/06 15:43:30 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/09/06 22:15:51 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,26 @@ t_bool	ft_ray_inter_sp(t_vars *v, t_sp *sp)
 	double	s;
 
 	s = ft_ray_inter_sp_op(v, sp);
+	if (ft_assess_color(v, s))
+		return (v->ray.color = ft_color(&sp->rgb), __TRUE);
+	return (__FALSE);
+}
+
+t_bool	ft_assess_color(t_vars *v, double len_found)
+{
 	if (v->ray.len < 0)
 	{
-		if (s >= 0)
+		if (len_found >= 0)
 		{
-			v->ray.len = s;
-			return (v->ray.color = ft_color(&sp->rgb), __TRUE);
+			v->ray.len = len_found;
+			return (__TRUE);
 		}
 		return (__FALSE);
 	}
-	if (s >= 0 && s <= v->ray.len)
+	if (len_found >= 0 && len_found <= v->ray.len)
 	{
-		v->ray.len = s;
-		return (v->ray.color = ft_color(&sp->rgb), __TRUE);
+		v->ray.len = len_found;
+		return (__TRUE);
 	}
 	return (__FALSE);
 }
