@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:41:14 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/25 15:29:22 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 21:40:37 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ typedef struct s_img
 	int		bpp;
 	int		size_line;
 	int		endian;
-	int		color;
 	void	*img;
 }				t_img;
 
@@ -110,7 +109,7 @@ typedef struct s_sphere
 typedef struct s_plane
 {
 	t_coord	p;
-	t_vec	dir;
+	t_vec	normal;
 	t_rgb	rgb;
 }				t_pl;
 

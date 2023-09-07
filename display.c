@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 17:15:36 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/23 16:27:26 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 21:26:18 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ t_bool	ft_displayothers(t_vars *v)
 	{
 		printf(\
 		"pl	%.2f,%.2f,%.2f	%.2f,%.2f,%.2f	%d,%d,%d\n", v->pl[i]->p.x, \
-			v->pl[i]->p.y, v->pl[i]->p.z, v->pl[i]->dir.x, v->pl[i]->dir.y, \
-			v->pl[i]->dir.z, v->pl[i]->rgb.r, v->pl[i]->rgb.g, v->pl[i]->rgb.b);
+			v->pl[i]->p.y, v->pl[i]->p.z, v->pl[i]->normal.x, v->pl[i]->normal.y, \
+			v->pl[i]->normal.z, v->pl[i]->rgb.r, v->pl[i]->rgb.g, v->pl[i]->rgb.b);
 		i++;
 	}
 	i = 0;

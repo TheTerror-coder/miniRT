@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/09/06 22:43:01 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 21:23:34 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ t_bool	ft_set_pldir(t_pl *pl, char *infodir)
 				ft_error("plane: expecting only decimal numbers"));
 		i++;
 	}
-	pl->dir.x = ft_atod(dir[0]);
-	pl->dir.y = ft_atod(dir[1]);
-	pl->dir.z = ft_atod(dir[2]);
+	pl->normal.x = ft_atod(dir[0]);
+	pl->normal.y = ft_atod(dir[1]);
+	pl->normal.z = ft_atod(dir[2]);
 	ft_free2str(&dir);
-	if (pl->dir.x < -1 || pl->dir.x > 1 || pl->dir.y < -1 || \
-		pl->dir.y > 1 || pl->dir.z < -1 || pl->dir.z > 1)
+	if (pl->normal.x < -1 || pl->normal.x > 1 || pl->normal.y < -1 || \
+		pl->normal.y > 1 || pl->normal.z < -1 || pl->normal.z > 1)
 		return (ft_error("plane: incorrect orientation vector format"));
 	return (__TRUE);
 }
