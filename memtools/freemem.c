@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:32:00 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/20 17:29:45 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/01/06 11:19:56 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	ft_free_v(t_vars *v)
 
 void	ft_free_elms(t_vars *v)
 {
-	if (v->a)
-		free(v->a);
-	if (v->c)
-		free(v->c);
-	if (v->l)
-		free(v->l);
+	if (v->amb)
+		free(v->amb);
+	if (v->cam)
+		free(v->cam);
+	if (v->light)
+		free(v->light);
 	ft_free_sp(v);
 	ft_free_pl(v);
 	ft_free_cy(v);

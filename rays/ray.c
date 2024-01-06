@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:05:07 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/09/06 17:12:47 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/01/06 11:19:17 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ t_bool	ft_setray(t_vars *v, int i, int j)
 	ft_in3dcamera(v, &localray, i, j);
 	// ft_translate_to_3dwrld(v, &localray, &wolrdray);
 	ft_rotate_to_3dwrld(v, &localray);
-	v->ray.o.x = v->c->pov.x;
-	v->ray.o.y = v->c->pov.y;
-	v->ray.o.z = v->c->pov.z;
-	v->ray.color = ft_color(&v->a->rgb);
+	v->ray.o.x = v->cam->pov.x;
+	v->ray.o.y = v->cam->pov.y;
+	v->ray.o.z = v->cam->pov.z;
+	v->ray.color = ft_color(&v->amb->rgb);
 	v->ray.len = -1;
 	return (__TRUE);
 }
@@ -38,15 +38,15 @@ t_bool	ft_in3dcamera(t_vars *v, t_vec *localray, int i, int j)
 {
 	localray->x = (i - (_WIDHT / 2.00));
 	localray->y = (-j + (_HEIGHT / 2.00));
-	localray->z = (-_WIDHT /(2.00 * tan(ft_degtorad(v->c->fov) / 2.00)));
+	localray->z = (-_WIDHT /(2.00 * tan(ft_degtorad(v->cam->fov) / 2.00)));
 	return (__TRUE);
 }
 
 // t_bool	ft_translate_to_3dwrld(t_vars *v, t_vec *localray, t_vec *worldray)
 // {
-// 	worldray->x = localray->x - v->c->pov.x;
-// 	worldray->y = localray->y - v->c->pov.y;
-// 	worldray->z = localray->z - v->c->pov.z;
+// 	worldray->x = localray->x - v->cam->pov.x;
+// 	worldray->y = localray->y - v->cam->pov.y;
+// 	worldray->z = localray->z - v->cam->pov.z;
 // 	return (__TRUE);
 // }
 
@@ -69,7 +69,7 @@ t_bool	ft_setcam_base(t_vars *v, t_vec *cam_u, t_vec *cam_v, t_vec *cam_w)
 	t_vec	cam_up;
 	t_vec	dir;
 
-	ft_vectornormalize(&v->c->dir, &dir);
+	ft_vectornormalize(&v->cam->dir, &dir);
 	cam_w->x = -dir.x;
 	cam_w->y = -dir.y;
 	cam_w->z = -dir.z;

@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 21:35:58 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/20 18:06:46 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/01/06 11:22:42 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ t_bool	ft_set_cdir(t_vars *v, char *infodir);
 
 t_bool ft_set_camera(t_vars *v, char **infos)
 {
-	if (v->c)
+	if (v->cam)
 		return (ft_error("camera: multiple definitions"));
 	if (ft_2strlen(infos) < 3)
 		return (ft_error("camera: missing information"));
 	if (ft_2strlen(infos) > 3)
 		return (ft_error("camera: too much information"));
-	v->c = ft_calloc(1, sizeof(t_cam));
-	if (!v->c)
+	v->cam = ft_calloc(1, sizeof(t_cam));
+	if (!v->cam)
 		return (ft_error("ft_set_camera(): ft_calloc() failed"));
 	if (!ft_set_pov(v, infos[0]))
 		return (__FALSE);
@@ -34,8 +34,8 @@ t_bool ft_set_camera(t_vars *v, char **infos)
 // ft_exitprocss(v, EXIT_SUCCESS);
 	if (!ft_isnumber(infos[2]))
 		return (ft_error("camera: expecting only decimal numbers"));
-	v->c->fov = ft_atod(infos[2]);
-	if (v->c->fov < 0 || v->c->fov > 180)
+	v->cam->fov = ft_atod(infos[2]);
+	if (v->cam->fov < 0 || v->cam->fov > 180)
 		return (ft_error("camera: invalid field of view"));
 	return (__TRUE);
 }
@@ -59,9 +59,9 @@ t_bool	ft_set_pov(t_vars *v, char *infopov)
 				ft_error("camera: expecting only decimal numbers"));
 		i++;
 	}
-	v->c->pov.x = ft_atod(pov[0]);
-	v->c->pov.y = ft_atod(pov[1]);
-	v->c->pov.z = ft_atod(pov[2]);
+	v->cam->pov.x = ft_atod(pov[0]);
+	v->cam->pov.y = ft_atod(pov[1]);
+	v->cam->pov.z = ft_atod(pov[2]);
 	ft_free2str(&pov);
 	return (__TRUE);
 }
@@ -85,12 +85,12 @@ t_bool	ft_set_cdir(t_vars *v, char *infodir)
 				ft_error("camera: expecting only decimal numbers"));
 		i++;
 	}
-	v->c->dir.x = ft_atod(dir[0]);
-	v->c->dir.y = ft_atod(dir[1]);
-	v->c->dir.z = ft_atod(dir[2]);
+	v->cam->dir.x = ft_atod(dir[0]);
+	v->cam->dir.y = ft_atod(dir[1]);
+	v->cam->dir.z = ft_atod(dir[2]);
 	ft_free2str(&dir);
-	if (v->c->dir.x < -1 || v->c->dir.x > 1 || v->c->dir.y < -1 || \
-		v->c->dir.y > 1 || v->c->dir.z < -1 || v->c->dir.z > 1)
+	if (v->cam->dir.x < -1 || v->cam->dir.x > 1 || v->cam->dir.y < -1 || \
+		v->cam->dir.y > 1 || v->cam->dir.z < -1 || v->cam->dir.z > 1)
 		return (ft_error("camera: incorrect orientation vector format"));
 	return (__TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:41:14 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/09/07 21:40:37 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/01/06 11:15:52 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,9 +136,9 @@ typedef struct s_variables
 	void	*win;
 	t_img	*im;
 	char	*file;
-	t_amb	*a;
-	t_cam	*c;
-	t_light	*l;
+	t_amb	*amb;
+	t_cam	*cam;
+	t_light	*light;
 	t_sp	**sp;
 	t_pl	**pl;
 	t_cy	**cy;
