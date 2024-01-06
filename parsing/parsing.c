@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 19:35:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/20 21:37:57 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/01/06 11:49:57 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ t_bool	ft_parsefile(t_vars *v)
 	if (fd < 0)
 		return (perror(v->file), __FALSE);
 	line = get_next_line(fd);
+	if (!line)
+		return (ft_error("missing informations, check your elements"));
 	while (line)
 	{
 		if (!ft_setelements(v, line))
@@ -62,7 +64,7 @@ t_bool	ft_setelements(t_vars *v, char *line)
 	if (!elm)
 		return (ft_error("ft_splitwset() failed"));
 	if (!elm[0])
-		return (ft_free2str(&elm), __TRUE);
+		return (ft_free2str(&elm), ft_error("missing informations, check your elements"));
 	if (ft_2strlen(elm) < 3)
 		return (ft_free2str(&elm), ft_error("missing informations, check your elements"));
 	if (!ft_auth_id_then_set(v, &elm[1], elm[0]))
