@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:41:14 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/09/07 21:40:37 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/09/09 22:20:02 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,9 @@ typedef struct s_plane
 typedef struct s_cylindre
 {
 	t_coord	o;
-	t_vec	dir;
+	t_vec	axis;
 	double	d;
+	double	r;
 	double	h;
 	t_rgb	rgb;
 }				t_cy;
@@ -144,5 +145,28 @@ typedef struct s_variables
 	t_cy	**cy;
 	t_ray	ray;
 }				t_vars;
+
+typedef struct s_parameters
+{
+	double	k;
+	double	f;
+	double	g;
+	double	h;
+	double	alpha;
+	double	beta;
+	double	lamda;
+	double	e;
+	double	l;
+	double	m;
+	double	n;
+	double	a;
+	double	b;
+	double	c;
+	double	delta;
+	double	t1;
+	double	t2;
+	double	hp1;
+	double	hp2;
+}				t_params;
 
 #endif

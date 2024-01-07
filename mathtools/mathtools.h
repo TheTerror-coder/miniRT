@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 18:36:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/09/06 22:02:09 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 15:56:16 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_vec	ft_vecdotpt(t_vec *vector, t_coord *point);
 t_vec	ft_vecdotconst(t_vec *vector, const double k);
 double	ft_degtorad(double alpha);
 double	ft_radtodeg(double alpha);
-double	ft_square(double n);
+double	ft_sq(double n);
 void	ft_vectornormalize(t_vec *vec, t_vec *normvec);
 
 #endif
