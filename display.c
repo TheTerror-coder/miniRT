@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 17:15:36 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/06 11:17:08 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/07 18:12:53 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ t_bool	ft_displayothers(t_vars *v)
 	{
 		printf(\
 		"cy	%.2f,%.2f,%.2f	%.2f,%.2f,%.2f	%.2f	%.2f	%d,%d,%d\n", \
-			v->cy[i]->o.x, v->cy[i]->o.y, v->cy[i]->o.z, v->cy[i]->dir.x, \
-			v->cy[i]->dir.y, v->cy[i]->dir.z, v->cy[i]->d, v->cy[i]->h, \
+			v->cy[i]->o.x, v->cy[i]->o.y, v->cy[i]->o.z, v->cy[i]->axis.x, \
+			v->cy[i]->axis.y, v->cy[i]->axis.z, v->cy[i]->d, v->cy[i]->h, \
 			v->cy[i]->rgb.r, v->cy[i]->rgb.g, v->cy[i]->rgb.b);
 		i++;
 	}

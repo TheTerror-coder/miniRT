@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:49 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/23 16:25:47 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 16:06:52 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_bool ft_set_cylindre(t_vars *v, char **infos)
 	if (!ft_isnumber(infos[2]) || !ft_isnumber(infos[3]))
 		return (ft_error("cylindre: expecting only decimal numbers"));
 	v->cy[i]->d = ft_atod(infos[2]);
+	v->cy[i]->r = v->cy[i]->d / 2;
 	v->cy[i]->h = ft_atod(infos[3]);
 	if (!ft_set_cycolor(v->cy[i], infos[4]))
 		return (__FALSE);
@@ -87,12 +88,12 @@ t_bool	ft_set_cydir(t_cy *cy, char *infodir)
 				ft_error("cylindre: expecting only decimal numbers"));
 		i++;
 	}
-	cy->dir.x = ft_atod(dir[0]);
-	cy->dir.y = ft_atod(dir[1]);
-	cy->dir.z = ft_atod(dir[2]);
+	cy->axis.x = ft_atod(dir[0]);
+	cy->axis.y = ft_atod(dir[1]);
+	cy->axis.z = ft_atod(dir[2]);
 	ft_free2str(&dir);
-	if (cy->dir.x < -1 || cy->dir.x > 1 || cy->dir.y < -1 || \
-		cy->dir.y > 1 || cy->dir.z < -1 || cy->dir.z > 1)
+	if (cy->axis.x < -1 || cy->axis.x > 1 || cy->axis.y < -1 || \
+		cy->axis.y > 1 || cy->axis.z < -1 || cy->axis.z > 1)
 		return (ft_error("cylindre: incorrect orientation vector format"));
 	return (__TRUE);
 }

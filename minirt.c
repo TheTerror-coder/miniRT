@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:22 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/09/07 22:41:45 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 16:25:32 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ t_bool	ft_intersections(t_vars *v, int i, int j)
 	x = -1;
 	while (v->pl && v->pl[++x])
 		ft_ray_inter_pl(v, v->pl[x]);
+	x = -1;
+	while (v->cy && v->cy[++x])
+		ft_ray_inter_cy(v, v->cy[x]);
 	my_mlx_pixel_put(v->im, i, j, v->ray.color);
 	return (__TRUE);
 }

@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:29:00 by TheTerror         #+#    #+#              #
-#    Updated: 2024/01/06 10:56:21 by lmohin           ###   ########.fr        #
+#    Updated: 2024/01/07 18:12:06 by lmohin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ MLX_OBJ_OPTIONS =	-I/usr/include -Imlx_linux -O3
 MLX_LINK_OPTIONS =	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 RM =				rm -rf
 
-SRC_INTERS = $(addprefix $(INTERS_PATH), ray_sphere.c ray_plane.c)
+SRC_INTERS = $(addprefix $(INTERS_PATH), ray_sphere.c ray_plane.c ray_cylinder.c)
 SRC_MATHTOOLS = $(addprefix $(MATHTOOLS_PATH), converts.c vectors.c subtractions.c products.c \
 			ft_square.c)
 SRC_MEMTOOLS = $(addprefix $(MEMTOOLS_PATH), initmem.c freemem.c init_elms.c free_elms.c)
@@ -44,6 +44,8 @@ SRC = main.c minirt.c ft_mlx_utils.c events.c utils.c display.c ft_atod.c ./rays
 OBJ = $(SRC:%.c=%.o)
 
 all : mk_objdir make_libft $(NAME)
+
+c : all clean
 
 %.o : %.c $(INCLUDE) $(LIBFT_LIB)
 	$(CC) $(CFLAGS) $(MLX_OBJ_OPTIONS) -c $< -o $@
