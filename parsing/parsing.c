@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 19:35:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/06 11:49:57 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/07 18:31:22 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_bool	ft_setelements(t_vars *v, char *line)
 	if (!elm)
 		return (ft_error("ft_splitwset() failed"));
 	if (!elm[0])
-		return (ft_free2str(&elm), ft_error("missing informations, check your elements"));
+		return (__TRUE);
 	if (ft_2strlen(elm) < 3)
 		return (ft_free2str(&elm), ft_error("missing informations, check your elements"));
 	if (!ft_auth_id_then_set(v, &elm[1], elm[0]))
