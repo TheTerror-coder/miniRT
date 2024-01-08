@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:30:47 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/21 17:12:17 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/01/08 21:19:42 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_vars	*v;
 
 	v = ft_init_v();
-	if (!ft_parse(v, argc, argv))
+	if (!parse_args(v, argc, argv))
 		ft_exitprocss(v, EXIT_FAILURE);
 	if (!ft_set_mlx(v))
 		ft_exitprocss(v, EXIT_FAILURE);

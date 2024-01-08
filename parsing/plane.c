@@ -6,40 +6,40 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/09/07 21:23:34 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/01/08 17:45:49 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-t_bool	ft_set_plpoint(t_pl *pl, char *infopoint);
-t_bool	ft_set_pldir(t_pl *pl, char *infodir);
-t_bool	ft_set_plcolor(t_pl *pl, char *infocolor);
+t_bool	ft_set_plpoint(t_pl *pl, char *infopoint, size_t line_index);
+t_bool	ft_set_pldir(t_pl *pl, char *infodir, size_t line_index);
+t_bool	ft_set_plcolor(t_pl *pl, char *infocolor, size_t line_index);
 
-t_bool	ft_set_plane(t_vars *v, char **infos)
+t_bool	ft_set_plane(t_vars *v, char **infos, size_t line_index)
 {
 	int	i;
 
 	if (ft_2strlen(infos) < 3)
-		return (ft_error("plane: missing information"));
+		return (scene_error("plane: missing information", line_index));
 	if (ft_2strlen(infos) > 3)
-		return (ft_error("plane: too much information"));
+		return (scene_error("plane: too much information", line_index));
 	if (!ft_init_a_plane(v, &i))
 		return (__FALSE);
 	v->pl[i] = ft_calloc(1, sizeof(t_pl));
 // printf("heheheehehehe\n");
 	if (!v->pl[i])
 		return (ft_error("ft_set_plane(): ft_calloc() failed"));
-	if (!ft_set_plpoint(v->pl[i], infos[0]))
+	if (!ft_set_plpoint(v->pl[i], infos[0], line_index))
 		return (__FALSE);
-	if (!ft_set_pldir(v->pl[i], infos[1]))
+	if (!ft_set_pldir(v->pl[i], infos[1], line_index))
 		return (__FALSE);
-	if (!ft_set_plcolor(v->pl[i], infos[2]))
+	if (!ft_set_plcolor(v->pl[i], infos[2], line_index))
 		return (__FALSE);
 	return (__TRUE);
 }
 
-t_bool	ft_set_plpoint(t_pl *pl, char *infopoint)
+t_bool	ft_set_plpoint(t_pl *pl, char *infopoint, size_t line_index)
 {
 	char	**point;
 	int		i;
@@ -50,12 +50,12 @@ t_bool	ft_set_plpoint(t_pl *pl, char *infopoint)
 		return (ft_error("ft_set_point(): ft_splitwset() failed"));
 	if (!point[0] || ft_2strlen(point) != 3)
 		return (ft_free2str(&point), \
-			ft_error("plane: incorrect point's coordinates format"));
+			scene_error("plane: incorrect point's coordinates format", line_index));
 	while (point[i])
 	{
 		if (!ft_isnumber(point[i]))
 			return (ft_free2str(&point), \
-				ft_error("plane: expecting only decimal numbers"));
+				scene_error("plane: expecting only decimal numbers", line_index));
 		i++;
 	}
 	pl->p.x = ft_atod(point[0]);
@@ -65,7 +65,7 @@ t_bool	ft_set_plpoint(t_pl *pl, char *infopoint)
 	return (__TRUE);
 }
 
-t_bool	ft_set_pldir(t_pl *pl, char *infodir)
+t_bool	ft_set_pldir(t_pl *pl, char *infodir, size_t line_index)
 {
 	char	**dir;
 	int		i;
@@ -76,12 +76,12 @@ t_bool	ft_set_pldir(t_pl *pl, char *infodir)
 		return (ft_error("ft_set_dir(): ft_splitwset() failed"));
 	if (!dir[0] || ft_2strlen(dir) != 3)
 		return (ft_free2str(&dir), \
-			ft_error("plane: incorrect orientation vector format"));
+			scene_error("plane: incorrect orientation vector format", line_index));
 	while (dir[i])
 	{
 		if (!ft_isnumber(dir[i]))
 			return (ft_free2str(&dir), \
-				ft_error("plane: expecting only decimal numbers"));
+				scene_error("plane: expecting only decimal numbers", line_index));
 		i++;
 	}
 	pl->normal.x = ft_atod(dir[0]);
@@ -90,11 +90,11 @@ t_bool	ft_set_pldir(t_pl *pl, char *infodir)
 	ft_free2str(&dir);
 	if (pl->normal.x < -1 || pl->normal.x > 1 || pl->normal.y < -1 || \
 		pl->normal.y > 1 || pl->normal.z < -1 || pl->normal.z > 1)
-		return (ft_error("plane: incorrect orientation vector format"));
+		return (scene_error("plane: incorrect orientation vector format", line_index));
 	return (__TRUE);
 }
 
-t_bool	ft_set_plcolor(t_pl *pl, char *infocolor)
+t_bool	ft_set_plcolor(t_pl *pl, char *infocolor, size_t line_index)
 {
 	char	**colors;
 	int		i;
@@ -105,12 +105,12 @@ t_bool	ft_set_plcolor(t_pl *pl, char *infocolor)
 		return (ft_error("ft_set_plcolor(): ft_splitwset() failed"));
 	if (!colors[0] || ft_2strlen(colors) != 3)
 		return (ft_free2str(&colors), \
-			ft_error("plane: incorrect color format"));
+			scene_error("plane: incorrect color format", line_index));
 	while (colors[i])
 	{
 		if (!ft_isnumber(colors[i]))
 			return (ft_free2str(&colors), \
-				ft_error("plane: expecting only decimal numbers"));
+				scene_error("plane: expecting only decimal numbers", line_index));
 		i++;
 	}
 	pl->rgb.r = ft_atoi(colors[0]);
@@ -119,6 +119,6 @@ t_bool	ft_set_plcolor(t_pl *pl, char *infocolor)
 	ft_free2str(&colors);
 	if (pl->rgb.r < 0 || pl->rgb.r > 255 || pl->rgb.g < 0 || pl->rgb.g > 255 || \
 		pl->rgb.b < 0 || pl->rgb.b > 255)
-		return (ft_error("plane: incorrect color format"));
+		return (scene_error("plane: incorrect color format", line_index));
 	return (__TRUE);
 }
