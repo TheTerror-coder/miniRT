@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 21:35:58 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/06 11:22:42 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/08 14:56:17 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,9 @@ t_bool	ft_set_cdir(t_vars *v, char *infodir)
 	v->cam->dir.y = ft_atod(dir[1]);
 	v->cam->dir.z = ft_atod(dir[2]);
 	ft_free2str(&dir);
+	if (v->cam->dir.x * v->cam->dir.x + v->cam->dir.y \
+		* v->cam->dir.y + v->cam->dir.z * v->cam->dir.z != 1)
+		return (ft_error("camera: incorrect orientation vector format"));
 	if (v->cam->dir.x < -1 || v->cam->dir.x > 1 || v->cam->dir.y < -1 || \
 		v->cam->dir.y > 1 || v->cam->dir.z < -1 || v->cam->dir.z > 1)
 		return (ft_error("camera: incorrect orientation vector format"));
