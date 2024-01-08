@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 19:54:01 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/23 16:17:38 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/01/08 20:27:44 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int	ft_color(t_rgb *rgb)
 {
 	int	result;
 
-	result = rgb->r<<16;
-	result += rgb->g<<8;
+	result = rgb->r << 16;
+	result += rgb->g << 8;
 	result += rgb->b;
 	return (result);
 }
