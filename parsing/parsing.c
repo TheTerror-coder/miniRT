@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 19:35:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/07 18:31:22 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/08 15:37:19 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,24 +92,15 @@ t_bool	ft_auth_id_then_set(t_vars *v, char **infos, char *id)
 
 t_bool	ft_checkformat(char *file)
 {
-	char	**parts;
+	size_t	i;
 
-	parts = NULL;
-	parts = ft_split(file, '.');
-	if (!parts)
-		return (__FALSE);
-	if (ft_2strlen(parts) != 2 || ft_strlen(parts[1]) != 2)
+	i = ft_strlen(file);
+	while (i != 0 && file[i] != '.')
+		i--;
+	if (ft_strncmp(file + i, ".rt", 4))
 	{
-		ft_putendl_fd("invalid file format", STDERR_FILENO);
-		ft_freesplit(parts);
+		ft_putendl_fd("invalid file extension", STDERR_FILENO);
 		return (__FALSE);
 	}
-	if (ft_strncmp(parts[1], "rt", 2) == 0)
-	{
-		ft_freesplit(parts);
-		return (__TRUE);
-	}
-	ft_putendl_fd("invalid file extension", STDERR_FILENO);
-	ft_freesplit(parts);
-	return (__FALSE);
+	return (__TRUE);
 }
