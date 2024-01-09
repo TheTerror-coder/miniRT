@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 21:35:58 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/09 19:06:28 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/09 19:55:44 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ t_bool	set_amb_color(t_vars *v, char *infocolor, size_t line_index)
 	if (ft_countchar(infocolor, ',') != 2)
 		return (scene_error("ambient lighting: incorrect color format",
 				line_index));
-	colors = ft_splitwset(infocolor, ",");
+	colors = ft_split(infocolor, ',');
 	if (!colors)
-		return (ft_error("set_acolor(): ft_splitwset() failed"));
+		return (ft_error("set_acolor(): ft_split() failed"));
 	if (!parse_amb_color(colors, line_index))
 		return (ft_free2str(&colors), __FALSE);
 	v->amb->rgb.r = ft_atoi(colors[0]);
