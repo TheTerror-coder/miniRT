@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 19:54:01 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/08 20:27:44 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/09 17:57:04 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ t_bool	ft_check(const char *str, int i, int *coma)
 		return (__FALSE);
 	else if (i && !ft_isdigit(str[i]))
 		return (__FALSE);
+	return (__TRUE);
+}
+
+t_bool	ft_is_uint(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (__FALSE);
+		i++;
+	}
 	return (__TRUE);
 }
 

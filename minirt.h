@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:48 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/08 20:27:57 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/09 17:55:59 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_exitprocss(t_vars *v, int status);
 void	ft_events(t_vars *v);
 t_bool	ft_error(char *str);
 t_bool	ft_isnumber(const char *str);
+t_bool	ft_is_uint(const char *str);
 double	ft_atod(const char *nptr);
 t_bool	ft_displayelms(t_vars *v);
 t_bool	ft_minirt(t_vars *v);
