@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 19:09:27 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/09 18:44:23 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/10 15:43:06 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 t_bool	parse_args(t_vars *v, int argc, char **argv);
 t_bool	set_ambient(t_vars *v, char **infos, size_t line_index);
 t_bool	set_camera(t_vars *v, char **infos, size_t line_index);
-t_bool	ft_set_light(t_vars *v, char **infos, size_t line_index);
+t_bool	set_light(t_vars *v, char **infos, size_t line_index);
 t_bool	ft_set_sphere(t_vars *v, char **infos, size_t line_index);
 t_bool	ft_set_plane(t_vars *v, char **infos, size_t line_index);
 t_bool	ft_set_cylindre(t_vars *v, char **infos, size_t line_index);

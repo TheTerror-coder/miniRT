@@ -6,16 +6,16 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:53:19 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/08 17:04:47 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/10 15:42:43 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-t_bool	ft_set_pol(t_vars *v, char *infopol, size_t line_index);
-t_bool	ft_set_lcolor(t_vars *v, char *infocolor, size_t line_index);
+t_bool	set_light_coordinates(t_vars *v, char *infopol, size_t line_index);
+t_bool	set_light_color(t_vars *v, char *infocolor, size_t line_index);
 
-t_bool ft_set_light(t_vars *v, char **infos, size_t line_index)
+t_bool	set_light(t_vars *v, char **infos, size_t line_index)
 {
 	if (v->light)
 		return (scene_error("light: multiple definitions", line_index));
@@ -26,19 +26,19 @@ t_bool ft_set_light(t_vars *v, char **infos, size_t line_index)
 	v->light = ft_calloc(1, sizeof(t_light));
 	if (!v->light)
 		return (ft_error("ft_set_light(): ft_calloc() failed"));
-	if (!ft_set_pol(v, infos[0], line_index))
+	if (!set_light_coordinates(v, infos[0], line_index))
 		return (__FALSE);
 	if (!ft_isnumber(infos[1]))
 		return (scene_error("light: expecting only decimal numbers", line_index));
 	v->light->ratio = ft_atod(infos[1]);
 	if (v->light->ratio < 0 || v->light->ratio > 1)
 		return (scene_error("light: invalid ratio", line_index));
-	if (!ft_set_lcolor(v, infos[2], line_index))
+	if (!set_light_color(v, infos[2], line_index))
 		return (__FALSE);
 	return (__TRUE);
 }
 
-t_bool	ft_set_pol(t_vars *v, char *infopol, size_t line_index)
+t_bool	set_light_coordinates(t_vars *v, char *infopol, size_t line_index)
 {
 	char	**pol;
 	int		i;
@@ -64,7 +64,7 @@ t_bool	ft_set_pol(t_vars *v, char *infopol, size_t line_index)
 	return (__TRUE);
 }
 
-t_bool	ft_set_lcolor(t_vars *v, char *infocolor, size_t line_index)
+t_bool	set_light_color(t_vars *v, char *infocolor, size_t line_index)
 {
 	char	**colors;
 	int		i;
