@@ -6,16 +6,16 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:53:48 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/08 17:40:15 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/10 16:45:25 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-t_bool	ft_set_spcenter(t_sp *sp, char *infocenter, size_t line_index);
-t_bool	ft_set_spcolor(t_sp *sp, char *infocolor, size_t line_index);
+t_bool	set_sphere_center(t_sp *sp, char *infocenter, size_t line_index);
+t_bool	set_sphere_color(t_sp *sp, char *infocolor, size_t line_index);
 
-t_bool ft_set_sphere(t_vars *v, char **infos, size_t line_index)
+t_bool	set_sphere(t_vars *v, char **infos, size_t line_index)
 {
 	int	i;
 
@@ -23,22 +23,22 @@ t_bool ft_set_sphere(t_vars *v, char **infos, size_t line_index)
 		return (scene_error("sphere: missing information", line_index));
 	if (ft_2strlen(infos) > 3)
 		return (scene_error("sphere: too much information", line_index));
-	if (!ft_init_a_sphere(v, &i))
+	if (!init_a_sphere(v, &i))
 		return (__FALSE);
 	v->sp[i] = ft_calloc(1, sizeof(t_sp));
 	if (!v->sp[i])
 		return (ft_error("ft_set_sphere(): ft_calloc() failed"));
-	if (!ft_set_spcenter(v->sp[i], infos[0], line_index))
+	if (!set_sphere_center(v->sp[i], infos[0], line_index))
 		return (__FALSE);
 	if (!ft_isnumber(infos[1]))
 		return (scene_error("sphere: expecting only decimal numbers", line_index));
 	v->sp[i]->d = ft_atod(infos[1]);
-	if (!ft_set_spcolor(v->sp[i], infos[2], line_index))
+	if (!set_sphere_color(v->sp[i], infos[2], line_index))
 		return (__FALSE);
 	return (__TRUE);
 }
 
-t_bool	ft_set_spcenter(t_sp *sp, char *infocenter, size_t line_index)
+t_bool	set_sphere_center(t_sp *sp, char *infocenter, size_t line_index)
 {
 	char	**center;
 	int		i;
@@ -64,7 +64,7 @@ t_bool	ft_set_spcenter(t_sp *sp, char *infocenter, size_t line_index)
 	return (__TRUE);
 }
 
-t_bool	ft_set_spcolor(t_sp *sp, char *infocolor, size_t line_index)
+t_bool	set_sphere_color(t_sp *sp, char *infocolor, size_t line_index)
 {
 	char	**colors;
 	int		i;

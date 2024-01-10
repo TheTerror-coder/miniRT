@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:49 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/08 17:49:28 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/10 16:45:37 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_bool ft_set_cylindre(t_vars *v, char **infos, size_t line_index)
 		return (scene_error("cylindre: missing information", line_index));
 	if (ft_2strlen(infos) > 5)
 		return (scene_error("cylindre: too much information", line_index));
-	if (!ft_init_a_cylindre(v, &i))
+	if (!init_a_cylindre(v, &i))
 		return (__FALSE);
 	v->cy[i] = ft_calloc(1, sizeof(t_cy));
 	if (!v->cy[i])

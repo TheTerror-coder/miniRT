@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/08 17:45:49 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/10 16:45:46 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_bool	ft_set_plane(t_vars *v, char **infos, size_t line_index)
 		return (scene_error("plane: missing information", line_index));
 	if (ft_2strlen(infos) > 3)
 		return (scene_error("plane: too much information", line_index));
-	if (!ft_init_a_plane(v, &i))
+	if (init_a_plane(v, &i))
 		return (__FALSE);
 	v->pl[i] = ft_calloc(1, sizeof(t_pl));
 // printf("heheheehehehe\n");

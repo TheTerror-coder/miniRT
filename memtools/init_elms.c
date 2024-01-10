@@ -6,13 +6,13 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 16:51:42 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/20 16:54:28 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/01/10 16:44:51 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "memtools.h"
 
-t_bool	ft_init_a_sphere(t_vars *v, int *index)
+t_bool	init_a_sphere(t_vars *v, int *index)
 {
 	t_sp	**new;
 	int		len;
@@ -24,7 +24,7 @@ t_bool	ft_init_a_sphere(t_vars *v, int *index)
 	len++;
 	new = ft_calloc(len + 1, sizeof(t_sp *));
 	if (!new)
-		return (ft_error("ft_init_a_sphere(): ft_calloc() failed"));
+		return (ft_error("init_a_sphere(): ft_calloc() failed"));
 	len = 0;
 	while (v->sp && v->sp[len])
 	{
@@ -37,7 +37,7 @@ t_bool	ft_init_a_sphere(t_vars *v, int *index)
 	return (__TRUE);
 }
 
-t_bool	ft_init_a_plane(t_vars *v, int *index)
+t_bool	init_a_plane(t_vars *v, int *index)
 {
 	t_pl	**new;
 	int		len;
@@ -62,7 +62,7 @@ t_bool	ft_init_a_plane(t_vars *v, int *index)
 	return (__TRUE);
 }
 
-t_bool	ft_init_a_cylindre(t_vars *v, int *index)
+t_bool	init_a_cylindre(t_vars *v, int *index)
 {
 	t_cy	**new;
 	int		len;
