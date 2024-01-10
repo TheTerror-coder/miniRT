@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 21:35:58 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/09 19:55:44 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/10 16:29:12 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ t_bool	set_ambient(t_vars *v, char **infos, size_t line_index)
 t_bool	set_amb_color(t_vars *v, char *infocolor, size_t line_index)
 {
 	char	**colors;
-	int		i;
 
-	i = 0;
 	if (ft_countchar(infocolor, ',') != 2)
+	{
 		return (scene_error("ambient lighting: incorrect color format",
 				line_index));
+	}
 	colors = ft_split(infocolor, ',');
 	if (!colors)
 		return (ft_error("set_acolor(): ft_split() failed"));
@@ -63,8 +63,10 @@ t_bool	set_amb_color(t_vars *v, char *infocolor, size_t line_index)
 	ft_free2str(&colors);
 	if (v->amb->rgb.r < 0 || v->amb->rgb.r > 255 || v->amb->rgb.g < 0
 		|| v->amb->rgb.g > 255 || v->amb->rgb.b < 0 || v->amb->rgb.b > 255)
+	{
 		return (scene_error("ambient lighting: incorrect color format",
 				line_index));
+	}
 	return (__TRUE);
 }
 
@@ -73,9 +75,11 @@ t_bool	parse_amb_color(char **colors, size_t line_index)
 	int	i;
 
 	i = 0;
-	if (!colors[0] || ft_2strlen(colors) != 3)
+	if (ft_2strlen(colors) != 3)
+	{
 		return (scene_error("ambient lighting: incorrect color format",
 				line_index));
+	}
 	while (colors[i])
 	{
 		if (!ft_is_uint(colors[i]))
