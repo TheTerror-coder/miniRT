@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 19:35:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/11 15:33:04 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/11 21:19:00 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ t_bool	set_elements(t_vars *v, char *line, size_t line_index)
 
 t_bool	auth_id_then_set(t_vars *v, char **infos, char *id, size_t line_index)
 {
+	printf("%zu\n", line_index);
 	if (!ft_strncmp("A", id, ft_strlen(id) + 1))
 		return (set_ambient(v, infos, line_index));
 	if (!ft_strncmp("C", id, ft_strlen(id) + 1))

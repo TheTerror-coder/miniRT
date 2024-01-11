@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/11 15:37:06 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/11 21:19:36 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_bool	set_plane(t_vars *v, char **infos, size_t line_index)
 		return (scene_error("plane: missing information", line_index));
 	if (ft_2strlen(infos) > 3)
 		return (scene_error("plane: too much information", line_index));
-	if (init_a_plane(v, &i))
+	if (!init_a_plane(v, &i))
 		return (__FALSE);
 	v->pl[i] = ft_calloc(1, sizeof(t_pl));
 	if (!v->pl[i])
@@ -46,7 +46,7 @@ t_bool	set_plane_point(t_pl *pl, char *infopoint, size_t line_index)
 	i = 0;
 	point = ft_splitwset(infopoint, " ,\t\n");
 	if (!point)
-		return (ft_error("ft_set_point(): ft_splitwset() failed"));
+		return (ft_error("set_plane_point(): ft_splitwset() failed"));
 	if (!point[0] || ft_2strlen(point) != 3)
 		return (ft_free2str(&point), \
 			scene_error("plane: incorrect point's coordinates format", line_index));
@@ -72,7 +72,7 @@ t_bool	set_plane_dir(t_pl *pl, char *infodir, size_t line_index)
 	i = 0;
 	dir = ft_splitwset(infodir, " ,\t\n");
 	if (!dir)
-		return (ft_error("ft_set_dir(): ft_splitwset() failed"));
+		return (ft_error("set_plane_dir(): ft_splitwset() failed"));
 	if (!dir[0] || ft_2strlen(dir) != 3)
 		return (ft_free2str(&dir), \
 			scene_error("plane: incorrect orientation vector format", line_index));
