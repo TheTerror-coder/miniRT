@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/10 16:45:46 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/11 15:32:07 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_bool	ft_set_plpoint(t_pl *pl, char *infopoint, size_t line_index);
 t_bool	ft_set_pldir(t_pl *pl, char *infodir, size_t line_index);
 t_bool	ft_set_plcolor(t_pl *pl, char *infocolor, size_t line_index);
 
-t_bool	ft_set_plane(t_vars *v, char **infos, size_t line_index)
+t_bool	set_plane(t_vars *v, char **infos, size_t line_index)
 {
 	int	i;
 
