@@ -6,15 +6,15 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/11 15:32:07 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/11 15:37:06 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-t_bool	ft_set_plpoint(t_pl *pl, char *infopoint, size_t line_index);
-t_bool	ft_set_pldir(t_pl *pl, char *infodir, size_t line_index);
-t_bool	ft_set_plcolor(t_pl *pl, char *infocolor, size_t line_index);
+t_bool	set_plane_point(t_pl *pl, char *infopoint, size_t line_index);
+t_bool	set_plane_dir(t_pl *pl, char *infodir, size_t line_index);
+t_bool	set_plane_color(t_pl *pl, char *infocolor, size_t line_index);
 
 t_bool	set_plane(t_vars *v, char **infos, size_t line_index)
 {
@@ -27,19 +27,18 @@ t_bool	set_plane(t_vars *v, char **infos, size_t line_index)
 	if (init_a_plane(v, &i))
 		return (__FALSE);
 	v->pl[i] = ft_calloc(1, sizeof(t_pl));
-// printf("heheheehehehe\n");
 	if (!v->pl[i])
-		return (ft_error("ft_set_plane(): ft_calloc() failed"));
-	if (!ft_set_plpoint(v->pl[i], infos[0], line_index))
+		return (ft_error("set_plane(): ft_calloc() failed"));
+	if (!set_plane_point(v->pl[i], infos[0], line_index))
 		return (__FALSE);
-	if (!ft_set_pldir(v->pl[i], infos[1], line_index))
+	if (!set_plane_dir(v->pl[i], infos[1], line_index))
 		return (__FALSE);
-	if (!ft_set_plcolor(v->pl[i], infos[2], line_index))
+	if (!set_plane_color(v->pl[i], infos[2], line_index))
 		return (__FALSE);
 	return (__TRUE);
 }
 
-t_bool	ft_set_plpoint(t_pl *pl, char *infopoint, size_t line_index)
+t_bool	set_plane_point(t_pl *pl, char *infopoint, size_t line_index)
 {
 	char	**point;
 	int		i;
@@ -65,7 +64,7 @@ t_bool	ft_set_plpoint(t_pl *pl, char *infopoint, size_t line_index)
 	return (__TRUE);
 }
 
-t_bool	ft_set_pldir(t_pl *pl, char *infodir, size_t line_index)
+t_bool	set_plane_dir(t_pl *pl, char *infodir, size_t line_index)
 {
 	char	**dir;
 	int		i;
@@ -94,7 +93,7 @@ t_bool	ft_set_pldir(t_pl *pl, char *infodir, size_t line_index)
 	return (__TRUE);
 }
 
-t_bool	ft_set_plcolor(t_pl *pl, char *infocolor, size_t line_index)
+t_bool	set_plane_color(t_pl *pl, char *infocolor, size_t line_index)
 {
 	char	**colors;
 	int		i;
