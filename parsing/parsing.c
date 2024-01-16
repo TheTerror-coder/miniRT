@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 19:35:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/11 21:19:00 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/16 20:01:13 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ t_bool	parse_file(t_vars *v)
 	line = get_next_line(fd);
 	line_index = 1;
 	if (!line)
-		return (scene_error("missing informations, check your elements",
-				line_index));
+		return (ft_error("missing informations, check your elements"));
 	// Need to check for gnl errors!
 	while (line)
 	{
@@ -70,12 +69,14 @@ t_bool	set_elements(t_vars *v, char *line, size_t line_index)
 	if (!elm)
 		return (ft_error("ft_splitwset() failed"));
 	if (!elm[0])
-		return (ft_free2str(&elm), __TRUE);
+	{
+		ft_free2str(&elm);
+		return (ft_error("missing informations, check your elements"));
+	}
 	if (ft_2strlen(elm) < 3)
 	{
 		ft_free2str(&elm);
-		return (scene_error("missing informations, check your elements",
-				line_index));
+		return (ft_error("missing informations, check your elements"));
 	}
 	if (!auth_id_then_set(v, &elm[1], elm[0], line_index))
 		return (ft_free2str(&elm), __FALSE);

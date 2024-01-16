@@ -6,15 +6,18 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/11 21:19:36 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/16 18:13:39 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
 t_bool	set_plane_point(t_pl *pl, char *infopoint, size_t line_index);
-t_bool	set_plane_dir(t_pl *pl, char *infodir, size_t line_index);
+t_bool	parse_plane_point(char **point, size_t line_index);
+t_bool	set_plane_normal_vector(t_pl *pl, char *infonormal, size_t line_index);
+t_bool	parse_plane_normal_vector(char **dir, size_t line_index);
 t_bool	set_plane_color(t_pl *pl, char *infocolor, size_t line_index);
+t_bool	parse_plane_color(char **colors, size_t line_index);
 
 t_bool	set_plane(t_vars *v, char **infos, size_t line_index)
 {
@@ -31,7 +34,7 @@ t_bool	set_plane(t_vars *v, char **infos, size_t line_index)
 		return (ft_error("set_plane(): ft_calloc() failed"));
 	if (!set_plane_point(v->pl[i], infos[0], line_index))
 		return (__FALSE);
-	if (!set_plane_dir(v->pl[i], infos[1], line_index))
+	if (!set_plane_normal_vector(v->pl[i], infos[1], line_index))
 		return (__FALSE);
 	if (!set_plane_color(v->pl[i], infos[2], line_index))
 		return (__FALSE);
@@ -41,21 +44,19 @@ t_bool	set_plane(t_vars *v, char **infos, size_t line_index)
 t_bool	set_plane_point(t_pl *pl, char *infopoint, size_t line_index)
 {
 	char	**point;
-	int		i;
 
-	i = 0;
-	point = ft_splitwset(infopoint, " ,\t\n");
-	if (!point)
-		return (ft_error("set_plane_point(): ft_splitwset() failed"));
-	if (!point[0] || ft_2strlen(point) != 3)
-		return (ft_free2str(&point), \
-			scene_error("plane: incorrect point's coordinates format", line_index));
-	while (point[i])
+	if (ft_countchar(infopoint, ',') != 2)
 	{
-		if (!ft_isnumber(point[i]))
-			return (ft_free2str(&point), \
-				scene_error("plane: expecting only decimal numbers", line_index));
-		i++;
+		return (scene_error("plane: incorrect point's coordinates format",
+				line_index));
+	}
+	point = ft_split(infopoint, ',');
+	if (!point)
+		return (ft_error("set_plane_point(): ft_split() failed"));
+	if (!parse_plane_point(point, line_index))
+	{
+		ft_free2str(&point);
+		return (__FALSE);
 	}
 	pl->p.x = ft_atod(point[0]);
 	pl->p.y = ft_atod(point[1]);
@@ -64,60 +65,112 @@ t_bool	set_plane_point(t_pl *pl, char *infopoint, size_t line_index)
 	return (__TRUE);
 }
 
-t_bool	set_plane_dir(t_pl *pl, char *infodir, size_t line_index)
+t_bool	parse_plane_point(char **point, size_t line_index)
 {
-	char	**dir;
-	int		i;
+	int	i;
 
 	i = 0;
-	dir = ft_splitwset(infodir, " ,\t\n");
-	if (!dir)
-		return (ft_error("set_plane_dir(): ft_splitwset() failed"));
-	if (!dir[0] || ft_2strlen(dir) != 3)
-		return (ft_free2str(&dir), \
-			scene_error("plane: incorrect orientation vector format", line_index));
-	while (dir[i])
+	if (ft_2strlen(point) != 3)
 	{
-		if (!ft_isnumber(dir[i]))
-			return (ft_free2str(&dir), \
-				scene_error("plane: expecting only decimal numbers", line_index));
+		return (scene_error("plane: incorrect point's coordinates format",
+				line_index));
+	}
+	while (point[i])
+	{
+		if (!ft_isnumber(point[i]))
+		{
+			return (scene_error("plane: incorrect point's coordinates format",
+					line_index));
+		}
 		i++;
 	}
-	pl->normal.x = ft_atod(dir[0]);
-	pl->normal.y = ft_atod(dir[1]);
-	pl->normal.z = ft_atod(dir[2]);
-	ft_free2str(&dir);
-	if (pl->normal.x < -1 || pl->normal.x > 1 || pl->normal.y < -1 || \
-		pl->normal.y > 1 || pl->normal.z < -1 || pl->normal.z > 1)
-		return (scene_error("plane: incorrect orientation vector format", line_index));
+	return (__TRUE);
+}
+
+t_bool	set_plane_normal_vector(t_pl *pl, char *infonormal, size_t line_index)
+{
+	char	**normal_vector;
+
+	if (ft_countchar(infonormal, ',') != 2)
+		return (scene_error("plane: incorrect normal vector format",
+				line_index));
+	normal_vector = ft_split(infonormal, ',');
+	if (!normal_vector)
+		return (ft_error("set_plane_normal_vector(): ft_split() failed"));
+	if (!parse_plane_normal_vector(normal_vector, line_index))
+		return (ft_free2str(&normal_vector), __FALSE);
+	pl->normal.x = ft_atod(normal_vector[0]);
+	pl->normal.y = ft_atod(normal_vector[1]);
+	pl->normal.z = ft_atod(normal_vector[2]);
+	ft_free2str(&normal_vector);
+	if (ft_sq(pl->normal.x) + ft_sq(pl->normal.y) + ft_sq(pl->normal.z) != 1)
+		return (scene_error("plane: incorrect normal vector format",
+				line_index));
+	if (pl->normal.x < -1 || pl->normal.x > 1
+		|| pl->normal.y < -1 || pl->normal.y > 1
+		|| pl->normal.z < -1 || pl->normal.z > 1)
+	{
+		return (scene_error("plane: incorrect orientation vector format",
+				line_index));
+	}
+	return (__TRUE);
+}
+
+t_bool	parse_plane_normal_vector(char **normal_vector, size_t line_index)
+{
+	int	i;
+
+	i = 0;
+	if (ft_2strlen(normal_vector) != 3)
+		return (scene_error("plane: incorrect normal vector format",
+				line_index));
+	while (normal_vector[i])
+	{
+		if (!ft_isnumber(normal_vector[i]))
+			return (scene_error("camera: incorrect normal vector format",
+					line_index));
+		i++;
+	}
 	return (__TRUE);
 }
 
 t_bool	set_plane_color(t_pl *pl, char *infocolor, size_t line_index)
 {
 	char	**colors;
-	int		i;
 
-	i = 0;
-	colors = ft_splitwset(infocolor, " ,\t\n");
+	colors = ft_split(infocolor, ',');
 	if (!colors)
-		return (ft_error("ft_set_plcolor(): ft_splitwset() failed"));
-	if (!colors[0] || ft_2strlen(colors) != 3)
-		return (ft_free2str(&colors), \
-			scene_error("plane: incorrect color format", line_index));
-	while (colors[i])
-	{
-		if (!ft_isnumber(colors[i]))
-			return (ft_free2str(&colors), \
-				scene_error("plane: expecting only decimal numbers", line_index));
-		i++;
-	}
+		return (ft_error("set_plane_color(): ft_split() failed"));
+	if (!parse_plane_color(colors, line_index))
+		return (ft_free2str(&colors), __FALSE);
 	pl->rgb.r = ft_atoi(colors[0]);
 	pl->rgb.g = ft_atoi(colors[1]);
 	pl->rgb.b = ft_atoi(colors[2]);
 	ft_free2str(&colors);
-	if (pl->rgb.r < 0 || pl->rgb.r > 255 || pl->rgb.g < 0 || pl->rgb.g > 255 || \
-		pl->rgb.b < 0 || pl->rgb.b > 255)
+	if (pl->rgb.r < 0 || pl->rgb.r > 255
+		|| pl->rgb.g < 0 || pl->rgb.g > 255
+		|| pl->rgb.b < 0 || pl->rgb.b > 255)
+	{
 		return (scene_error("plane: incorrect color format", line_index));
+	}
+	return (__TRUE);
+}
+
+t_bool	parse_plane_color(char **colors, size_t line_index)
+{
+	int	i;
+
+	i = 0;
+	if (ft_2strlen(colors) != 3)
+		return (scene_error("plane: incorrect color format", line_index));
+	while (colors[i])
+	{
+		if (!ft_is_uint(colors[i]))
+		{
+			scene_error("plane: incorrect color format", line_index);
+			return (__FALSE);
+		}
+		i++;
+	}
 	return (__TRUE);
 }
