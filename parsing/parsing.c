@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 19:35:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/16 20:01:13 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/17 00:15:09 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ t_bool	parse_file(t_vars *v)
 	}
 	ft_freestr(&line);
 	close(fd);
+	if (!v->cam)
+		return (ft_error("missing informations, check your elements"));
 	return (__TRUE);
 }
 
@@ -71,12 +73,13 @@ t_bool	set_elements(t_vars *v, char *line, size_t line_index)
 	if (!elm[0])
 	{
 		ft_free2str(&elm);
-		return (ft_error("missing informations, check your elements"));
+		return (__TRUE);
 	}
 	if (ft_2strlen(elm) < 3)
 	{
 		ft_free2str(&elm);
-		return (ft_error("missing informations, check your elements"));
+		return (scene_error("missing informations, check your elements",
+			line_index));
 	}
 	if (!auth_id_then_set(v, &elm[1], elm[0], line_index))
 		return (ft_free2str(&elm), __FALSE);
@@ -86,7 +89,6 @@ t_bool	set_elements(t_vars *v, char *line, size_t line_index)
 
 t_bool	auth_id_then_set(t_vars *v, char **infos, char *id, size_t line_index)
 {
-	printf("%zu\n", line_index);
 	if (!ft_strncmp("A", id, ft_strlen(id) + 1))
 		return (set_ambient(v, infos, line_index));
 	if (!ft_strncmp("C", id, ft_strlen(id) + 1))
