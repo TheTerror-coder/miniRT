@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:41:14 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/07 18:14:16 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/25 15:20:47 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define _SIZE_X_HONOR 1920		//screen's widht of the PC HONOR MAGICBOOK
 # define _SIZE_Y_HONOR 1080		//screen's height of the PC HONOR MAGICBOOK
-# define _SIZE_X_MAC 3840		//screen's widht of 42's MAC
+# define _SIZE_X_MAC 2840		//screen's widht of 42's MAC
 # define _SIZE_Y_MAC 2160		//screen's height of 42's MAC
 
 # define _SIZE_X _SIZE_X_HONOR 		//window's x size
@@ -131,6 +131,12 @@ typedef struct s_ray
 	double	len;
 }				t_ray;
 
+typedef struct obj
+{
+	int	type;
+	int	index;
+}				t_obj;
+
 typedef struct s_variables
 {
 	void	*xptr;
@@ -144,6 +150,7 @@ typedef struct s_variables
 	t_pl	**pl;
 	t_cy	**cy;
 	t_ray	ray;
+	t_obj	obj;
 }				t_vars;
 
 typedef struct s_parameters

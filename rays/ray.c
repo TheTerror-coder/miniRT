@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:05:07 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/06 11:19:17 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/30 08:27:06 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,84 @@ t_bool	ft_setcam_base(t_vars *v, t_vec *cam_u, t_vec *cam_v, t_vec *cam_w);
 t_bool	ft_in3dcamera(t_vars *v, t_vec *localray, int i, int j);
 t_bool	ft_definecam_up(t_vec *cam_w, t_vec *cam_up);
 
+
+t_bool	ft_setray(t_vars *v, int i, int j)
+{
+	double	cam_dist;
+	t_vec	vec_a;
+	t_vec	vec_b;
+
+	if (v->cam->dir.x * v->cam->dir.x == 1)
+	{
+		vec_a.x = 0;
+		vec_a.y = 1;
+		vec_a.z = 0;
+		vec_b.x = 0;
+		vec_b.y = 0;
+		vec_b.z = 1;
+	}
+	else if (v->cam->dir.y * v->cam->dir.y == 1)
+	{
+		vec_a.x = 1;
+		vec_b.x = 0;
+		vec_a.y = 0;
+		vec_b.y = 0;
+		vec_a.z = 0;
+		vec_b.z = 1;
+	}
+	else if (v->cam->dir.z * v->cam->dir.z == 1)
+	{
+		vec_a.x = 1;
+		vec_a.y = 0;
+		vec_a.z = 0;
+		vec_b.x = 0;
+		vec_b.y = 1;
+		vec_b.z = 0;
+	}
+	else if (v->cam->dir.y && !v->cam->dir.z)
+	{
+		vec_a.x = 0;
+		vec_a.y = 0;
+		vec_a.z = 1;
+		vec_b.x = 1;
+		vec_b.y = -1 * v->cam->dir.x / v->cam->dir.y;
+		vec_b.z = 0;
+	}
+	else if (v->cam->dir.z && !v->cam->dir.y)
+	{
+		vec_a.x = 0;
+		vec_a.y = 1;
+		vec_a.z = 0;
+		vec_b.x = 1;
+		vec_b.y = 0;
+		vec_b.z = -1 * v->cam->dir.x / v->cam->dir.z;
+	}
+	else
+	{
+		vec_a.x = 1;
+		vec_a.y = 0;
+		vec_a.z = -1 * v->cam->dir.x / v->cam->dir.z;
+		vec_b.x = v->cam->dir.x / v->cam->dir.z;
+		vec_b.y = -1 * (v->cam->dir.x * v->cam->dir.x) / (v->cam->dir.y * v->cam->dir.z) - (v->cam->dir.z / v->cam->dir.y);
+		vec_b.z = 1;
+	}
+	ft_vectornormalize(&vec_a, &vec_a);
+	ft_vectornormalize(&vec_b, &vec_b);
+//	printf("%f\n", vec_b.x * vec_b.x + vec_b.y * vec_b.y + vec_b.z * vec_b.z);
+	cam_dist = _WIDHT / (2.00 * tan(ft_degtorad(v->cam->fov) / 2.00));
+
+	v->ray.o.x = v->cam->pov.x;
+	v->ray.o.y = v->cam->pov.y;
+	v->ray.o.z = v->cam->pov.z;
+	
+	v->ray.dir.x = v->cam->dir.x * cam_dist + (i - (_WIDHT / 2.00)) * vec_a.x + (-j + (_HEIGHT / 2.00)) * vec_b.x;
+	v->ray.dir.y = v->cam->dir.y * cam_dist + (i - (_WIDHT / 2.00)) * vec_a.y + (-j + (_HEIGHT / 2.00)) * vec_b.y;
+	v->ray.dir.z = v->cam->dir.z * cam_dist + (i - (_WIDHT / 2.00)) * vec_a.z + (-j + (_HEIGHT / 2.00)) * vec_b.z;
+	ft_vectornormalize(&v->ray.dir, &v->ray.dir);
+	v->ray.len = -1;
+	return (__TRUE);
+}
+/*
 t_bool	ft_setray(t_vars *v, int i, int j)
 {
 	t_vec	localray;
@@ -33,7 +111,7 @@ t_bool	ft_setray(t_vars *v, int i, int j)
 	v->ray.len = -1;
 	return (__TRUE);
 }
-
+*/
 t_bool	ft_in3dcamera(t_vars *v, t_vec *localray, int i, int j)
 {
 	localray->x = (i - (_WIDHT / 2.00));
