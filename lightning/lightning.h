@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initmem.c                                          :+:      :+:    :+:   */
+/*   lightning.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/17 20:33:56 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/31 10:52:28 by lmohin           ###   ########.fr       */
+/*   Created: 2024/01/31 09:38:48 by lmohin            #+#    #+#             */
+/*   Updated: 2024/01/31 09:39:34 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "memtools.h"
+#ifndef LIGHTNING_H
+# define LIGHTNING_H
 
-t_vars	*ft_init_v(void)
-{
-	t_vars	*v;
+# include "../minirt.h"
 
-	v = ft_calloc(1, sizeof(t_vars));
-	if (!v)
-		exit(1);
-	v->im = ft_calloc(1, sizeof(t_img));
-	v->ray = ft_calloc(1, sizeof(t_ray));
-	v->ray->len = -1;
-	return (v);
-}
+t_bool	lightning(t_vars *v, int i, int j);
+
+#endif

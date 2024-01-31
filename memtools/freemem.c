@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:32:00 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/06 11:19:56 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/31 13:54:18 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_free_v(t_vars *v)
 	ft_free_im(v);
 	ft_free_mlx(v);
 	ft_free_elms(v);
+	free(v->ray);
 	free(v);
 }
 

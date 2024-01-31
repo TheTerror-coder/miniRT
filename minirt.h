@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:48 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/30 08:37:45 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/31 09:40:18 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "./memtools/memtools.h"
 # include "./mlx_linux/mlx.h"
 # include "./parsing/parsing.h"
+# include "./lightning/lightning.h"
 
 t_bool	ft_set_mlx(t_vars *v);
 void	ft_exitprocss(t_vars *v, int status);

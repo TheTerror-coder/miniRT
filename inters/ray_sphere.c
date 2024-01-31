@@ -6,48 +6,48 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 20:19:01 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/25 23:21:38 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/31 13:27:19 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inters.h"
 
-double	ft_ray_inter_sp_op(t_vars *v, t_sp *sp);
+double	ft_ray_inter_sp_op(t_ray *ray, t_sp *sp);
 
-t_bool	ft_ray_inter_sp(t_vars *v, t_sp *sp, int x)
+t_bool	ft_ray_inter_sp(t_ray *ray, t_sp *sp, int x)
 {
 	double	s;
 
-	s = ft_ray_inter_sp_op(v, sp);
-	if (ft_assess_color(v, s))
+	(void) x;
+	s = ft_ray_inter_sp_op(ray, sp);
+	if (ft_assess_color(ray, s))
 	{
-		v->obj.type = 2;
-		v->obj.index = x;
-		return (v->ray.color = ft_color(&sp->rgb), __TRUE);
+		ray->obj.type = 2;
+		ray->obj.index = x;	
+		return (ray->color = ft_color(&sp->rgb), __TRUE);
 	}
 	return (__FALSE);
 }
 
-t_bool	ft_assess_color(t_vars *v, double len_found)
+t_bool	ft_assess_color(t_ray *ray, double len_found)
 {
-	if (v->ray.len < 0)
+	if (ray->len < 0)
 	{
 		if (len_found >= 0)
 		{
-			v->ray.len = len_found;
+			ray->len = len_found;
 			return (__TRUE);
 		}
-		return (__FALSE);
 	}
-	if (len_found >= 0 && len_found <= v->ray.len)
+	if (len_found >= 0 && len_found <= ray->len)
 	{
-		v->ray.len = len_found;
+		ray->len = len_found;
 		return (__TRUE);
 	}
 	return (__FALSE);
 }
 
-double	ft_ray_inter_sp_op(t_vars *v, t_sp *sp)
+double	ft_ray_inter_sp_op(t_ray *ray, t_sp *sp)
 {
 	double	a;
 	double	b;
@@ -56,14 +56,13 @@ double	ft_ray_inter_sp_op(t_vars *v, t_sp *sp)
 	double	s1;
 	double	s2;
 
-	a = ft_sq(v->ray.dir.x) + ft_sq(v->ray.dir.y) + \
-		ft_sq(v->ray.dir.z);
-	b = 2.00 * v->ray.dir.x * (v->ray.o.x - sp->o.x) + \
-		2.00 * v->ray.dir.y * (v->ray.o.y - sp->o.y) + \
-		2.00 * v->ray.dir.z * (v->ray.o.z - sp->o.z);
-	c = ft_sq(v->ray.o.x - sp->o.x) + \
-		ft_sq(v->ray.o.y - sp->o.y) + \
-		ft_sq(v->ray.o.z - sp->o.z) - \
+	a = ft_sq(ray->dir.x) + ft_sq(ray->dir.y) + ft_sq(ray->dir.z);
+	b = 2.00 * ray->dir.x * (ray->o.x - sp->o.x) + \
+		2.00 * ray->dir.y * (ray->o.y - sp->o.y) + \
+		2.00 * ray->dir.z * (ray->o.z - sp->o.z);
+	c = ft_sq(ray->o.x - sp->o.x) + \
+		ft_sq(ray->o.y - sp->o.y) + \
+		ft_sq(ray->o.z - sp->o.z) - \
 		ft_sq(sp->d / 2.00);
 	delta = ft_sq(b) - (4 * a * c);
 	if (delta < 0)

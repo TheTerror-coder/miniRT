@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:05:07 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/30 08:27:06 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/31 10:53:36 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,15 @@ t_bool	ft_setray(t_vars *v, int i, int j)
 //	printf("%f\n", vec_b.x * vec_b.x + vec_b.y * vec_b.y + vec_b.z * vec_b.z);
 	cam_dist = _WIDHT / (2.00 * tan(ft_degtorad(v->cam->fov) / 2.00));
 
-	v->ray.o.x = v->cam->pov.x;
-	v->ray.o.y = v->cam->pov.y;
-	v->ray.o.z = v->cam->pov.z;
+	v->ray->o.x = v->cam->pov.x;
+	v->ray->o.y = v->cam->pov.y;
+	v->ray->o.z = v->cam->pov.z;
 	
-	v->ray.dir.x = v->cam->dir.x * cam_dist + (i - (_WIDHT / 2.00)) * vec_a.x + (-j + (_HEIGHT / 2.00)) * vec_b.x;
-	v->ray.dir.y = v->cam->dir.y * cam_dist + (i - (_WIDHT / 2.00)) * vec_a.y + (-j + (_HEIGHT / 2.00)) * vec_b.y;
-	v->ray.dir.z = v->cam->dir.z * cam_dist + (i - (_WIDHT / 2.00)) * vec_a.z + (-j + (_HEIGHT / 2.00)) * vec_b.z;
-	ft_vectornormalize(&v->ray.dir, &v->ray.dir);
-	v->ray.len = -1;
+	v->ray->dir.x = v->cam->dir.x * cam_dist + (i - (_WIDHT / 2.00)) * vec_a.x + (-j + (_HEIGHT / 2.00)) * vec_b.x;
+	v->ray->dir.y = v->cam->dir.y * cam_dist + (i - (_WIDHT / 2.00)) * vec_a.y + (-j + (_HEIGHT / 2.00)) * vec_b.y;
+	v->ray->dir.z = v->cam->dir.z * cam_dist + (i - (_WIDHT / 2.00)) * vec_a.z + (-j + (_HEIGHT / 2.00)) * vec_b.z;
+	ft_vectornormalize(&v->ray->dir, &v->ray->dir);
+	v->ray->len = -1;
 	return (__TRUE);
 }
 /*
@@ -127,7 +127,7 @@ t_bool	ft_in3dcamera(t_vars *v, t_vec *localray, int i, int j)
 // 	worldray->z = localray->z - v->cam->pov.z;
 // 	return (__TRUE);
 // }
-
+/*
 t_bool	ft_rotate_to_3dwrld(t_vars *v, t_vec *localray)
 {
 	t_vec	cam_u;
@@ -185,4 +185,4 @@ t_bool	ft_definecam_up(t_vec *cam_w, t_vec *cam_up)
 		}
 	}
 	return (__TRUE);
-}
+}*/

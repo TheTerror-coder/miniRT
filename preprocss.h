@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:41:14 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/25 15:20:47 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/31 13:11:19 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,19 +123,20 @@ typedef struct s_cylindre
 	t_rgb	rgb;
 }				t_cy;
 
-typedef struct s_ray
-{
-	t_coord	o;
-	t_vec	dir;
-	int		color;
-	double	len;
-}				t_ray;
-
 typedef struct obj
 {
 	int	type;
 	int	index;
 }				t_obj;
+
+typedef struct s_ray
+{
+	t_coord	o;
+	t_vec	dir;
+	t_obj	obj;
+	int		color;
+	double	len;
+}				t_ray;
 
 typedef struct s_variables
 {
@@ -149,8 +150,7 @@ typedef struct s_variables
 	t_sp	**sp;
 	t_pl	**pl;
 	t_cy	**cy;
-	t_ray	ray;
-	t_obj	obj;
+	t_ray	*ray;
 }				t_vars;
 
 typedef struct s_parameters

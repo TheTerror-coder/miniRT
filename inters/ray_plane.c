@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 21:27:05 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/29 04:28:59 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/31 13:14:20 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 t_bool	ft_define_pl_normal(t_pl *pl, t_vec *pl_n);
 
-t_bool	ft_ray_inter_pl(t_vars *v, t_pl *pl, int x)
+t_bool	ft_ray_inter_pl(t_ray *ray, t_pl *pl, int x)
 {
 	t_vec	p_ro;
 	t_coord	ray_o;
@@ -23,32 +23,33 @@ t_bool	ft_ray_inter_pl(t_vars *v, t_pl *pl, int x)
 	double	denom;
 	double	length;
 
-	ray_o.x = v->ray.o.x;
-	ray_o.y = v->ray.o.y;
-	ray_o.z = v->ray.o.z;
+	ray_o.x = ray->o.x;
+	ray_o.y = ray->o.y;
+	ray_o.z = ray->o.z;
 	ft_vectornormalize(&pl->normal, &pl->normal);
-	ft_vectornormalize(&v->ray.dir, &v->ray.dir);
-	denom = ft_vecdotvec(&pl->normal, &v->ray.dir);
+	ft_vectornormalize(&ray->dir, &ray->dir);
+	denom = ft_vecdotvec(&pl->normal, &ray->dir);
 	ft_pointsdiff(&pl->p, &ray_o, &p_ro);
 	nom = ft_vecdotvec(&p_ro, &pl->normal);
 	if (!nom && (denom < 0.000000000001 && denom > -0.000000000001))
 	{
-		if (ft_assess_color(v, 0))
+		if (ft_assess_color(ray, 0))
 		{
-			v->obj.type = 0;
-			v->obj.index = x;
-			return (v->ray.color = ft_color(&pl->rgb), __TRUE);
+			(void) x;
+			ray->obj.type = 0;
+			ray->obj.index = x;
+			return (ray->color = ft_color(&pl->rgb), __TRUE);
 		}
 		return (__FALSE);
 	}
 	if (!nom || (denom < 0.000000000001 && denom > -0.000000000001))
 		return (__FALSE);
 	length = nom / denom;
-	if (ft_assess_color(v, length))
+	if (ft_assess_color(ray, length))
 	{
-		v->obj.type = 0;
-		v->obj.index = x;
-		return (v->ray.color = ft_color(&pl->rgb), __TRUE);
+		ray->obj.type = 0;
+		ray->obj.index = x;
+		return (ray->color = ft_color(&pl->rgb), __TRUE);
 	}
 	return (__FALSE);
 }
