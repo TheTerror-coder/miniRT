@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 21:27:05 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/31 13:14:20 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/31 14:29:27 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_bool	ft_ray_inter_pl(t_ray *ray, t_pl *pl, int x)
 	{
 		if (ft_assess_color(ray, 0))
 		{
-			(void) x;
 			ray->obj.type = 0;
 			ray->obj.index = x;
 			return (ray->color = ft_color(&pl->rgb), __TRUE);

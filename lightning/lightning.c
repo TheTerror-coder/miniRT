@@ -6,7 +6,7 @@
 /*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:22:08 by lmohin            #+#    #+#             */
-/*   Updated: 2024/01/31 13:45:49 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/01/31 14:30:37 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,17 @@ t_bool	lightning(t_vars *v, int i, int j)
 	//	printf("%f - %f\n", stock, v->ray.dir.x * v->pl[x2]->normal.x + v->ray.dir.y * v->pl[x2]->normal.y + v->pl[x2]->normal.z * v->ray.dir.z);
 		if (stock < 0)
 			stock *= -1;
-		stock /= light_ray.len;
+		stock /= ft_sq(light_ray.len);
 		if (stock > 1)
 			stock = 1;
 		color = 0;
 		color2 = ft_color(&v->pl[x2]->rgb);
-		color += ((color2 >> 16) & 0xFF) * stock * 0.8 + v->amb->rgb.r * 0.2;
+		color += ((color2 >> 16) & 0xFF) * stock * v->light->ratio + v->amb->rgb.r * v->amb->ratio;
 		color <<= 8;
 		color2 = ft_color(&v->pl[x2]->rgb);
-		color += ((color2 >> 8) & 0xFF) * stock * 0.8 + v->amb->rgb.r * 0.2;
+		color += ((color2 >> 8) & 0xFF) * stock * v->light->ratio + v->amb->rgb.g * v->amb->ratio;
 		color <<= 8;
-		color += (ft_color(&v->pl[x2]->rgb) & 0xFF) * stock * 0.8 + v->amb->rgb.b * 0.2;
+		color += (ft_color(&v->pl[x2]->rgb) & 0xFF) * stock * v->light->ratio + v->amb->rgb.b * v->amb->ratio;
 		v->ray->color = color;
 	}
 //
@@ -118,17 +118,17 @@ t_bool	lightning(t_vars *v, int i, int j)
 		}
 		if (stock < 0)
 			stock *= -1;
-		stock /= light_ray.len;
+		stock /= ft_sq(light_ray.len);
 		if (stock > 1)
 			stock = 1;
 		color2 = ft_color(&v->sp[x2]->rgb);
 		color = 0;
-		color += ((color2 >> 16) & 0xff) * stock * 0.8 + v->amb->rgb.r * 0.2;
+		color += ((color2 >> 16) & 0xFF) * stock * v->light->ratio + v->amb->rgb.r * v->amb->ratio;
 		color2 = ft_color(&v->sp[x2]->rgb);
 		color <<= 8;
-		color += ((color2 >> 8) & 0xff) * stock * 0.8 + v->amb->rgb.g * 0.2;
+		color += ((color2 >> 8) & 0xFF) * stock * v->light->ratio + v->amb->rgb.g * v->amb->ratio;
 		color <<= 8;
-		color += (ft_color(&v->sp[x2]->rgb) & 0xFF) * stock * 0.8 + v->amb->rgb.b * 0.2;
+		color += (ft_color(&v->sp[x2]->rgb) & 0xFF) * stock * v->light->ratio + v->amb->rgb.b * v->amb->ratio;
 		v->ray->color = color;
 	}
 //
