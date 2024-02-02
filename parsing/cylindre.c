@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:49 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/10 16:45:37 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/02 06:53:11 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,16 @@ t_bool ft_set_cylindre(t_vars *v, char **infos, size_t line_index)
 	if (!ft_isnumber(infos[2]) || !ft_isnumber(infos[3]))
 		return (scene_error("cylindre: expecting only decimal numbers", line_index));
 	v->cy[i]->d = ft_atod(infos[2]);
+	if (v->cy[i]->d <= 0)
+	{
+		return (scene_error("cylinder diameter must be a positive number", line_index));
+	}
 	v->cy[i]->r = v->cy[i]->d / 2;
 	v->cy[i]->h = ft_atod(infos[3]);
+	if (v->cy[i]->h <= 0)
+	{
+		return (scene_error("cylinder height must be a positive number", line_index));
+	}
 	if (!ft_set_cycolor(v->cy[i], infos[4], line_index))
 		return (__FALSE);
 	return (__TRUE);

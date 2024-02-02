@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:22 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/31 13:16:31 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/02 02:49:10 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,11 @@ t_bool	ft_intersections(t_vars *v, int i, int j)
 	x = -1;
 	while (v->cy && v->cy[++x])
 		ft_ray_inter_cy(v->ray, v->cy[x]);
+	if (v->ray->len == -1)
+	{
+		v->ray->color = 0;
+		my_mlx_pixel_put(v->im, i, j, v->ray->color);
+		return (__TRUE);
+	}
 	return (lightning(v,i,j));
 }

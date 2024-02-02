@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:05:07 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/31 10:53:36 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/02 11:28:15 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ t_bool	ft_setray(t_vars *v, int i, int j)
 	v->ray->len = -1;
 	return (__TRUE);
 }
-/*
-t_bool	ft_setray(t_vars *v, int i, int j)
+
+t_bool	ft_setrqay(t_vars *v, int i, int j)
 {
 	t_vec	localray;
 	// t_vec	wolrdray;
@@ -104,17 +104,17 @@ t_bool	ft_setray(t_vars *v, int i, int j)
 	ft_in3dcamera(v, &localray, i, j);
 	// ft_translate_to_3dwrld(v, &localray, &wolrdray);
 	ft_rotate_to_3dwrld(v, &localray);
-	v->ray.o.x = v->cam->pov.x;
-	v->ray.o.y = v->cam->pov.y;
-	v->ray.o.z = v->cam->pov.z;
-	v->ray.color = ft_color(&v->amb->rgb);
-	v->ray.len = -1;
+	v->ray->o.x = v->cam->pov.x;
+	v->ray->o.y = v->cam->pov.y;
+	v->ray->o.z = v->cam->pov.z;
+	v->ray->color = ft_color(&v->amb->rgb);
+	v->ray->len = -1;
 	return (__TRUE);
 }
-*/
+
 t_bool	ft_in3dcamera(t_vars *v, t_vec *localray, int i, int j)
 {
-	localray->x = (i - (_WIDHT / 2.00));
+	localray->x = -(i - (_WIDHT / 2.00));
 	localray->y = (-j + (_HEIGHT / 2.00));
 	localray->z = (-_WIDHT /(2.00 * tan(ft_degtorad(v->cam->fov) / 2.00)));
 	return (__TRUE);
@@ -127,7 +127,7 @@ t_bool	ft_in3dcamera(t_vars *v, t_vec *localray, int i, int j)
 // 	worldray->z = localray->z - v->cam->pov.z;
 // 	return (__TRUE);
 // }
-/*
+
 t_bool	ft_rotate_to_3dwrld(t_vars *v, t_vec *localray)
 {
 	t_vec	cam_u;
@@ -135,10 +135,10 @@ t_bool	ft_rotate_to_3dwrld(t_vars *v, t_vec *localray)
 	t_vec	cam_w;
 
 	ft_setcam_base(v, &cam_u, &cam_v, &cam_w);
-	v->ray.dir.x = (cam_u.x * localray->x) + (cam_v.x * localray->y) + (cam_w.x * localray->z);
-	v->ray.dir.y = (cam_u.y * localray->x) + (cam_v.y * localray->y) + (cam_w.y * localray->z);
-	v->ray.dir.z = (cam_u.z * localray->x) + (cam_v.z * localray->y) + (cam_w.z * localray->z);
-	ft_vectornormalize(&v->ray.dir, &v->ray.dir);
+	v->ray->dir.x = (cam_u.x * localray->x) + (cam_v.x * localray->y) + (cam_w.x * localray->z);
+	v->ray->dir.y = (cam_u.y * localray->x) + (cam_v.y * localray->y) + (cam_w.y * localray->z);
+	v->ray->dir.z = (cam_u.z * localray->x) + (cam_v.z * localray->y) + (cam_w.z * localray->z);
+	ft_vectornormalize(&v->ray->dir, &v->ray->dir);
 	return (__TRUE);
 }
 
@@ -185,4 +185,4 @@ t_bool	ft_definecam_up(t_vec *cam_w, t_vec *cam_up)
 		}
 	}
 	return (__TRUE);
-}*/
+}

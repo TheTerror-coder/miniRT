@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:36:07 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/31 13:26:15 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/02 11:56:34 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_bool	ft_ray_inter_cy_op(t_ray *ray, t_cy *cy, t_params *xp)
 		t = ft_assessthesolution(xp->t1, xp->t2);
 		if (ft_assess_color(ray, t))
 		{
-			ray->obj.type = 1;
+			ray->obj.type = __CYLINDER;
 			// add cylinder number
 			return (ray->color = ft_color(&cy->rgb), __TRUE);
 		}
@@ -52,7 +52,7 @@ t_bool	ft_ray_inter_cy_op(t_ray *ray, t_cy *cy, t_params *xp)
 	{
 		if (ft_assess_color(ray, xp->t1))
 		{
-			ray->obj.type = 1;
+			ray->obj.type = __CYLINDER;
 			// add cylinder number
 			return (ray->color = ft_color(&cy->rgb), __TRUE);
 		}

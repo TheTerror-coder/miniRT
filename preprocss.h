@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:41:14 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/31 13:11:19 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/02 11:55:40 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@
 # define __ON_MOUSEDOWN 04
 # define __KEYRELEASEMASK 2L
 # define __BUTTONPRESSMASK 4L
+
+# define __SPHERE 0
+# define __CYLINDER 1
+# define __PLANE 2
+# define __NOTHING -1
 
 /*KEYCODES*/
 # define __ESC 65307 		//ESCape key

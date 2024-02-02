@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:53:48 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/10 17:22:20 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/02 06:44:05 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ t_bool	set_sphere(t_vars *v, char **infos, size_t line_index)
 				line_index));
 	}
 	v->sp[i]->d = ft_atod(infos[1]);
+	if (v->sp[i]->d <= 0)
+	{
+		return (scene_error("sphere: diameter must be stricly positive",
+				line_index));
+	}
 	if (!set_sphere_color(v->sp[i], infos[2], line_index))
 		return (__FALSE);
 	return (__TRUE);

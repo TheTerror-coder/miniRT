@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:33:56 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/31 10:52:28 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/02 11:57:23 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ t_vars	*ft_init_v(void)
 	v->im = ft_calloc(1, sizeof(t_img));
 	v->ray = ft_calloc(1, sizeof(t_ray));
 	v->ray->len = -1;
+	v->ray->obj.type = __NOTHING;
 	return (v);
 }
