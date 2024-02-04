@@ -6,7 +6,7 @@
 /*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:22:08 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/02 15:27:03 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/04 03:58:54 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,28 +56,33 @@ t_bool	lightning(t_vars *v, int i, int j)
 		if (stock * (v->ray->dir.x * new_vec.x + v->ray->dir.y * new_vec.y + v->ray->dir.z * new_vec.z) < 0)
 		{
 			color2 = ft_color(&v->sp[x2]->rgb);
-			v->ray->color = (v->amb->rgb.r + ((color2 >> 16) & 0xFF)) * v->amb->ratio / 2;
+			v->ray->color = v->amb->rgb.r * v->amb->ratio * ((color2 >> 16) & 0xFF) / 255;
 			v->ray->color <<= 8;
-			v->ray->color += (v->amb->rgb.g + ((color2 >> 8) & 0xFF)) * v->amb->ratio / 2;
+			v->ray->color += v->amb->rgb.g * v->amb->ratio * ((color2 >> 8) & 0xFF) / 255;
 			v->ray->color <<= 8;
-			v->ray->color += (v->amb->rgb.b + (color2 & 0xFF)) * v->amb->ratio / 2;
+			v->ray->color += v->amb->rgb.b * v->amb->ratio * (color2 & 0xFF) / 255;
 			my_mlx_pixel_put(v->im, i, j, v->ray->color);
 			return (__TRUE);
 		}
 		if (stock < 0)
 			stock *= -1;
-		stock /= light_ray.len;
-		if (stock > 1)
-			stock = 1;
+		stock /= (1 + light_ray.len);
+		stock *= v->light->ratio;
 		color2 = ft_color(&v->sp[x2]->rgb);
-		color = 0;
-		color += ((color2 >> 16) & 0xFF) * stock * v->light->ratio + (((color2 >> 16) & 0xFF) + v->amb->rgb.r) * v->amb->ratio / 2;
-		color2 = ft_color(&v->sp[x2]->rgb);
-		color <<= 8;
-		color += ((color2 >> 8) & 0xFF) * stock * v->light->ratio + (((color2 >> 8) & 0xFF) + v->amb->rgb.g) * v->amb->ratio / 2;
-		color <<= 8;
-		color += (ft_color(&v->sp[x2]->rgb) & 0xFF) * stock * v->light->ratio + ((color2 & 0xFF) + v->amb->rgb.b) * v->amb->ratio / 2;
+		color = (((color2 >> 16) & 0xFF) * stock + ((color2 >> 16 & 0xFF) * v->amb->rgb.r / 255) * v->amb->ratio);
+		if (color > 255)
+			color = 255;
 		v->ray->color = color;
+		v->ray->color <<= 8;
+		color = (((color2 >> 8) & 0xFF) * stock + ((color2 >> 8 & 0xFF) * v->amb->rgb.g / 255) * v->amb->ratio);
+		if (color > 255)
+			color = 255;
+		v->ray->color += color;
+		v->ray->color <<= 8;
+		color = ((color2 & 0xFF) * stock + ((color2 & 0xFF) * v->amb->rgb.b / 255) * v->amb->ratio);
+		if (color > 255)
+			color = 255;
+		v->ray->color += color;
 	}
 //
 	my_mlx_pixel_put(v->im, i, j, v->ray->color);

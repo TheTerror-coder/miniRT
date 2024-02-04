@@ -6,7 +6,7 @@
 /*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 06:28:58 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/02 07:48:21 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/04 03:55:06 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,19 @@ t_bool	is_shadows(t_vars *v, t_ray *light_ray, int i, int j)
 		- ft_sq(v->cam->pov.x - v->light->pol.x + v->ray->len * v->ray->dir.x)
 		- ft_sq(v->cam->pov.y - v->light->pol.y + v->ray->len * v->ray->dir.y)
 		- ft_sq(v->cam->pov.z - v->light->pol.z + v->ray->len * v->ray->dir.z);
-	if (dist >= 0.0000000001 || dist <= -0.0000000001)
+	if (dist >= 0.00000001 || dist <= -0.00000001)
 	{
 		color = v->ray->color;
-		v->ray->color = (v->amb->rgb.r + ((color >> 16) & 0xFF)) * v->amb->ratio / 2;
+		v->ray->color = ((color >> 16) & 0xFF) * v->amb->ratio * v->amb->rgb.r / 255;
 		v->ray->color <<= 8;
-		v->ray->color += (v->amb->rgb.g + ((color >> 8) & 0xFF)) * v->amb->ratio / 2;
+		v->ray->color += ((color >> 8) & 0xFF) * v->amb->ratio * v->amb->rgb.g / 255;
 		v->ray->color <<= 8;
-		v->ray->color += (v->amb->rgb.b + (color & 0xFF)) * v->amb->ratio / 2;
+		v->ray->color += (color & 0xFF) * v->amb->ratio * v->amb->rgb.b / 255;
 		my_mlx_pixel_put(v->im, i, j, v->ray->color);
 		return (__TRUE);
 	}
-	return (__FALSE);
+	else
+	{
+		return (__FALSE);
+	}
 }
