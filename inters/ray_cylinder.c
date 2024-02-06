@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:36:07 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/02 11:56:34 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/06 19:05:34 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ t_bool	ftsetparams_term1(t_ray *ray, t_cy *cy, t_params *xp)
 
 t_bool	ftsetparams_term2_term3(t_ray *ray, t_params *xp)
 {
-	xp->a += (xp->f * ray->dir.x * ray->dir.y + \
-				xp->g * ray->dir.x * ray->dir.z + \
+	xp->a += (xp->f * ray->dir.x * ray->dir.y \
+		+ xp->g * ray->dir.x * ray->dir.z + \
 				xp->h * ray->dir.y * ray->dir.z);
 	xp->b += (xp->f * ray->dir.x * ray->o.y + \
 				xp->f * ray->dir.y * ray->o.x + \

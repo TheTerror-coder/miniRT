@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 21:27:05 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/02 18:12:50 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/05 07:47:52 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_bool	ft_ray_inter_pl(t_ray *ray, t_pl *pl, int x)
 	denom = ft_vecdotvec(&pl->normal, &ray->dir);
 	ft_pointsdiff(&pl->p, &ray_o, &p_ro);
 	nom = ft_vecdotvec(&p_ro, &pl->normal);
-	if (!nom  && (denom < 0.0000000001 && denom > -0.0000000001))
+	if (!nom && (denom < 0.0000000001 && denom > -0.0000000001))
 	{
 		if (ft_assess_color(ray, 0))
 		{

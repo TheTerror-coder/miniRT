@@ -6,11 +6,12 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 19:35:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/17 00:15:09 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/06 19:10:23 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minirt.h"
+#include <errno.h>
 
 t_bool	check_format(char *file);
 t_bool	parse_file(t_vars *v);
@@ -42,18 +43,23 @@ t_bool	parse_file(t_vars *v)
 	fd = open(v->file, O_RDONLY);
 	if (fd < 0)
 		return (perror(v->file), __FALSE);
+	errno = 0;
 	line = get_next_line(fd);
+	if (!line && errno)
+		return (ft_error("get_next_line() failed"));
 	line_index = 1;
 	if (!line)
 		return (ft_error("missing informations, check your elements"));
-	// Need to check for gnl errors!
 	while (line)
 	{
 		if (!set_elements(v, line, line_index))
 			return (ft_freestr(&line), close(fd), __FALSE);
 		line_index++;
 		ft_freestr(&line);
+		errno = 0;
 		line = get_next_line(fd);
+		if (!line && errno)
+			return (ft_error("get_next_line() failed"));
 	}
 	ft_freestr(&line);
 	close(fd);
