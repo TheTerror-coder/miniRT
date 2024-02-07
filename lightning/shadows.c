@@ -6,7 +6,7 @@
 /*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 06:28:58 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/06 17:18:04 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/07 10:56:53 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_bool	is_shadows(t_vars *v, t_ray *light_ray, int i, int j)
 //	int	type1;
 //	int	index1;
 	t_bool	inter;
+	t_vec	normal;
 
 	x = -1;
 	light_ray->len = -1;
@@ -30,9 +31,20 @@ t_bool	is_shadows(t_vars *v, t_ray *light_ray, int i, int j)
 		light_ray->len = -1;
 		ft_ray_inter_sp(light_ray, v->sp[x], x);
 		if (light_ray->len != -1 && (dist - light_ray->len >= -0.0000000001) && (dist - light_ray->len <= 0.0000000001))
-			inter = __TRUE;
+		{
+			if (!light_side_test(get_normal_sphere(*v->sp[x], *light_ray), *light_ray, *v->ray))
+			{
+				normal = get_normal_sphere(*v->sp[x], *light_ray);
+				inter = __TRUE;
+			}
+			else if (light_side_test(normal, *light_ray, *v->ray))
+				inter = __TRUE;
+		}
 		else if (light_ray->len < dist && light_ray->len != -1)
+		{
 			inter = __FALSE;
+			normal = get_normal_sphere(*v->sp[x], *light_ray);
+		}
 		else if (dist != -1)
 		{
 			light_ray->len = dist;
@@ -45,9 +57,20 @@ t_bool	is_shadows(t_vars *v, t_ray *light_ray, int i, int j)
 		light_ray->len = -1;
 		ft_ray_inter_pl(light_ray, v->pl[x], x);
 		if (light_ray->len != -1 && ((dist - light_ray->len) >= -0.0000000001) && ((dist - light_ray->len) <= 0.0000000001))
-			inter = __TRUE;
+		{
+			if (!light_side_test(v->pl[x]->normal, *light_ray, *v->ray))
+			{
+				normal = v->pl[x]->normal;
+				inter = __TRUE;
+			}
+			else if (!light_side_test(normal, *light_ray, *v->ray))
+				inter = __TRUE;
+		}
 		else if (light_ray->len < dist && light_ray->len != -1)
+		{
 			inter = __FALSE;
+			normal = v->pl[x]->normal;
+		}
 		else if (dist != -1)
 		{
 			light_ray->len = dist;

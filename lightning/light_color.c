@@ -6,7 +6,7 @@
 /*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:21:42 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/06 16:19:05 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/07 11:31:56 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ int	enlightened_color(t_vars *v, t_ray light_ray, double scalar)
 	scalar /= (1 + light_ray.len);
 	scalar *= v->light->ratio;
 	color = (v->ray->color >> 16) & 0xFF;
-	color *= scalar + v->amb->rgb.r / 255 * v->amb->ratio;
+	color *= scalar + (v->amb->rgb.r * v->amb->ratio) / 255;
 	if (color > 255)
 		color = 255;
 	stock = color;
 	stock <<= 8;
 	color = (v->ray->color >> 8) & 0xFF;
-	color *= scalar + v->amb->rgb.g / 255 * v->amb->ratio;
+	color *= scalar + (v->amb->rgb.g * v->amb->ratio) / 255;
 	if (color > 255)
 		color = 255;
 	stock += (int) color;
 	stock <<= 8;
 	color = v->ray->color & 0xFF;
-	color *= scalar + v->amb->rgb.b / 255 * v->amb->ratio;
+	color *= scalar + (v->amb->rgb.b * v->amb->ratio) / 255;
 	if (color > 255)
 		color = 255;
 	stock += (int) color;
