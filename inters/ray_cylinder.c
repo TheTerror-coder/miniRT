@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:36:07 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/08 16:57:19 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/08 17:23:17 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ t_bool	ft_ray_inter_cy_op(t_ray *ray, t_cy *cy, t_params *xp, int x)
 	if (xp->hp1 >= 0 && xp->hp2 >= 0)
 	{
 		t = ft_assessthesolution(xp->t1, xp->t2);
-		if (ft_assess_color(ray, t))
 		if (ft_assess_color(ray, t))
 		{
 			ray->obj.type = __CYLINDER;
