@@ -6,7 +6,7 @@
 /*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:06:58 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/08 14:18:53 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/08 17:04:27 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ t_bool	is_cylinder_bottom(t_cy cylinder, t_ray main_ray, t_vec *normal_cy)
 {
 	double	dist_center;
 
-	dist_center = ft_sq(main_ray.o.x + main_ray.len * main_ray.dir.x - cylinder.o.x);
-	dist_center += ft_sq(main_ray.o.y + main_ray.len * main_ray.dir.y - cylinder.o.y);
-	dist_center += ft_sq(main_ray.o.z + main_ray.len * main_ray.dir.z - cylinder.o.z);
+	dist_center = ft_sq(main_ray.o.x + main_ray.len * main_ray.dir.x - (cylinder.o.x + cylinder.h / 2 * (-1) * cylinder.axis.x));
+	dist_center += ft_sq(main_ray.o.y + main_ray.len * main_ray.dir.y - (cylinder.o.y + cylinder.h / 2 * (-1) * cylinder.axis.y));
+	dist_center += ft_sq(main_ray.o.z + main_ray.len * main_ray.dir.z - (cylinder.o.z + cylinder.h / 2 * (-1) * cylinder.axis.z));
 	if (dist_center <= ft_sq(cylinder.r))
 	{
 		normal_cy->x = -1 * cylinder.axis.x;
@@ -33,9 +33,9 @@ t_bool	is_cylinder_top(t_cy cylinder, t_ray main_ray, t_vec *normal_cy)
 {
 	double	dist_top_center;
 
-	dist_top_center = ft_sq(main_ray.o.x + main_ray.len * main_ray.dir.x - cylinder.o.x + cylinder.h * cylinder.axis.x);
-	dist_top_center += ft_sq(main_ray.o.y + main_ray.len * main_ray.dir.y - cylinder.o.y + cylinder.h * cylinder.axis.y);
-	dist_top_center += ft_sq(main_ray.o.z + main_ray.len * main_ray.dir.z - cylinder.o.z + cylinder.h * cylinder.axis.z);
+	dist_top_center = ft_sq(main_ray.o.x + main_ray.len * main_ray.dir.x - (cylinder.o.x + cylinder.h / 2 * cylinder.axis.x));
+	dist_top_center += ft_sq(main_ray.o.y + main_ray.len * main_ray.dir.y - (cylinder.o.y + cylinder.h / 2 * cylinder.axis.y));
+	dist_top_center += ft_sq(main_ray.o.z + main_ray.len * main_ray.dir.z - (cylinder.o.z + cylinder.h / 2 * cylinder.axis.z));
 	if (dist_top_center <= ft_sq(cylinder.r))
 	{
 		normal_cy->x = cylinder.axis.x;
@@ -54,11 +54,11 @@ t_vec	get_normal_cylinder(t_cy cylinder, t_ray main_ray)
 	if (is_cylinder_bottom(cylinder, main_ray, &normal_cy))
 		return (normal_cy);
 	dist_center = ft_sq(main_ray.o.x + main_ray.len 
-			* main_ray.dir.x - cylinder.o.x);
+			* main_ray.dir.x - (cylinder.o.x + cylinder.h / 2 * (-1) * cylinder.axis.x));
 	dist_center += ft_sq(main_ray.o.y + main_ray.len 
-			* main_ray.dir.y - cylinder.o.y);
+			* main_ray.dir.y - (cylinder.o.y + cylinder.h / 2 * (-1) * cylinder.axis.y));
 	dist_center += ft_sq(main_ray.o.z + main_ray.len 
-			* main_ray.dir.z - cylinder.o.z);
+			* main_ray.dir.z - (cylinder.o.z + cylinder.h / 2 * (-1) * cylinder.axis.z));
 	if (is_cylinder_top(cylinder, main_ray, &normal_cy))
 		return (normal_cy);
 	normal_cy.x = main_ray.o.x + main_ray.len * main_ray.dir.x;
