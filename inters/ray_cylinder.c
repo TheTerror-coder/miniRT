@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:36:07 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/08 12:00:50 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/08 16:57:19 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,32 @@ double	ft_computeheight_inters(t_ray *ray, t_cy *cy, double t);
 t_bool	ft_ray_inter_cy(t_ray *ray, t_cy *cy, int x)
 {
 	t_params	xp;
-	
+// t_rgb	test;
+// test.r = 255;
+// test.g = 0;
+// test.b = 0;
 	ft_vectornormalize(&cy->axis, &cy->axis);
+	if (case_ray_inter_extremities(ray, cy))
+		return (__TRUE);
 	ft_setallparameters(ray, cy, &xp);
 	if (xp.delta < 0)
 		return (__FALSE);
 	xp.hp1 = ft_computeheight_inters(ray, cy, xp.t1);
+// if (!xp.hp1)
+// {
+// 	return (ft_assess_color(ray, cy->r), ray->color = ft_color(&test), __TRUE);
+// }
 	xp.hp2 = ft_computeheight_inters(ray, cy, xp.t2);
+// if (!xp.hp2)
+// {
+// 	return (ft_assess_color(ray, cy->r), ray->color = ft_color(&test), __TRUE);
+// }
+// return (__TRUE);
 	if (xp.hp1 < 0 && xp.hp2 < 0)
 		return (__FALSE);
 	return (ft_ray_inter_cy_op(ray, cy, &xp, x));
 }
+
 
 t_bool	ft_ray_inter_cy_op(t_ray *ray, t_cy *cy, t_params *xp, int x)
 {
@@ -41,6 +56,7 @@ t_bool	ft_ray_inter_cy_op(t_ray *ray, t_cy *cy, t_params *xp, int x)
 	{
 		t = ft_assessthesolution(xp->t1, xp->t2);
 		if (ft_assess_color(ray, t))
+		if (ft_assess_color(ray, t))
 		{
 			ray->obj.type = __CYLINDER;
 			ray->obj.index = x;
@@ -48,7 +64,7 @@ t_bool	ft_ray_inter_cy_op(t_ray *ray, t_cy *cy, t_params *xp, int x)
 		}
 		return (__FALSE);
 	}
-	if (xp->hp1 > xp->hp2)
+	if (xp->hp1 >= xp->hp2)
 	{
 		if (ft_assess_color(ray, xp->t1))
 		{
@@ -110,8 +126,8 @@ t_bool	ftsetparams_term1(t_ray *ray, t_cy *cy, t_params *xp)
 
 t_bool	ftsetparams_term2_term3(t_ray *ray, t_params *xp)
 {
-	xp->a += (xp->f * ray->dir.x * ray->dir.y \
-		+ xp->g * ray->dir.x * ray->dir.z + \
+	xp->a += (xp->f * ray->dir.x * ray->dir.y + \
+				xp->g * ray->dir.x * ray->dir.z + \
 				xp->h * ray->dir.y * ray->dir.z);
 	xp->b += (xp->f * ray->dir.x * ray->o.y + \
 				xp->f * ray->dir.y * ray->o.x + \
@@ -136,22 +152,24 @@ double	ft_computeheight_inters(t_ray *ray, t_cy *cy, double t)
 	t_coord	p;
 	t_vec	op;
 	double	hp;
-	double	alpha;
+	// double	alpha;
 
-	if (t < 0)
-		return (t);
+	// if (t < 0)
+	// 	return (t);
 	p.x = ray->dir.x * t + ray->o.x;
 	p.y = ray->dir.y * t + ray->o.y;
 	p.z = ray->dir.z * t + ray->o.z;
 	op.x = p.x - cy->o.x;
 	op.y = p.y - cy->o.y;
 	op.z = p.z - cy->o.z;
-	hp = sqrt(ft_sq(ft_vectornorm(&op)) - ft_sq(cy->r));
-	alpha = acos(ft_vecdotvec(&cy->axis, &op) / ft_vectornorm(&op));
-	alpha = ft_radtodeg(alpha);
-	if (alpha < -90 || alpha > 90)
-		hp = -1;
-	if (!(hp >= 0 && hp <= cy->h))
+	hp = sqrt(ft_sq(ft_vectornorm(&op)) - ft_sq(cy->r)); // height of the intersection relative to cylinder's center
+	if (!ft_vecdotvec(&op, &cy->axis))
+		hp = 0;
+	// alpha = acos(ft_vecdotvec(&cy->axis, &op) / ft_vectornorm(&op));
+	// alpha = ft_radtodeg(alpha);
+	// if (alpha < -90 || alpha > 90) // consider the cylinder center as the center of the base so dividing the cylinder's height by 2
+	// 	hp = -1;
+	if (hp > cy->h/2) // the intersection is beyond the cylinder height
 		return (-1);
 	return (hp);
 }

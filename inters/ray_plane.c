@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 21:27:05 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/08 15:00:57 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/08 16:33:51 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ t_bool	ft_define_pl_normal(t_pl *pl, t_vec *pl_n);
 
 t_bool	ft_ray_inter_pl(t_ray *ray, t_pl *pl, int x)
 {
-	t_vec	p_ro;
-	t_coord	ray_o;
-	double	nom;
-	double	denom;
-	double	length;
+	t_vec	p_ro; // vector between the given point of the plane and the ray origin
+	t_coord	ray_o; // ray origin
+	double	num; // numerator
+	double	denom; // denominator
+	double	length; // length of the ray
 
 	ray_o.x = ray->o.x;
 	ray_o.y = ray->o.y;
@@ -30,20 +30,24 @@ t_bool	ft_ray_inter_pl(t_ray *ray, t_pl *pl, int x)
 	ft_vectornormalize(&ray->dir, &ray->dir);
 	denom = ft_vecdotvec(&pl->normal, &ray->dir);
 	ft_pointsdiff(&pl->p, &ray_o, &p_ro);
-	nom = ft_vecdotvec(&p_ro, &pl->normal);
-	if (!nom && (denom < 0.0000000001 && denom > -0.0000000001))
+	num = ft_vecdotvec(&p_ro, &pl->normal);
+	/* the case the camera is placed exactly on the plane and is oriented exactly 
+	such along the plane's axis */
+	if (!num && (denom < 0.0000000001 && denom > -0.0000000001))
 	{
 		if (ft_assess_color(ray, 0))
 		{
 			ray->obj.type = __PLANE;
 			ray->obj.index = x;
 			return (ray->color = ft_color(&pl->rgb), __TRUE);
+	/* the case the camera is placed exactly on the plane and is oriented exactly 
+	such along the plane's axis */
 		}
 		return (__FALSE);
 	}
-	if (!nom || (denom < 0.000000000001 && denom > -0.000000000001))
+	if (!num || (denom < 0.000000000001 && denom > -0.000000000001))
 		return (__FALSE);
-	length = nom / denom;
+	length = num / denom;
 	if (ft_assess_color(ray, length))
 	{
 		ray->obj.type = __PLANE;
