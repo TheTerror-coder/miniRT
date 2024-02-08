@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:22 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/02 02:49:10 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/08 11:40:03 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_bool	ft_intersections(t_vars *v, int i, int j)
 		ft_ray_inter_pl(v->ray, v->pl[x], x);
 	x = -1;
 	while (v->cy && v->cy[++x])
-		ft_ray_inter_cy(v->ray, v->cy[x]);
+		ft_ray_inter_cy(v->ray, v->cy[x], x);
 	if (v->ray->len == -1)
 	{
 		v->ray->color = 0;

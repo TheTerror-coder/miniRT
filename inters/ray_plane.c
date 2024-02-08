@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 21:27:05 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/05 07:47:52 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/08 15:00:57 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ P ∈ Ray && P ∈ Plane => (C + t*D).N = Po.N
 		                     t = (Po - C).N / D.N 
 		       else : no intersection or camera is in the plane
 
-n.(P - X*/
+*/
 
 t_bool	ft_define_pl_normal(t_pl *pl, t_vec *pl_n)
 {

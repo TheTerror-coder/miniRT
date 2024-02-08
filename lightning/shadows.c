@@ -6,7 +6,7 @@
 /*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 06:28:58 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/07 10:56:53 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/08 13:58:22 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 t_bool	is_shadows(t_vars *v, t_ray *light_ray, int i, int j)
 {
-	long long int	x;
+	int		x;
 	double	dist;
-	int	color;
-//	int	type1;
-//	int	index1;
+	int		color;
 	t_bool	inter;
 	t_vec	normal;
 
@@ -81,46 +79,27 @@ t_bool	is_shadows(t_vars *v, t_ray *light_ray, int i, int j)
 	{
 		dist = light_ray->len;
 		light_ray->len = -1;
-		ft_ray_inter_cy(light_ray, v->cy[x]);
+		ft_ray_inter_cy(light_ray, v->cy[x], x);
 		if (light_ray->len != -1 && (dist - light_ray->len >= -0.0000000001) && (dist - light_ray->len <= 0.0000000001))
-			inter = __TRUE;
+		{
+			if (!light_side_test(get_normal_cylinder(*v->cy[x], *light_ray), *light_ray, *v->ray))
+			{
+				normal = v->pl[x]->normal;
+				inter = __TRUE;
+			}
+			else if (!light_side_test(normal, *light_ray, *v->ray))
+				inter = __TRUE;
+		}
 		else if (light_ray->len < dist && light_ray->len != -1)
+		{
 			inter = __FALSE;
+			normal = get_normal_cylinder(*v->cy[x], *light_ray);
+		}
 		else if (dist != -1)
 		{
 			light_ray->len = dist;
 		}
 	}
-/*	dist = light_ray->len;
-	type1 = light_ray->obj.type;
-	index1 = light_ray->obj.index;
-	light_ray->len = -1;
-	x = -1;
-	inter = __FALSE;
-	while (v->sp && v->sp[++x])
-	{
-		if (x != index1 || type1 != __SPHERE)
-			ft_ray_inter_sp(light_ray, v->sp[x], x);
-		if (((light_ray->len - dist <= 0.000001) && (light_ray->len - dist >= -0.000001)) && (x != index1 || type1 != __SPHERE))
-			inter = __TRUE;
-	}
-	x = -1;
-	while (v->pl && v->pl[++x])
-	{
-		if (x != index1 || type1 != __PLANE)
-			ft_ray_inter_pl(light_ray, v->pl[x], x);
-		if (((light_ray->len - dist <= 0.000001) && (light_ray->len - dist >= -0.000001)) && (x != index1 || type1 != __PLANE))
-			inter = __TRUE;
-	}
-	x = - 1;
-	while (v->cy && v->cy[++x])
-	{
-		if (x != index1 || type1 != __CYLINDER)
-			ft_ray_inter_cy(light_ray, v->cy[x]);
-		if (((light_ray->len - dist <= 0.000001) && (light_ray->len - dist >= -0.000001)) && (x != index1 || type1 != __CYLINDER))
-			inter = __TRUE;
-	}
-	light_ray->len = dist;*/
 	dist = ft_sq(light_ray->len)
 		- ft_sq(v->cam->pov.x - v->light->pol.x + v->ray->len * v->ray->dir.x)
 		- ft_sq(v->cam->pov.y - v->light->pol.y + v->ray->len * v->ray->dir.y)
@@ -135,5 +114,4 @@ t_bool	is_shadows(t_vars *v, t_ray *light_ray, int i, int j)
 	{
 		return (__FALSE);
 	}
-	(void) inter;
 }

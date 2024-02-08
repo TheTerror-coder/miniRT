@@ -6,19 +6,19 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:36:07 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/06 19:05:34 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/08 12:00:50 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inters.h"
 
-t_bool	ft_ray_inter_cy_op(t_ray *ray, t_cy *cy, t_params *xp);
+t_bool	ft_ray_inter_cy_op(t_ray *ray, t_cy *cy, t_params *xp, int x);
 t_bool	ft_setallparameters(t_ray *ray, t_cy *cy, t_params *xp);
 t_bool	ftsetparams_term1(t_ray *ray, t_cy *cy, t_params *xp);
 t_bool	ftsetparams_term2_term3(t_ray *ray, t_params *xp);
 double	ft_computeheight_inters(t_ray *ray, t_cy *cy, double t);
 
-t_bool	ft_ray_inter_cy(t_ray *ray, t_cy *cy)
+t_bool	ft_ray_inter_cy(t_ray *ray, t_cy *cy, int x)
 {
 	t_params	xp;
 	
@@ -30,10 +30,10 @@ t_bool	ft_ray_inter_cy(t_ray *ray, t_cy *cy)
 	xp.hp2 = ft_computeheight_inters(ray, cy, xp.t2);
 	if (xp.hp1 < 0 && xp.hp2 < 0)
 		return (__FALSE);
-	return (ft_ray_inter_cy_op(ray, cy, &xp));
+	return (ft_ray_inter_cy_op(ray, cy, &xp, x));
 }
 
-t_bool	ft_ray_inter_cy_op(t_ray *ray, t_cy *cy, t_params *xp)
+t_bool	ft_ray_inter_cy_op(t_ray *ray, t_cy *cy, t_params *xp, int x)
 {
 	double	t;
 
@@ -43,17 +43,17 @@ t_bool	ft_ray_inter_cy_op(t_ray *ray, t_cy *cy, t_params *xp)
 		if (ft_assess_color(ray, t))
 		{
 			ray->obj.type = __CYLINDER;
-			// add cylinder number
+			ray->obj.index = x;
 			return (ray->color = ft_color(&cy->rgb), __TRUE);
 		}
 		return (__FALSE);
 	}
-	if (xp->hp1 >= xp->hp2)
+	if (xp->hp1 > xp->hp2)
 	{
 		if (ft_assess_color(ray, xp->t1))
 		{
 			ray->obj.type = __CYLINDER;
-			// add cylinder number
+			ray->obj.index = x;
 			return (ray->color = ft_color(&cy->rgb), __TRUE);
 		}
 		return (__FALSE);
@@ -62,8 +62,8 @@ t_bool	ft_ray_inter_cy_op(t_ray *ray, t_cy *cy, t_params *xp)
 	{
 		if (ft_assess_color(ray, xp->t2))
 		{
-			ray->obj.type = 1;
-			//add cylinder number
+			ray->obj.type = __CYLINDER;
+			ray->obj.index = x;
 			return (ray->color = ft_color(&cy->rgb), __TRUE);
 		}
 		return (__FALSE);

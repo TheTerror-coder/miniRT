@@ -6,7 +6,7 @@
 /*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:22:08 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/06 17:43:33 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/08 11:34:00 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_bool	lightning(t_vars *v, int i, int j)
 	{
 		return (sphere_lightning(v, light_ray, i, j));
 	}
+	if (v->ray->obj.type == __CYLINDER)
+		return (cylinder_lightning(v, light_ray, i, j));
 	my_mlx_pixel_put(v->im, i, j, v->ray->color);
 	return (__TRUE);
 }
