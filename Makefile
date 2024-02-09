@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:29:00 by TheTerror         #+#    #+#              #
-#    Updated: 2024/02/08 16:34:44 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2024/02/09 15:17:56 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,15 +15,16 @@ LIBFT_LIB = $(LIBFT_PATH)libft.a
 
 
 LIBFT_PATH = 		./libft/
-OBJ_PATH = 		./.objs/
+OBJ_PATH = 			./.objs/
 INTERS_PATH = 		./inters/
-MATHTOOLS_PATH = 		./mathtools/
-MEMTOOLS_PATH = 		./memtools/
+MATHTOOLS_PATH = 	./mathtools/
+MEMTOOLS_PATH = 	./memtools/
 PARSING_PATH = 		./parsing/
 LIGHTNING_PATH = 	./lightning/
 
 
-INCLUDE = minirt.h preprocss.h $(LIBFT_PATH)libft.h $(MEMTOOLS_PATH)memtools.h $(LIGHTNING_PATH)lightning.h
+INCLUDE = minirt.h preprocss.h $(LIBFT_PATH)libft.h $(INTERS_PATH)inters.h $(MATHTOOLS_PATH)mathtools.h \
+		$(PARSING_PATH)parsing.h $(MEMTOOLS_PATH)memtools.h $(LIGHTNING_PATH)lightning.h
 
 CC = 				cc
 CFLAGS =			-Wall -Werror -Wextra
