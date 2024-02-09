@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:05:07 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/08 15:56:09 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/09 16:34:13 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_bool	ft_setray(t_vars *v, int i, int j)
 	v->ray->o.x = v->cam->pov.x;
 	v->ray->o.y = v->cam->pov.y;
 	v->ray->o.z = v->cam->pov.z;
-	v->ray->color = ft_color(&v->amb->rgb);
 	v->ray->len = -1;
 	return (__TRUE);
 }
