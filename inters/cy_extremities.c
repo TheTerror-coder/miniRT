@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:38:21 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/08 17:00:44 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/08 17:32:04 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,25 @@ typedef struct	s_consts
 	double	c6;
 }				t_consts;
 
-t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars);
+t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars, int x);
 t_bool	compute_pt_ph(t_cy *cy, t_vec *axis_dir, t_consts *vars);
 t_bool	compute_lenght_t(t_ray *ray, t_cy *cy, t_consts *vars);
 t_bool	compute_norm_vec_phpi(t_ray *ray, t_consts *vars);
 
-t_bool	case_ray_inter_extremities(t_ray *ray, t_cy *cy)
+t_bool	case_ray_inter_extremities(t_ray *ray, t_cy *cy, int x)
 {
 	t_consts	vars;
 	t_vec		axis_dir;
 	int			fdbk;
 	
-	fdbk = inter_extremitie(ray, cy, &cy->axis, &vars);
+	fdbk = inter_extremitie(ray, cy, &cy->axis, &vars, x);
 	axis_dir.x = -cy->axis.x;
 	axis_dir.y = -cy->axis.y;
 	axis_dir.z = -cy->axis.z;
-	fdbk |= inter_extremitie(ray, cy, &axis_dir, &vars);
+	fdbk |= inter_extremitie(ray, cy, &axis_dir, &vars, x);
 	return (fdbk);
 }
-t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars)
+t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars, int x)
 {
 	compute_pt_ph(cy, axis_dir, vars);
 	compute_lenght_t(ray, cy, vars);
@@ -51,7 +51,11 @@ t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars)
 	if (vars->norm_phpi > (cy->d / 2))
 		return (__FALSE);
 	if (ft_assess_color(ray, vars->t))
+	{
+		ray->obj.type = __CYLINDER;
+		ray->obj.index = x;
 		return (ray->color = ft_color(&cy->rgb), __TRUE);
+	}
 	return (__FALSE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:36:07 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/08 17:23:17 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/09 14:22:11 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ t_bool	ft_ray_inter_cy(t_ray *ray, t_cy *cy, int x)
 // test.g = 0;
 // test.b = 0;
 	ft_vectornormalize(&cy->axis, &cy->axis);
-	if (case_ray_inter_extremities(ray, cy))
-		return (__TRUE);
+	case_ray_inter_extremities(ray, cy, x);
 	ft_setallparameters(ray, cy, &xp);
 	if (xp.delta < 0)
 		return (__FALSE);

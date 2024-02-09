@@ -6,7 +6,7 @@
 /*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 06:28:58 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/08 13:58:22 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/09 14:19:33 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_bool	is_shadows(t_vars *v, t_ray *light_ray, int i, int j)
 		{
 			if (!light_side_test(get_normal_cylinder(*v->cy[x], *light_ray), *light_ray, *v->ray))
 			{
-				normal = v->pl[x]->normal;
+				normal = get_normal_cylinder(*v->cy[x], *light_ray);
 				inter = __TRUE;
 			}
 			else if (!light_side_test(normal, *light_ray, *v->ray))

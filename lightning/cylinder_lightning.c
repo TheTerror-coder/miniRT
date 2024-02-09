@@ -6,7 +6,7 @@
 /*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:06:58 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/08 17:04:27 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/09 16:19:47 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,17 @@ t_vec	get_normal_cylinder(t_cy cylinder, t_ray main_ray)
 
 	if (is_cylinder_bottom(cylinder, main_ray, &normal_cy))
 		return (normal_cy);
-	dist_center = ft_sq(main_ray.o.x + main_ray.len 
-			* main_ray.dir.x - (cylinder.o.x + cylinder.h / 2 * (-1) * cylinder.axis.x));
-	dist_center += ft_sq(main_ray.o.y + main_ray.len 
-			* main_ray.dir.y - (cylinder.o.y + cylinder.h / 2 * (-1) * cylinder.axis.y));
-	dist_center += ft_sq(main_ray.o.z + main_ray.len 
-			* main_ray.dir.z - (cylinder.o.z + cylinder.h / 2 * (-1) * cylinder.axis.z));
+	dist_center = ft_sq(main_ray.o.x + main_ray.len * main_ray.dir.x - (cylinder.o.x + cylinder.h / 2 * (-1) * cylinder.axis.x));
+	dist_center += ft_sq(main_ray.o.y + main_ray.len * main_ray.dir.y - (cylinder.o.y + cylinder.h / 2 * (-1) * cylinder.axis.y));
+	dist_center += ft_sq(main_ray.o.z + main_ray.len * main_ray.dir.z - (cylinder.o.z + cylinder.h / 2 * (-1) * cylinder.axis.z));
 	if (is_cylinder_top(cylinder, main_ray, &normal_cy))
 		return (normal_cy);
 	normal_cy.x = main_ray.o.x + main_ray.len * main_ray.dir.x;
-	normal_cy.x -= cylinder.o.x + sqrt(dist_center - ft_sq(cylinder.r)) * cylinder.axis.x;
+	normal_cy.x -= (cylinder.o.x + cylinder.h / 2 * (-1) * cylinder.axis.x + sqrt(dist_center - ft_sq(cylinder.r)) * cylinder.axis.x);
 	normal_cy.y = main_ray.o.y + main_ray.len * main_ray.dir.y;
-	normal_cy.y -= cylinder.o.y + sqrt(dist_center - ft_sq(cylinder.r)) * cylinder.axis.y;
+	normal_cy.y -= (cylinder.o.y + cylinder.h / 2 * (-1) * cylinder.axis.y + sqrt(dist_center - ft_sq(cylinder.r)) * cylinder.axis.y);
 	normal_cy.z = main_ray.o.z + main_ray.len * main_ray.dir.z;
-	normal_cy.z -= cylinder.o.z + sqrt(dist_center - ft_sq(cylinder.r)) * cylinder.axis.z;
+	normal_cy.z -= (cylinder.o.z + cylinder.h / 2 * (-1) * cylinder.axis.z + sqrt(dist_center - ft_sq(cylinder.r)) * cylinder.axis.z);
 	ft_vectornormalize(&normal_cy, &normal_cy);
 	return (normal_cy);
 }
