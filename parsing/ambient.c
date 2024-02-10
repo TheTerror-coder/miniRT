@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 21:35:58 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/10 16:29:12 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:55:29 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_bool	set_ambient(t_vars *v, char **infos, size_t line_index)
 	v->amb = ft_calloc(1, sizeof(t_amb));
 	if (!v->amb)
 		return (ft_error("set_ambient(): ft_calloc() failed"));
-	if (!ft_isnumber(infos[0]))
+	if (!isnumber(infos[0]))
 	{
 		scene_error("ambient lighting ratio: expecting decimal numbers",
 			line_index);
@@ -47,7 +47,7 @@ t_bool	set_amb_color(t_vars *v, char *infocolor, size_t line_index)
 {
 	char	**colors;
 
-	if (ft_countchar(infocolor, ',') != 2)
+	if (countchar(infocolor, ',') != 2)
 	{
 		return (scene_error("ambient lighting: incorrect color format",
 				line_index));
@@ -82,7 +82,7 @@ t_bool	parse_amb_color(char **colors, size_t line_index)
 	}
 	while (colors[i])
 	{
-		if (!ft_is_uint(colors[i]))
+		if (!is_uint(colors[i]))
 		{
 			scene_error("ambient lighting: incorrrect color format",
 				line_index);

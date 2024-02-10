@@ -6,17 +6,17 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:49 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/02 06:53:11 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 17:09:47 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-t_bool	ft_set_cycenter(t_cy *cy, char *infocenter, size_t line_index);
-t_bool	ft_set_cydir(t_cy *cy, char *infodir, size_t line_index);
-t_bool	ft_set_cycolor(t_cy *cy, char *infocolor, size_t line_index);
+t_bool	set_cycenter(t_cy *cy, char *infocenter, size_t line_index);
+t_bool	set_cydir(t_cy *cy, char *infodir, size_t line_index);
+t_bool	set_cycolor(t_cy *cy, char *infocolor, size_t line_index);
 
-t_bool ft_set_cylindre(t_vars *v, char **infos, size_t line_index)
+t_bool set_cylindre(t_vars *v, char **infos, size_t line_index)
 {
 	int	i;
 
@@ -28,12 +28,12 @@ t_bool ft_set_cylindre(t_vars *v, char **infos, size_t line_index)
 		return (__FALSE);
 	v->cy[i] = ft_calloc(1, sizeof(t_cy));
 	if (!v->cy[i])
-		return (ft_error("ft_set_cylindre(): ft_calloc() failed"));
-	if (!ft_set_cycenter(v->cy[i], infos[0], line_index))
+		return (ft_error("set_cylindre(): ft_calloc() failed"));
+	if (!set_cycenter(v->cy[i], infos[0], line_index))
 		return (__FALSE);
-	if (!ft_set_cydir(v->cy[i], infos[1], line_index))
+	if (!set_cydir(v->cy[i], infos[1], line_index))
 		return (__FALSE);
-	if (!ft_isnumber(infos[2]) || !ft_isnumber(infos[3]))
+	if (!isnumber(infos[2]) || !isnumber(infos[3]))
 		return (scene_error("cylindre: expecting only decimal numbers", line_index));
 	v->cy[i]->d = ft_atod(infos[2]);
 	if (v->cy[i]->d <= 0)
@@ -46,12 +46,12 @@ t_bool ft_set_cylindre(t_vars *v, char **infos, size_t line_index)
 	{
 		return (scene_error("cylinder height must be a positive number", line_index));
 	}
-	if (!ft_set_cycolor(v->cy[i], infos[4], line_index))
+	if (!set_cycolor(v->cy[i], infos[4], line_index))
 		return (__FALSE);
 	return (__TRUE);
 }
 
-t_bool	ft_set_cycenter(t_cy *cy, char *infocenter, size_t line_index)
+t_bool	set_cycenter(t_cy *cy, char *infocenter, size_t line_index)
 {
 	char	**center;
 	int		i;
@@ -65,7 +65,7 @@ t_bool	ft_set_cycenter(t_cy *cy, char *infocenter, size_t line_index)
 			scene_error("cylindre: incorrect center point format", line_index));
 	while (center[i])
 	{
-		if (!ft_isnumber(center[i]))
+		if (!isnumber(center[i]))
 			return (ft_free2str(&center), \
 				scene_error("cylindre: expecting only decimal numbers", line_index));
 		i++;
@@ -77,7 +77,7 @@ t_bool	ft_set_cycenter(t_cy *cy, char *infocenter, size_t line_index)
 	return (__TRUE);
 }
 
-t_bool	ft_set_cydir(t_cy *cy, char *infodir, size_t line_index)
+t_bool	set_cydir(t_cy *cy, char *infodir, size_t line_index)
 {
 	char	**dir;
 	int		i;
@@ -91,7 +91,7 @@ t_bool	ft_set_cydir(t_cy *cy, char *infodir, size_t line_index)
 			scene_error("cylindre: incorrect orientation vector format", line_index));
 	while (dir[i])
 	{
-		if (!ft_isnumber(dir[i]))
+		if (!isnumber(dir[i]))
 			return (ft_free2str(&dir), \
 				scene_error("cylindre: expecting only decimal numbers", line_index));
 		i++;
@@ -106,7 +106,7 @@ t_bool	ft_set_cydir(t_cy *cy, char *infodir, size_t line_index)
 	return (__TRUE);
 }
 
-t_bool	ft_set_cycolor(t_cy *cy, char *infocolor, size_t line_index)
+t_bool	set_cycolor(t_cy *cy, char *infocolor, size_t line_index)
 {
 	char	**colors;
 	int		i;
@@ -114,13 +114,13 @@ t_bool	ft_set_cycolor(t_cy *cy, char *infocolor, size_t line_index)
 	i = 0;
 	colors = ft_splitwset(infocolor, " ,\t\n");
 	if (!colors)
-		return (ft_error("ft_set_cycolor(): ft_splitwset() failed"));
+		return (ft_error("set_cycolor(): ft_splitwset() failed"));
 	if (!colors[0] || ft_2strlen(colors) != 3)
 		return (ft_free2str(&colors), \
 			scene_error("cylindre: incorrect color format", line_index));
 	while (colors[i])
 	{
-		if (!ft_isnumber(colors[i]))
+		if (!isnumber(colors[i]))
 			return (ft_free2str(&colors), \
 				scene_error("cylindre: expecting only decimal numbers", line_index));
 		i++;

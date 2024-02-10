@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lightning.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:22:08 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/09 16:51:49 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:31:42 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_bool	set_light_ray(t_vars *v, t_ray	*light_ray)
 	light_ray->dir.y += v->ray->len * v->ray->dir.y;
 	light_ray->dir.z = v->cam->pov.z - v->light->pol.z;
 	light_ray->dir.z += v->ray->len * v->ray->dir.z;
-	ft_vectornormalize(&light_ray->dir, &light_ray->dir);
+	vectornormalize(&light_ray->dir, &light_ray->dir);
 	return (__TRUE);
 }
 

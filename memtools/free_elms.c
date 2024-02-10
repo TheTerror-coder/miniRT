@@ -6,13 +6,13 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 16:51:42 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/20 17:00:57 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/10 16:52:47 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "memtools.h"
 
-void	ft_free_sp(t_vars *v)
+void	free_sp(t_vars *v)
 {
 	int		i;
 
@@ -28,7 +28,7 @@ void	ft_free_sp(t_vars *v)
 	v->sp = NULL;
 }
 
-void	ft_free_pl(t_vars *v)
+void	free_pl(t_vars *v)
 {
 	int		i;
 
@@ -44,7 +44,7 @@ void	ft_free_pl(t_vars *v)
 	v->pl = NULL;
 }
 
-void	ft_free_cy(t_vars *v)
+void	free_cy(t_vars *v)
 {
 	int		i;
 

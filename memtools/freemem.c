@@ -6,27 +6,27 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:32:00 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/31 13:54:18 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 17:07:34 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "memtools.h"
 
-void	ft_free_im(t_vars *v);
-void	ft_free_mlx(t_vars *v);
-void	ft_free_elms(t_vars *v);
+void	free_im(t_vars *v);
+void	free_mlx(t_vars *v);
+void	free_elms(t_vars *v);
 
-void	ft_free_v(t_vars *v)
+void	free_v(t_vars *v)
 {
 	ft_freestr(&v->file);
-	ft_free_im(v);
-	ft_free_mlx(v);
-	ft_free_elms(v);
+	free_im(v);
+	free_mlx(v);
+	free_elms(v);
 	free(v->ray);
 	free(v);
 }
 
-void	ft_free_elms(t_vars *v)
+void	free_elms(t_vars *v)
 {
 	if (v->amb)
 		free(v->amb);
@@ -34,12 +34,12 @@ void	ft_free_elms(t_vars *v)
 		free(v->cam);
 	if (v->light)
 		free(v->light);
-	ft_free_sp(v);
-	ft_free_pl(v);
-	ft_free_cy(v);
+	free_sp(v);
+	free_pl(v);
+	free_cy(v);
 }
 
-void	ft_free_im(t_vars *v)
+void	free_im(t_vars *v)
 {
 	if(!v->im)
 		return ;
@@ -48,7 +48,7 @@ void	ft_free_im(t_vars *v)
 	free(v->im);
 	v->im = NULL;
 }
-void	ft_free_mlx(t_vars *v)
+void	free_mlx(t_vars *v)
 {
 	if (v->win)
 	{

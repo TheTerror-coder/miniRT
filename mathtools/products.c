@@ -6,13 +6,13 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:30:44 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/25 20:56:02 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/10 16:30:38 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mathtools.h"
 
-t_vec	ft_vecdotconst(t_vec *vector, const double k)
+t_vec	vecdotconst(t_vec *vector, const double k)
 {
 	t_vec	res;
 
@@ -22,7 +22,7 @@ t_vec	ft_vecdotconst(t_vec *vector, const double k)
 	return (res);
 }
 
-t_vec	ft_vecdotpt(t_vec *vector, t_coord *point)
+t_vec	vecdotpt(t_vec *vector, t_coord *point)
 {
 	t_vec	res;
 
@@ -32,7 +32,7 @@ t_vec	ft_vecdotpt(t_vec *vector, t_coord *point)
 	return (res);
 }
 
-double	ft_vecdotvec(t_vec *vec1, t_vec *vec2)
+double	vecdotvec(t_vec *vec1, t_vec *vec2)
 {
 	double	res;
 

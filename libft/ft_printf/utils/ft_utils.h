@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:36:30 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/07 23:15:21 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/10 17:25:46 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int		ft_istype(char c);
 void	ft_raz_flags(t_vars *var);
 void	ft_free_var(t_vars *var);
 t_vars	*ft_init_var(const char *format);
-void	ft_checkflags(t_vars *v);
-void	ft_checkwidth(t_vars *v);
-t_bool	ft_checkoptionals(t_vars *v);
+void	checkflags(t_vars *v);
+void	checkwidth(t_vars *v);
+t_bool	checkoptionals(t_vars *v);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:53:19 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/10 16:31:56 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:55:29 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_bool	set_light(t_vars *v, char **infos, size_t line_index)
 		return (ft_error("set_light(): ft_calloc() failed"));
 	if (!set_light_coordinates(v, infos[0], line_index))
 		return (__FALSE);
-	if (!ft_isnumber(infos[1]))
+	if (!isnumber(infos[1]))
 	{
 		return (scene_error("light: expecting only decimal numbers",
 				line_index));
@@ -47,7 +47,7 @@ t_bool	set_light_coordinates(t_vars *v, char *infopol, size_t line_index)
 {
 	char	**light_point;
 
-	if (ft_countchar(infopol, ',') != 2)
+	if (countchar(infopol, ',') != 2)
 		return (scene_error("light: incorrect coordinates", line_index));
 	light_point = ft_split(infopol, ',');
 	if (!light_point)
@@ -73,7 +73,7 @@ t_bool	parse_light_coordinates(char **light_point, size_t line_index)
 		return (scene_error("light: incorrect coordinates", line_index));
 	while (light_point[i])
 	{
-		if (!ft_isnumber(light_point[i]))
+		if (!isnumber(light_point[i]))
 		{
 			return (scene_error("light: incorrect coordinates", line_index));
 		}
@@ -86,7 +86,7 @@ t_bool	set_light_color(t_vars *v, char *infocolor, size_t line_index)
 {
 	char	**colors;
 
-	if (ft_countchar(infocolor, ',') != 2)
+	if (countchar(infocolor, ',') != 2)
 		return (scene_error("light: incorrect color format", line_index));
 	colors = ft_split(infocolor, ',');
 	if (!colors)
@@ -118,7 +118,7 @@ t_bool	parse_light_color(char **colors, size_t line_index)
 	}
 	while (colors[i])
 	{
-		if (!ft_is_uint(colors[i]))
+		if (!is_uint(colors[i]))
 		{
 			scene_error("light: incorrect color format", line_index);
 			return (__FALSE);

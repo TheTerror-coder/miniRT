@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/16 18:13:39 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:55:29 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_bool	set_plane_point(t_pl *pl, char *infopoint, size_t line_index)
 {
 	char	**point;
 
-	if (ft_countchar(infopoint, ',') != 2)
+	if (countchar(infopoint, ',') != 2)
 	{
 		return (scene_error("plane: incorrect point's coordinates format",
 				line_index));
@@ -77,7 +77,7 @@ t_bool	parse_plane_point(char **point, size_t line_index)
 	}
 	while (point[i])
 	{
-		if (!ft_isnumber(point[i]))
+		if (!isnumber(point[i]))
 		{
 			return (scene_error("plane: incorrect point's coordinates format",
 					line_index));
@@ -91,7 +91,7 @@ t_bool	set_plane_normal_vector(t_pl *pl, char *infonormal, size_t line_index)
 {
 	char	**normal_vector;
 
-	if (ft_countchar(infonormal, ',') != 2)
+	if (countchar(infonormal, ',') != 2)
 		return (scene_error("plane: incorrect normal vector format",
 				line_index));
 	normal_vector = ft_split(infonormal, ',');
@@ -103,7 +103,7 @@ t_bool	set_plane_normal_vector(t_pl *pl, char *infonormal, size_t line_index)
 	pl->normal.y = ft_atod(normal_vector[1]);
 	pl->normal.z = ft_atod(normal_vector[2]);
 	ft_free2str(&normal_vector);
-	if (ft_sq(pl->normal.x) + ft_sq(pl->normal.y) + ft_sq(pl->normal.z) != 1)
+	if (__sq(pl->normal.x) + __sq(pl->normal.y) + __sq(pl->normal.z) != 1)
 		return (scene_error("plane: incorrect normal vector format",
 				line_index));
 	if (pl->normal.x < -1 || pl->normal.x > 1
@@ -126,7 +126,7 @@ t_bool	parse_plane_normal_vector(char **normal_vector, size_t line_index)
 				line_index));
 	while (normal_vector[i])
 	{
-		if (!ft_isnumber(normal_vector[i]))
+		if (!isnumber(normal_vector[i]))
 			return (scene_error("camera: incorrect normal vector format",
 					line_index));
 		i++;
@@ -165,7 +165,7 @@ t_bool	parse_plane_color(char **colors, size_t line_index)
 		return (scene_error("plane: incorrect color format", line_index));
 	while (colors[i])
 	{
-		if (!ft_is_uint(colors[i]))
+		if (!is_uint(colors[i]))
 		{
 			scene_error("plane: incorrect color format", line_index);
 			return (__FALSE);

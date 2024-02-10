@@ -6,13 +6,13 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 19:54:01 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/09 17:57:04 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 17:25:46 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_bool	ft_check(const char *str, int i, int *coma)
+t_bool	check(const char *str, int i, int *coma)
 {
 	if (str[i] == '.')
 	{
@@ -30,7 +30,7 @@ t_bool	ft_check(const char *str, int i, int *coma)
 	return (__TRUE);
 }
 
-t_bool	ft_is_uint(const char *str)
+t_bool	is_uint(const char *str)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ t_bool	ft_is_uint(const char *str)
 	return (__TRUE);
 }
 
-t_bool	ft_isnumber(const char *str)
+t_bool	isnumber(const char *str)
 {
 	int	i;
 	int	coma;
@@ -53,7 +53,7 @@ t_bool	ft_isnumber(const char *str)
 	coma = 0;
 	while (str[i])
 	{
-		if (!ft_check(str, i, &coma))
+		if (!check(str, i, &coma))
 			return (__FALSE);
 		i++;
 	}
@@ -67,7 +67,7 @@ t_bool	ft_error(char *str)
 	return (__FALSE);
 }
 
-int	ft_color(t_rgb *rgb)
+int	compute_color(t_rgb *rgb)
 {
 	int	result;
 

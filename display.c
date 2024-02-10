@@ -6,15 +6,15 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 17:15:36 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/07 18:12:53 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 17:15:47 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_bool	ft_displayothers(t_vars *v);
+t_bool	displayothers(t_vars *v);
 
-t_bool	ft_displayelms(t_vars *v)
+t_bool	display_elms(t_vars *v)
 {
 	int	i;
 
@@ -32,11 +32,11 @@ t_bool	ft_displayelms(t_vars *v)
 		v->sp[i]->rgb.r, v->sp[i]->rgb.g, v->sp[i]->rgb.b);
 		i++;
 	}
-	ft_displayothers(v);
+	displayothers(v);
 	return (__TRUE);
 }
 
-t_bool	ft_displayothers(t_vars *v)
+t_bool	displayothers(t_vars *v)
 {
 	int	i;
 

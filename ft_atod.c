@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:19:02 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/19 21:20:24 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/10 17:16:15 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ typedef struct s_tools
 	double				n;
 }				t_tools;
 
-void	ft_init_skip(t_tools *x, const char *nptr);
+void	init_skip(t_tools *x, const char *nptr);
 
 double	ft_atod(const char *nptr)
 {
 	t_tools	x;
 
-	ft_init_skip(&x, nptr);
+	init_skip(&x, nptr);
 	while (nptr[x.i] >= '0' && nptr[x.i] <= '9')
 	{
 		x.fdb = (x.fdb * 10) + (nptr[x.i] - 48);
@@ -50,7 +50,7 @@ double	ft_atod(const char *nptr)
 	return (x.fdb * x.sign);
 }
 
-void	ft_init_skip(t_tools *x, const char *nptr)
+void	init_skip(t_tools *x, const char *nptr)
 {
 	x->i = 0;
 	x->fdb = 0;

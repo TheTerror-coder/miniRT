@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:38:21 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/08 17:32:04 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:57:31 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_bool	compute_pt_ph(t_cy *cy, t_vec *axis_dir, t_consts *vars);
 t_bool	compute_lenght_t(t_ray *ray, t_cy *cy, t_consts *vars);
 t_bool	compute_norm_vec_phpi(t_ray *ray, t_consts *vars);
 
-t_bool	case_ray_inter_extremities(t_ray *ray, t_cy *cy, int x)
+t_bool	ray_inter_cy_extremities(t_ray *ray, t_cy *cy, int x)
 {
 	t_consts	vars;
 	t_vec		axis_dir;
@@ -50,11 +50,11 @@ t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars, i
 	compute_norm_vec_phpi(ray, vars);
 	if (vars->norm_phpi > (cy->d / 2))
 		return (__FALSE);
-	if (ft_assess_color(ray, vars->t))
+	if (assess_color(ray, vars->t))
 	{
 		ray->obj.type = __CYLINDER;
 		ray->obj.index = x;
-		return (ray->color = ft_color(&cy->rgb), __TRUE);
+		return (ray->color = compute_color(&cy->rgb), __TRUE);
 	}
 	return (__FALSE);
 }
@@ -78,9 +78,9 @@ t_bool	compute_lenght_t(t_ray *ray, t_cy *cy, t_consts *vars)
 	vars->c4 = ray->o.x - cy->o.x;
 	vars->c5 = ray->o.y - cy->o.y;
 	vars->c6 = ray->o.z - cy->o.z;
-	num = ft_sq(vars->c4) + ft_sq(vars->c5) + ft_sq(vars->c6) \
-		- ft_sq(vars->c1) - ft_sq(vars->c2) - ft_sq(vars->c3) \
-		- ft_sq(cy->h / 2);
+	num = __sq(vars->c4) + __sq(vars->c5) + __sq(vars->c6) \
+		- __sq(vars->c1) - __sq(vars->c2) - __sq(vars->c3) \
+		- __sq(cy->h / 2);
 	denom = 2 * (ray->dir.x * (vars->c1 - vars->c4) + ray->dir.y \
 		* (vars->c2 - vars->c5) + ray->dir.z * (vars->c3 - vars->c6));
 	if (!num || !denom)
@@ -91,8 +91,8 @@ t_bool	compute_lenght_t(t_ray *ray, t_cy *cy, t_consts *vars)
 
 t_bool	compute_norm_vec_phpi(t_ray *ray, t_consts *vars)
 {
-	vars->norm_phpi = sqrt(ft_sq(vars->t * ray->dir.x + vars->c1) \
-			+ ft_sq(vars->t * ray->dir.y + vars->c2) + ft_sq(vars->t \
+	vars->norm_phpi = sqrt(__sq(vars->t * ray->dir.x + vars->c1) \
+			+ __sq(vars->t * ray->dir.y + vars->c2) + __sq(vars->t \
 			* ray->dir.z + vars->c3));
 	return (__TRUE);
 }

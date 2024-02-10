@@ -6,13 +6,13 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:33:56 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/02 11:57:23 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:51:46 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "memtools.h"
 
-t_vars	*ft_init_v(void)
+t_vars	*init_v(void)
 {
 	t_vars	*v;
 

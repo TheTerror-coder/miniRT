@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:25:04 by lmohin            #+#    #+#             */
-/*   Updated: 2024/01/10 17:22:51 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:53:35 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_bool	scene_error(char *str, size_t line_index)
 	return (ft_error(str));
 }
 
-size_t	ft_countchar(char *str, char c)
+size_t	countchar(char *str, char c)
 {
 	size_t	i;
 	size_t	count;

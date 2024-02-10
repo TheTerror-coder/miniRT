@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_lightning.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:06:58 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/09 16:19:47 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:57:31 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ t_bool	is_cylinder_bottom(t_cy cylinder, t_ray main_ray, t_vec *normal_cy)
 {
 	double	dist_center;
 
-	dist_center = ft_sq(main_ray.o.x + main_ray.len * main_ray.dir.x - (cylinder.o.x + cylinder.h / 2 * (-1) * cylinder.axis.x));
-	dist_center += ft_sq(main_ray.o.y + main_ray.len * main_ray.dir.y - (cylinder.o.y + cylinder.h / 2 * (-1) * cylinder.axis.y));
-	dist_center += ft_sq(main_ray.o.z + main_ray.len * main_ray.dir.z - (cylinder.o.z + cylinder.h / 2 * (-1) * cylinder.axis.z));
-	if (dist_center <= ft_sq(cylinder.r))
+	dist_center = __sq(main_ray.o.x + main_ray.len * main_ray.dir.x - (cylinder.o.x + cylinder.h / 2 * (-1) * cylinder.axis.x));
+	dist_center += __sq(main_ray.o.y + main_ray.len * main_ray.dir.y - (cylinder.o.y + cylinder.h / 2 * (-1) * cylinder.axis.y));
+	dist_center += __sq(main_ray.o.z + main_ray.len * main_ray.dir.z - (cylinder.o.z + cylinder.h / 2 * (-1) * cylinder.axis.z));
+	if (dist_center <= __sq(cylinder.r))
 	{
 		normal_cy->x = -1 * cylinder.axis.x;
 		normal_cy->y = -1 * cylinder.axis.y;
@@ -33,10 +33,10 @@ t_bool	is_cylinder_top(t_cy cylinder, t_ray main_ray, t_vec *normal_cy)
 {
 	double	dist_top_center;
 
-	dist_top_center = ft_sq(main_ray.o.x + main_ray.len * main_ray.dir.x - (cylinder.o.x + cylinder.h / 2 * cylinder.axis.x));
-	dist_top_center += ft_sq(main_ray.o.y + main_ray.len * main_ray.dir.y - (cylinder.o.y + cylinder.h / 2 * cylinder.axis.y));
-	dist_top_center += ft_sq(main_ray.o.z + main_ray.len * main_ray.dir.z - (cylinder.o.z + cylinder.h / 2 * cylinder.axis.z));
-	if (dist_top_center <= ft_sq(cylinder.r))
+	dist_top_center = __sq(main_ray.o.x + main_ray.len * main_ray.dir.x - (cylinder.o.x + cylinder.h / 2 * cylinder.axis.x));
+	dist_top_center += __sq(main_ray.o.y + main_ray.len * main_ray.dir.y - (cylinder.o.y + cylinder.h / 2 * cylinder.axis.y));
+	dist_top_center += __sq(main_ray.o.z + main_ray.len * main_ray.dir.z - (cylinder.o.z + cylinder.h / 2 * cylinder.axis.z));
+	if (dist_top_center <= __sq(cylinder.r))
 	{
 		normal_cy->x = cylinder.axis.x;
 		normal_cy->y = cylinder.axis.y;
@@ -53,18 +53,18 @@ t_vec	get_normal_cylinder(t_cy cylinder, t_ray main_ray)
 
 	if (is_cylinder_bottom(cylinder, main_ray, &normal_cy))
 		return (normal_cy);
-	dist_center = ft_sq(main_ray.o.x + main_ray.len * main_ray.dir.x - (cylinder.o.x + cylinder.h / 2 * (-1) * cylinder.axis.x));
-	dist_center += ft_sq(main_ray.o.y + main_ray.len * main_ray.dir.y - (cylinder.o.y + cylinder.h / 2 * (-1) * cylinder.axis.y));
-	dist_center += ft_sq(main_ray.o.z + main_ray.len * main_ray.dir.z - (cylinder.o.z + cylinder.h / 2 * (-1) * cylinder.axis.z));
+	dist_center = __sq(main_ray.o.x + main_ray.len * main_ray.dir.x - (cylinder.o.x + cylinder.h / 2 * (-1) * cylinder.axis.x));
+	dist_center += __sq(main_ray.o.y + main_ray.len * main_ray.dir.y - (cylinder.o.y + cylinder.h / 2 * (-1) * cylinder.axis.y));
+	dist_center += __sq(main_ray.o.z + main_ray.len * main_ray.dir.z - (cylinder.o.z + cylinder.h / 2 * (-1) * cylinder.axis.z));
 	if (is_cylinder_top(cylinder, main_ray, &normal_cy))
 		return (normal_cy);
 	normal_cy.x = main_ray.o.x + main_ray.len * main_ray.dir.x;
-	normal_cy.x -= (cylinder.o.x + cylinder.h / 2 * (-1) * cylinder.axis.x + sqrt(dist_center - ft_sq(cylinder.r)) * cylinder.axis.x);
+	normal_cy.x -= (cylinder.o.x + cylinder.h / 2 * (-1) * cylinder.axis.x + sqrt(dist_center - __sq(cylinder.r)) * cylinder.axis.x);
 	normal_cy.y = main_ray.o.y + main_ray.len * main_ray.dir.y;
-	normal_cy.y -= (cylinder.o.y + cylinder.h / 2 * (-1) * cylinder.axis.y + sqrt(dist_center - ft_sq(cylinder.r)) * cylinder.axis.y);
+	normal_cy.y -= (cylinder.o.y + cylinder.h / 2 * (-1) * cylinder.axis.y + sqrt(dist_center - __sq(cylinder.r)) * cylinder.axis.y);
 	normal_cy.z = main_ray.o.z + main_ray.len * main_ray.dir.z;
-	normal_cy.z -= (cylinder.o.z + cylinder.h / 2 * (-1) * cylinder.axis.z + sqrt(dist_center - ft_sq(cylinder.r)) * cylinder.axis.z);
-	ft_vectornormalize(&normal_cy, &normal_cy);
+	normal_cy.z -= (cylinder.o.z + cylinder.h / 2 * (-1) * cylinder.axis.z + sqrt(dist_center - __sq(cylinder.r)) * cylinder.axis.z);
+	vectornormalize(&normal_cy, &normal_cy);
 	return (normal_cy);
 }
 
@@ -75,10 +75,10 @@ t_bool	cylinder_lightning(t_vars *v, t_ray light_ray, int i, int j)
 	int		color;
 
 	normal_vec = get_normal_cylinder(*v->cy[v->ray->obj.index], *v->ray);
-	scalar = ft_vecdotvec(&light_ray.dir, &normal_vec);
+	scalar = vecdotvec(&light_ray.dir, &normal_vec);
 	if (!light_side_test(normal_vec, *v->ray, light_ray))
 	{
-		color = amb_color(*v->amb, ft_color(&v->cy[v->ray->obj.index]->rgb));
+		color = amb_color(*v->amb, compute_color(&v->cy[v->ray->obj.index]->rgb));
 		my_mlx_pixel_put(v->im, i, j, color);
 		return (__TRUE);
 	}

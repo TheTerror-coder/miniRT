@@ -6,13 +6,13 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:30:44 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/09/06 22:01:56 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/10 16:27:47 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mathtools.h"
 
-void	ft_pointsdiff(t_coord *end, t_coord *origin, t_vec *res)
+void	pointsdiff(t_coord *end, t_coord *origin, t_vec *res)
 {
 	t_coord	r;
 

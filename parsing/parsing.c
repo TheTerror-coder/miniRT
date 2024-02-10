@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 19:35:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/09 16:48:51 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:53:21 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ t_bool	auth_id_then_set(t_vars *v, char **infos, char *id, size_t line_index)
 	if (!ft_strncmp("pl", id, ft_strlen(id) + 2))
 		return (set_plane(v, infos, line_index));
 	if (!ft_strncmp("cy", id, ft_strlen(id) + 2))
-		return (ft_set_cylindre(v, infos, line_index));
+		return (set_cylindre(v, infos, line_index));
 	return (scene_error("unknown id type", line_index));
 }
 

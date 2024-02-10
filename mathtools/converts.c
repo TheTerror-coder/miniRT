@@ -6,13 +6,13 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:23:31 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/21 20:35:19 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/10 16:31:28 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mathtools.h"
 
-double	ft_degtorad(double alpha)
+double	degtorad(double alpha)
 {
 	double	pi;
 
@@ -20,7 +20,7 @@ double	ft_degtorad(double alpha)
 	return ((alpha * pi) / 180);
 }
 
-double	ft_radtodeg(double alpha)
+double	radtodeg(double alpha)
 {
 	double	pi;
 

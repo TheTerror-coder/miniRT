@@ -6,23 +6,23 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:30:44 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/09/06 22:25:46 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/10 16:31:42 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mathtools.h"
 
-double	ft_vectornorm(t_vec *vector)
+double	vectornorm(t_vec *vector)
 {
-	return (sqrt(ft_vectornormsqr(vector)));
+	return (sqrt(vectornormsqr(vector)));
 }
 
-void	ft_setvec_coords(t_vec *vector)
+void	setvec_coords(t_vec *vector)
 {
-	ft_pointsdiff(&vector->e, &vector->o, vector);
+	pointsdiff(&vector->e, &vector->o, vector);
 }
 
-double	ft_vectornormsqr(t_vec *vector)
+double	vectornormsqr(t_vec *vector)
 {
 	double	x2;
 	double	y2;
@@ -36,12 +36,12 @@ double	ft_vectornormsqr(t_vec *vector)
 	return (res);
 }
 
-void	ft_vectornormalize(t_vec *vec, t_vec *normvec)
+void	vectornormalize(t_vec *vec, t_vec *normvec)
 {
 	double	norm;
 	t_vec	res;
 
-	norm = ft_vectornorm(vec);
+	norm = vectornorm(vec);
 	if (!norm)
 		norm = 1;
 	res.x = vec->x / norm;

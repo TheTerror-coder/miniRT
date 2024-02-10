@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 19:09:27 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/11 15:33:12 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:53:35 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_bool	set_camera(t_vars *v, char **infos, size_t line_index);
 t_bool	set_light(t_vars *v, char **infos, size_t line_index);
 t_bool	set_sphere(t_vars *v, char **infos, size_t line_index);
 t_bool	set_plane(t_vars *v, char **infos, size_t line_index);
-t_bool	ft_set_cylindre(t_vars *v, char **infos, size_t line_index);
+t_bool	set_cylindre(t_vars *v, char **infos, size_t line_index);
 
 t_bool	scene_error(char *str, size_t line_index);
-size_t	ft_countchar(char *str, char c);
+size_t	countchar(char *str, char c);
 
 #endif

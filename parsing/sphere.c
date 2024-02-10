@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:53:48 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/02 06:44:05 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:55:29 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_bool	set_sphere(t_vars *v, char **infos, size_t line_index)
 		return (ft_error("set_sphere(): ft_calloc() failed"));
 	if (!set_sphere_center(v->sp[i], infos[0], line_index))
 		return (__FALSE);
-	if (!ft_isnumber(infos[1]))
+	if (!isnumber(infos[1]))
 	{
 		return (scene_error("sphere: expecting only decimal numbers",
 				line_index));
@@ -52,7 +52,7 @@ t_bool	set_sphere_center(t_sp *sp, char *infocenter, size_t line_index)
 {
 	char	**center;
 
-	if (ft_countchar(infocenter, ',') != 2)
+	if (countchar(infocenter, ',') != 2)
 	{
 		return (scene_error("sphere: incorrect center point format",
 				line_index));
@@ -84,7 +84,7 @@ t_bool	parse_sphere_center(char **center, size_t line_index)
 	}
 	while (center[i])
 	{
-		if (!ft_isnumber(center[i]))
+		if (!isnumber(center[i]))
 		{
 			return (scene_error("sphere: incorrect center point format",
 					line_index));
@@ -129,7 +129,7 @@ t_bool	parse_sphere_color(char **colors, size_t line_index)
 	}
 	while (colors[i])
 	{
-		if (!ft_is_uint(colors[i]))
+		if (!is_uint(colors[i]))
 		{
 			scene_error("sphere: incorrect color format", line_index);
 			return (__FALSE);

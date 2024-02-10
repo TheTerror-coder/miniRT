@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadows.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmohin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 06:28:58 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/09 16:49:10 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:32:09 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_bool	is_shadows(t_vars *v, t_ray *light_ray, int i, int j)
 	{
 		dist = light_ray->len;
 		light_ray->len = -1;
-		ft_ray_inter_sp(light_ray, v->sp[x], x);
+		ray_inter_sp(light_ray, v->sp[x], x);
 		if (light_ray->len != -1 && (dist - light_ray->len >= -0.0000000001) && (dist - light_ray->len <= 0.0000000001))
 		{
 			if (!light_side_test(get_normal_sphere(*v->sp[x], *light_ray), *light_ray, *v->ray))
@@ -53,7 +53,7 @@ t_bool	is_shadows(t_vars *v, t_ray *light_ray, int i, int j)
 	{
 		dist = light_ray->len;
 		light_ray->len = -1;
-		ft_ray_inter_pl(light_ray, v->pl[x], x);
+		ray_inter_pl(light_ray, v->pl[x], x);
 		if (light_ray->len != -1 && ((dist - light_ray->len) >= -0.0000000001) && ((dist - light_ray->len) <= 0.0000000001))
 		{
 			if (!light_side_test(v->pl[x]->normal, *light_ray, *v->ray))
@@ -79,7 +79,7 @@ t_bool	is_shadows(t_vars *v, t_ray *light_ray, int i, int j)
 	{
 		dist = light_ray->len;
 		light_ray->len = -1;
-		ft_ray_inter_cy(light_ray, v->cy[x], x);
+		ray_inter_cy(light_ray, v->cy[x], x);
 		if (light_ray->len != -1 && (dist - light_ray->len >= -0.0000000001) && (dist - light_ray->len <= 0.0000000001))
 		{
 			if (!light_side_test(get_normal_cylinder(*v->cy[x], *light_ray), *light_ray, *v->ray))
@@ -100,10 +100,10 @@ t_bool	is_shadows(t_vars *v, t_ray *light_ray, int i, int j)
 			light_ray->len = dist;
 		}
 	}
-	dist = ft_sq(light_ray->len)
-		- ft_sq(v->cam->pov.x - v->light->pol.x + v->ray->len * v->ray->dir.x)
-		- ft_sq(v->cam->pov.y - v->light->pol.y + v->ray->len * v->ray->dir.y)
-		- ft_sq(v->cam->pov.z - v->light->pol.z + v->ray->len * v->ray->dir.z);
+	dist = __sq(light_ray->len)
+		- __sq(v->cam->pov.x - v->light->pol.x + v->ray->len * v->ray->dir.x)
+		- __sq(v->cam->pov.y - v->light->pol.y + v->ray->len * v->ray->dir.y)
+		- __sq(v->cam->pov.z - v->light->pol.z + v->ray->len * v->ray->dir.z);
 	if (dist >= 0.0000000001 || dist <= -0.0000000001 || (inter == __TRUE && v->ray->len != -1))
 	{
 		color = amb_color(*v->amb, v->ray->color);

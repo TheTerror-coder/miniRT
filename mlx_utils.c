@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mlx_utils.c                                     :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 19:48:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/18 19:21:42 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/10 16:58:36 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_bool	ft_set_mlx(t_vars *v)
+t_bool	set_mlx(t_vars *v)
 {
 	v->xptr = mlx_init();
 	if (!v->xptr)

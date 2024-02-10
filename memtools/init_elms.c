@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 16:51:42 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/01/10 16:44:51 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:52:47 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_bool	init_a_sphere(t_vars *v, int *index)
 		v->sp[len] = NULL;
 		len++;
 	}
-	ft_free_sp(v);
+	free_sp(v);
 	v->sp = new;
 	return (__TRUE);
 }
@@ -57,7 +57,7 @@ t_bool	init_a_plane(t_vars *v, int *index)
 		v->pl[len] = NULL;
 		len++;
 	}
-	ft_free_pl(v);
+	free_pl(v);
 	v->pl = new;
 	return (__TRUE);
 }
@@ -82,7 +82,7 @@ t_bool	init_a_cylindre(t_vars *v, int *index)
 		v->cy[len] = NULL;
 		len++;
 	}
-	ft_free_cy(v);
+	free_cy(v);
 	v->cy = new;
 	return (__TRUE);
 }
