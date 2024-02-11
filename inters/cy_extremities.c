@@ -6,13 +6,13 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:38:21 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/10 16:57:31 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 13:47:28 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inters.h"
 
-typedef struct	s_consts
+typedef struct s_consts
 {
 	t_coord	pt_ph;
 	double	t;
@@ -23,9 +23,10 @@ typedef struct	s_consts
 	double	c4;
 	double	c5;
 	double	c6;
+	int		x;
 }				t_consts;
 
-t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars, int x);
+t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars);
 t_bool	compute_pt_ph(t_cy *cy, t_vec *axis_dir, t_consts *vars);
 t_bool	compute_lenght_t(t_ray *ray, t_cy *cy, t_consts *vars);
 t_bool	compute_norm_vec_phpi(t_ray *ray, t_consts *vars);
@@ -35,15 +36,17 @@ t_bool	ray_inter_cy_extremities(t_ray *ray, t_cy *cy, int x)
 	t_consts	vars;
 	t_vec		axis_dir;
 	int			fdbk;
-	
-	fdbk = inter_extremitie(ray, cy, &cy->axis, &vars, x);
+
+	vars.x = x;
+	fdbk = inter_extremitie(ray, cy, &cy->axis, &vars);
 	axis_dir.x = -cy->axis.x;
 	axis_dir.y = -cy->axis.y;
 	axis_dir.z = -cy->axis.z;
-	fdbk |= inter_extremitie(ray, cy, &axis_dir, &vars, x);
+	fdbk |= inter_extremitie(ray, cy, &axis_dir, &vars);
 	return (fdbk);
 }
-t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars, int x)
+
+t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars)
 {
 	compute_pt_ph(cy, axis_dir, vars);
 	compute_lenght_t(ray, cy, vars);
@@ -53,7 +56,7 @@ t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars, i
 	if (assess_color(ray, vars->t))
 	{
 		ray->obj.type = __CYLINDER;
-		ray->obj.index = x;
+		ray->obj.index = vars->x;
 		return (ray->color = compute_color(&cy->rgb), __TRUE);
 	}
 	return (__FALSE);
@@ -84,7 +87,7 @@ t_bool	compute_lenght_t(t_ray *ray, t_cy *cy, t_consts *vars)
 	denom = 2 * (ray->dir.x * (vars->c1 - vars->c4) + ray->dir.y \
 		* (vars->c2 - vars->c5) + ray->dir.z * (vars->c3 - vars->c6));
 	if (!num || !denom)
-		return(vars->t = 0, __TRUE);
+		return (vars->t = 0, __TRUE);
 	vars->t = num / denom;
 	return (__TRUE);
 }
@@ -96,14 +99,3 @@ t_bool	compute_norm_vec_phpi(t_ray *ray, t_consts *vars)
 			* ray->dir.z + vars->c3));
 	return (__TRUE);
 }
-
-// t_bool	define_extremitie_pl(t_cy *cy, t_consts *vars)
-// {
-// 	vars->pl.normal.x = cy->axis.x;
-// 	vars->pl.normal.y = cy->axis.y;
-// 	vars->pl.normal.z = cy->axis.z;
-// 	vars->pl.p.x = cy->o.x + (cy->h / 2) * cy->axis.x;
-// 	vars->pl.p.y = cy->o.y + (cy->h / 2) * cy->axis.y;
-// 	vars->pl.p.z = cy->o.z + (cy->h / 2) * cy->axis.z;
-// 	return (__TRUE);
-// }

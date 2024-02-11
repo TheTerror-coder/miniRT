@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 19:20:10 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/10 16:54:53 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 15:10:56 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_keyhook(int keycode, t_vars *v)
 		exitprocss(v, EXIT_SUCCESS);
 	return (0);
 }
+
 int	ft_xbutton_close(t_vars *v)
 {
 	exitprocss(v, EXIT_SUCCESS);

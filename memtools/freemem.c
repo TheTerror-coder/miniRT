@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:32:00 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/10 17:07:34 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 15:07:11 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ void	free_elms(t_vars *v)
 
 void	free_im(t_vars *v)
 {
-	if(!v->im)
+	if (!v->im)
 		return ;
 	if (v->im->img)
 		mlx_destroy_image(v->xptr, v->im->img);
 	free(v->im);
 	v->im = NULL;
 }
+
 void	free_mlx(t_vars *v)
 {
 	if (v->win)

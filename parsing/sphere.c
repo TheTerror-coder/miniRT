@@ -6,11 +6,14 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:53:48 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/11 13:36:39 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 15:01:15 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+t_bool	parse_sphere_center(char **center, size_t line_index);
+t_bool	parse_sphere_color(char **colors, size_t line_index);
 
 t_bool	set_sphere_center(t_sp *sp, char *infocenter, size_t line_index);
 t_bool	set_sphere_color(t_sp *sp, char *infocolor, size_t line_index);

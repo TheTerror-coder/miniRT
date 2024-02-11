@@ -6,14 +6,14 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:26:11 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/03/31 15:16:37 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 15:27:26 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PREPRCSS_H
 # define FT_PREPRCSS_H
 
-# include<stdarg.h>
+# include <stdarg.h>
 
 typedef enum e_bool
 {

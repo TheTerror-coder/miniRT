@@ -6,20 +6,20 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:35:39 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/02 21:31:32 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 15:30:29 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include<unistd.h>
-# include<stdlib.h>
+# include <unistd.h>
+# include <stdlib.h>
 # include "./get_next_line/get_next_line.h"
 # include "./ft_printf/ft_printf.h"
 
-# define __INT_MIN -2147483648
-# define __INT_MAX 2147483647
+# define __INT_MIN -2147483648 // defined in libft
+# define __INT_MAX 2147483647 // defined in libft
 
 typedef struct s_list	t_list;
 typedef enum e_assert	t_assert;

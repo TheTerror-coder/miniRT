@@ -6,11 +6,15 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:54:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/11 13:30:16 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 14:59:26 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+t_bool	parse_plane_point(char **point, size_t line_index);
+t_bool	parse_plane_normal_vector(char **dir, size_t line_index);
+t_bool	parse_plane_color(char **colors, size_t line_index);
 
 t_bool	set_plane_point(t_pl *pl, char *infopoint, size_t line_index);
 t_bool	set_plane_normal_vector(t_pl *pl, char *infonormal, size_t line_index);

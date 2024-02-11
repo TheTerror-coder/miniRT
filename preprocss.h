@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:41:14 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/02 11:55:40 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/11 15:15:23 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@
 # define __LEFTBUTTON 1 	//mouse's left button
 # define __RIGHTBUTTON 3 	//mouse's right button
 # define __WHEELBUTTON 2 	//mouse's wheel button
-
 
 typedef struct s_rgb
 {

@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:22 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/10 17:03:14 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 15:11:45 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,5 @@ t_bool	intersections(t_vars *v, int i, int j)
 		my_mlx_pixel_put(v->im, i, j, v->ray->color);
 		return (__TRUE);
 	}
-	return (lightning(v,i,j));
+	return (lightning(v, i, j));
 }

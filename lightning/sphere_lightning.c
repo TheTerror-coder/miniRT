@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:24:07 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/10 16:57:31 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 16:23:01 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ t_bool	sphere_lightning(t_vars *v, t_ray light_ray, int i, int j)
 	scalar = vecdotvec(&light_ray.dir, &normal_vec);
 	if (!light_side_test(normal_vec, *v->ray, light_ray))
 	{
-		color = amb_color(*v->amb, compute_color(&v->sp[v->ray->obj.index]->rgb));
+		color = \
+			amb_color(*v->amb, compute_color(&v->sp[v->ray->obj.index]->rgb));
 		my_mlx_pixel_put(v->im, i, j, color);
 		return (__TRUE);
 	}

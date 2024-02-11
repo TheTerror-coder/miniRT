@@ -6,13 +6,13 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:29:44 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/10 17:25:46 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/03/31 15:16:34 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_utils.h"
 
-void	checkprecision(t_vars *v)
+void	ft_checkprecision(t_vars *v)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ void	checkprecision(t_vars *v)
 	v->i = i;
 }
 
-void	checkflags(t_vars *v)
+void	ft_checkflags(t_vars *v)
 {
 	int	i;
 
@@ -55,7 +55,7 @@ void	checkflags(t_vars *v)
 	v->i = i;
 }
 
-void	checkwidth(t_vars *v)
+void	ft_checkwidth(t_vars *v)
 {
 	int	i;
 
@@ -68,10 +68,10 @@ void	checkwidth(t_vars *v)
 	v->i = i;
 }
 
-t_bool	checkoptionals(t_vars *v)
+t_bool	ft_checkoptionals(t_vars *v)
 {
-	checkflags(v);
-	checkwidth(v);
-	checkprecision(v);
+	ft_checkflags(v);
+	ft_checkwidth(v);
+	ft_checkprecision(v);
 	return (__TRUE);
 }

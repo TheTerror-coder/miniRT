@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 19:50:35 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/10 17:25:46 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/05/12 02:10:19 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_set_buf(char *buf, int endl, int role)
 
 int	ft_cat(char **line, char *buf, int len_buf, int *endl)
 {
-	*endl = check_endl(buf);
+	*endl = ft_check_endl(buf);
 	if (*endl)
 	{
 		*line = ft_op_cat(&(*line), buf, *endl);

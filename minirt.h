@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:48 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/10 16:57:51 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 15:14:05 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define MINIRT_H
 
 # include "preprocss.h"
-# include<math.h>
-# include<sys/types.h>
-# include<sys/stat.h>
-# include<fcntl.h>
-# include<stdio.h>
+# include <math.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <stdio.h>
 # include "./inters/inters.h"
 # include "./mathtools/mathtools.h"
 # include "./memtools/memtools.h"
@@ -39,4 +39,4 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		compute_color(t_rgb *rgb);
 t_bool	set_ray(t_vars *v, int i, int j);
 
-# endif
+#endif

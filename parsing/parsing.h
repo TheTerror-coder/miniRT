@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 19:09:27 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/11 13:36:43 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 15:01:02 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ t_bool	set_light(t_vars *v, char **infos, size_t line_index);
 t_bool	set_sphere(t_vars *v, char **infos, size_t line_index);
 t_bool	set_plane(t_vars *v, char **infos, size_t line_index);
 t_bool	set_cylindre(t_vars *v, char **infos, size_t line_index);
-
-t_bool	parse_plane_point(char **point, size_t line_index);
-t_bool	parse_plane_normal_vector(char **dir, size_t line_index);
-t_bool	parse_plane_color(char **colors, size_t line_index);
-
-t_bool	parse_sphere_center(char **center, size_t line_index);
-t_bool	parse_sphere_color(char **colors, size_t line_index);
 
 t_bool	check_format(char *file);
 t_bool	scene_error(char *str, size_t line_index);

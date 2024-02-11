@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:05:07 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/10 17:01:34 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 15:08:08 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_bool	in3dcamera(t_vars *v, t_vec *localray, int i, int j)
 {
 	localray->x = (i - (_WIDHT / 2.00));
 	localray->y = (-j + (_HEIGHT / 2.00));
-	localray->z = (-_WIDHT /(2.00 * tan(degtorad(v->cam->fov) / 2.00)));
+	localray->z = (-_WIDHT / (2.00 * tan(degtorad(v->cam->fov) / 2.00)));
 	return (__TRUE);
 }
 
@@ -45,9 +45,12 @@ t_bool	rotate_to_3dwrld(t_vars *v, t_vec *localray)
 	t_vec	cam_w;
 
 	setcam_base(v, &cam_u, &cam_v, &cam_w);
-	v->ray->dir.x = (cam_u.x * localray->x) + (cam_v.x * localray->y) + (cam_w.x * localray->z);
-	v->ray->dir.y = (cam_u.y * localray->x) + (cam_v.y * localray->y) + (cam_w.y * localray->z);
-	v->ray->dir.z = (cam_u.z * localray->x) + (cam_v.z * localray->y) + (cam_w.z * localray->z);
+	v->ray->dir.x = (cam_u.x * localray->x) + (cam_v.x * localray->y) \
+					+ (cam_w.x * localray->z);
+	v->ray->dir.y = (cam_u.y * localray->x) + (cam_v.y * localray->y) \
+					+ (cam_w.y * localray->z);
+	v->ray->dir.z = (cam_u.z * localray->x) + (cam_v.z * localray->y) \
+					+ (cam_w.z * localray->z);
 	vectornormalize(&v->ray->dir, &v->ray->dir);
 	return (__TRUE);
 }

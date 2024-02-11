@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 14:23:00 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/10 17:25:46 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/07 23:20:19 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_bool	ft_op(t_vars *v, va_list args)
 	{
 		ft_raz_flags(v);
 		if (ft_is_optional(v->fmt[v->i + 1]))
-			fdbk = checkoptionals(v);
+			fdbk = ft_checkoptionals(v);
 		if (fdbk && ft_istype(v->fmt[v->i + 1]))
 			fdbk = ft_swt_type(v, args);
 		else
