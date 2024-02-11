@@ -6,17 +6,17 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 19:35:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/10 16:53:21 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 13:21:14 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minirt.h"
 #include <errno.h>
 
-t_bool	check_format(char *file);
 t_bool	parse_file(t_vars *v);
 t_bool	set_elements(t_vars *v, char *line, size_t line_index);
 t_bool	auth_id_then_set(t_vars *v, char **infos, char *id, size_t line_index);
+t_bool	parse_loop(t_vars *v, int fd);
 
 t_bool	parse_args(t_vars *v, int argc, char **argv)
 {
@@ -37,31 +37,12 @@ t_bool	parse_args(t_vars *v, int argc, char **argv)
 t_bool	parse_file(t_vars *v)
 {
 	int		fd;
-	char	*line;
-	size_t	line_index;
 
 	fd = open(v->file, O_RDONLY);
 	if (fd < 0)
 		return (perror(v->file), __FALSE);
-	errno = 0;
-	line = get_next_line(fd);
-	if (!line && errno)
-		return (ft_error("get_next_line() failed"));
-	line_index = 1;
-	if (!line)
-		return (ft_error("missing informations, check your elements"));
-	while (line)
-	{
-		if (!set_elements(v, line, line_index))
-			return (ft_freestr(&line), close(fd), __FALSE);
-		line_index++;
-		ft_freestr(&line);
-		errno = 0;
-		line = get_next_line(fd);
-		if (!line && errno)
-			return (ft_error("get_next_line() failed"));
-	}
-	ft_freestr(&line);
+	if (!parse_loop(v, fd))
+		return (close(fd), __FALSE);
 	close(fd);
 	if (!v->cam)
 		return (ft_error("missing informations, check your elements"));
@@ -73,25 +54,45 @@ t_bool	parse_file(t_vars *v)
 	return (__TRUE);
 }
 
+t_bool	parse_loop(t_vars *v, int fd)
+{
+	char	*line;
+	size_t	line_index;
+
+	errno = 0;
+	line = get_next_line(fd);
+	if (!line && errno)
+		return (ft_error("get_next_line() failed"));
+	else if (!line)
+		return (ft_error("missing informations, check your elements"));
+	line_index = 1;
+	while (line)
+	{
+		if (!set_elements(v, line, line_index))
+			return (ft_freestr(&line), __FALSE);
+		line_index++;
+		ft_freestr(&line);
+		errno = 0;
+		line = get_next_line(fd);
+		if (!line && errno)
+			return (ft_error("get_next_line() failed"));
+	}
+	ft_freestr(&line);
+	return (__TRUE);
+}
+
 t_bool	set_elements(t_vars *v, char *line, size_t line_index)
 {
 	char	**elm;
 
 	elm = ft_splitwset(line, " \t\n");
-	// \n useless?
 	if (!elm)
 		return (ft_error("ft_splitwset() failed"));
 	if (!elm[0])
-	{
-		ft_free2str(&elm);
-		return (__TRUE);
-	}
+		return (ft_free2str(&elm), __TRUE);
 	if (ft_2strlen(elm) < 3)
-	{
-		ft_free2str(&elm);
-		return (scene_error("missing informations, check your elements",
-			line_index));
-	}
+		return (ft_free2str(&elm), \
+		scene_error("missing informations, check your elements", line_index));
 	if (!auth_id_then_set(v, &elm[1], elm[0], line_index))
 		return (ft_free2str(&elm), __FALSE);
 	ft_free2str(&elm);
@@ -113,19 +114,4 @@ t_bool	auth_id_then_set(t_vars *v, char **infos, char *id, size_t line_index)
 	if (!ft_strncmp("cy", id, ft_strlen(id) + 2))
 		return (set_cylindre(v, infos, line_index));
 	return (scene_error("unknown id type", line_index));
-}
-
-t_bool	check_format(char *file)
-{
-	size_t	i;
-
-	i = ft_strlen(file);
-	while (i != 0 && file[i] != '.')
-		i--;
-	if (ft_strncmp(file + i, ".rt", 4))
-	{
-		ft_putendl_fd("invalid file extension", STDERR_FILENO);
-		return (__FALSE);
-	}
-	return (__TRUE);
 }

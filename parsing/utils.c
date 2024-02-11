@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:25:04 by lmohin            #+#    #+#             */
-/*   Updated: 2024/02/10 16:53:35 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/11 13:20:48 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,19 @@ size_t	countchar(char *str, char c)
 		i++;
 	}
 	return (count);
+}
+
+t_bool	check_format(char *file)
+{
+	size_t	i;
+
+	i = ft_strlen(file);
+	while (i != 0 && file[i] != '.')
+		i--;
+	if (ft_strncmp(file + i, ".rt", 4))
+	{
+		ft_putendl_fd("invalid file extension", STDERR_FILENO);
+		return (__FALSE);
+	}
+	return (__TRUE);
 }
