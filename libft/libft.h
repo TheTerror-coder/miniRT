@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:35:39 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/11 15:30:29 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/12 18:00:50 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <math.h>
 # include "./get_next_line/get_next_line.h"
 # include "./ft_printf/ft_printf.h"
 
@@ -53,6 +54,7 @@ enum e_assert
 **		The converted value or 0 on error.
 */
 int				ft_atoi(const char *nptr);
+double			ft_atod(const char *nptr);
 
 /*
 **ft_bzero -- zero a byte string

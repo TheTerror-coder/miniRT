@@ -6,11 +6,11 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 17:15:36 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/11 15:10:20 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/12 17:26:54 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../minirt.h"
 
 t_bool	displayothers(t_vars *v);
 

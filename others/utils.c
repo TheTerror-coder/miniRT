@@ -6,11 +6,11 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 19:54:01 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/10 17:25:46 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/12 17:27:00 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../minirt.h"
 
 t_bool	check(const char *str, int i, int *coma)
 {

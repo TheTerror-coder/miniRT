@@ -6,11 +6,11 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 19:48:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/11 15:13:19 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/12 17:26:35 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../minirt.h"
 
 t_bool	set_mlx(t_vars *v)
 {
