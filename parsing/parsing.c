@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 19:35:23 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/11 13:21:14 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 13:19:50 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ t_bool	parse_file(t_vars *v)
 	if (!v->light)
 	{
 		if (!set_elements(v, "L 0,0,0 0 255,255,255", 0))
+			return (__FALSE);
+	}
+	if (!v->amb)
+	{
+		if (!set_elements(v, "A 0 0,0,0", 0))
 			return (__FALSE);
 	}
 	return (__TRUE);
