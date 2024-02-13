@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:33:56 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/13 14:28:31 by lmohin           ###   ########.fr       */
+/*   Updated: 2024/02/13 14:30:19 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ t_vars	*init_v(void)
 		calloc_error();
 	}
 	v->ray = ft_calloc(1, sizeof(t_ray));
-	free(v->ray);
-	v->ray = NULL;
 	if (!v->ray)
 	{
 		free(v->im);
