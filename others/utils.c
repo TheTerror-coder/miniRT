@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 19:54:01 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/12 17:27:00 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 14:45:24 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_bool	isnumber(const char *str)
 
 t_bool	ft_error(char *str)
 {
-	ft_putendl_fd("error", STDERR_FILENO);
+	ft_putendl_fd("Error", STDERR_FILENO);
 	ft_putendl_fd(str, STDERR_FILENO);
 	return (__FALSE);
 }
