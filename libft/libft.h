@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:35:39 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/12 18:00:50 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 14:12:19 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,8 @@ void			ft_putchar_fd(char c, int fd);
 **		s: The string to output.
 **		fd: The file descriptor on which to write.
 **	DESCRIPTION
-**		Outputs the string ’s’ to the given file descriptor, followed by a newline.
+**		Outputs the string ’s’ to the given file descriptor, 
+**		followed by a newline.
 **	RETURN VALUE
 **		None
 */

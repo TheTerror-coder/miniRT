@@ -6,34 +6,20 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:38:21 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/11 13:47:28 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 14:28:03 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inters.h"
 
-typedef struct s_consts
-{
-	t_coord	pt_ph;
-	double	t;
-	double	norm_phpi;
-	double	c1;
-	double	c2;
-	double	c3;
-	double	c4;
-	double	c5;
-	double	c6;
-	int		x;
-}				t_consts;
-
-t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars);
-t_bool	compute_pt_ph(t_cy *cy, t_vec *axis_dir, t_consts *vars);
-t_bool	compute_lenght_t(t_ray *ray, t_cy *cy, t_consts *vars);
-t_bool	compute_norm_vec_phpi(t_ray *ray, t_consts *vars);
+t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_cyvars *vars);
+t_bool	compute_pt_ph(t_cy *cy, t_vec *axis_dir, t_cyvars *vars);
+t_bool	compute_lenght_t(t_ray *ray, t_cy *cy, t_cyvars *vars);
+t_bool	compute_norm_vec_phpi(t_ray *ray, t_cyvars *vars);
 
 t_bool	ray_inter_cy_extremities(t_ray *ray, t_cy *cy, int x)
 {
-	t_consts	vars;
+	t_cyvars	vars;
 	t_vec		axis_dir;
 	int			fdbk;
 
@@ -46,7 +32,7 @@ t_bool	ray_inter_cy_extremities(t_ray *ray, t_cy *cy, int x)
 	return (fdbk);
 }
 
-t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars)
+t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_cyvars *vars)
 {
 	compute_pt_ph(cy, axis_dir, vars);
 	compute_lenght_t(ray, cy, vars);
@@ -62,7 +48,7 @@ t_bool	inter_extremitie(t_ray *ray, t_cy *cy, t_vec *axis_dir, t_consts *vars)
 	return (__FALSE);
 }
 
-t_bool	compute_pt_ph(t_cy *cy, t_vec *axis_dir, t_consts *vars)
+t_bool	compute_pt_ph(t_cy *cy, t_vec *axis_dir, t_cyvars *vars)
 {
 	vars->pt_ph.x = cy->o.x + (cy->h / 2) * axis_dir->x;
 	vars->pt_ph.y = cy->o.y + (cy->h / 2) * axis_dir->y;
@@ -70,7 +56,7 @@ t_bool	compute_pt_ph(t_cy *cy, t_vec *axis_dir, t_consts *vars)
 	return (__TRUE);
 }
 
-t_bool	compute_lenght_t(t_ray *ray, t_cy *cy, t_consts *vars)
+t_bool	compute_lenght_t(t_ray *ray, t_cy *cy, t_cyvars *vars)
 {
 	double	num;
 	double	denom;
@@ -92,7 +78,7 @@ t_bool	compute_lenght_t(t_ray *ray, t_cy *cy, t_consts *vars)
 	return (__TRUE);
 }
 
-t_bool	compute_norm_vec_phpi(t_ray *ray, t_consts *vars)
+t_bool	compute_norm_vec_phpi(t_ray *ray, t_cyvars *vars)
 {
 	vars->norm_phpi = sqrt(__sq(vars->t * ray->dir.x + vars->c1) \
 			+ __sq(vars->t * ray->dir.y + vars->c2) + __sq(vars->t \

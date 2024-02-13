@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:29:00 by TheTerror         #+#    #+#              #
-#    Updated: 2024/02/12 18:03:46 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2024/02/13 14:03:02 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ CFLAGS =			-Wall -Werror -Wextra
 MLX_OBJ_OPTIONS =	-I/usr/include -Imlx_linux -O3
 MLX_LINK_OPTIONS =	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 RM =				rm -rf
+
 
 SRC_GRAPHIC_TOOLS = $(addprefix $(GRAPHIC_TOOLS_PATH), events.c mlx_utils.c)
 SRC_INTERS = $(addprefix $(INTERS_PATH), ray_sphere.c ray_plane.c ray_cylinder.c ray_cylinder_utils.c cy_extremities.c)
@@ -68,6 +69,11 @@ mlx :
 
 $(NAME) : $(OBJ) $(INCLUDE)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) $(MLX_LINK_OPTIONS) -o $@
+
+norm :
+	files=$$(ls --hide=mlx_linux); norminette $$files
+norminette :
+	files=$$(ls --hide=mlx_linux); norminette $$files
 
 mk_objdir :
 	@mkdir -p $(OBJ_PATH)
