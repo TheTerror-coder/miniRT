@@ -6,29 +6,19 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:19:02 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/12 18:01:43 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 14:34:54 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "local_tools.h"
 
-typedef struct s_tools
-{
-	unsigned int		i;
-	int					sign;
-	double				dec;
-	double				val;
-	double				exp_sign;
-	double				n;
-}				t_tools;
-
-t_bool	init_skip_optional(t_tools *x, const char *nptr);
-t_bool	decimal_sequence(t_tools *x, const char *nptr);
-t_bool	optional_exponent(t_tools *x, const char *nptr);
+t_bool	init_skip_optional(t_atod_vars *x, const char *nptr);
+t_bool	decimal_sequence(t_atod_vars *x, const char *nptr);
+t_bool	optional_exponent(t_atod_vars *x, const char *nptr);
 
 double	ft_atod(const char *nptr)
 {
-	t_tools	x;
+	t_atod_vars	x;
 
 	if (init_skip_optional(&x, nptr))
 		return (x.val);
@@ -37,7 +27,7 @@ double	ft_atod(const char *nptr)
 	return (x.val * x.sign);
 }
 
-t_bool	init_skip_optional(t_tools *x, const char *nptr)
+t_bool	init_skip_optional(t_atod_vars *x, const char *nptr)
 {
 	x->i = 0;
 	x->val = 0;
@@ -62,7 +52,7 @@ t_bool	init_skip_optional(t_tools *x, const char *nptr)
 	return (__FALSE);
 }
 
-t_bool	decimal_sequence(t_tools *x, const char *nptr)
+t_bool	decimal_sequence(t_atod_vars *x, const char *nptr)
 {
 	while (nptr[x->i] >= '0' && nptr[x->i] <= '9')
 	{
@@ -86,7 +76,7 @@ t_bool	decimal_sequence(t_tools *x, const char *nptr)
 	return (__FALSE);
 }
 
-t_bool	optional_exponent(t_tools *x, const char *nptr)
+t_bool	optional_exponent(t_atod_vars *x, const char *nptr)
 {
 	size_t	power;
 

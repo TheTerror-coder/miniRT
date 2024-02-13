@@ -6,21 +6,11 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 20:19:01 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/11 14:56:56 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 14:28:29 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inters.h"
-
-typedef struct s_localvars
-{
-	double	a;
-	double	b;
-	double	c;
-	double	delta;
-	double	s1;
-	double	s2;
-}				t_lvars;
 
 double	ray_inter_sp_op(t_ray *ray, t_sp *sp);
 
@@ -62,7 +52,7 @@ t_bool	assess_color(t_ray *ray, double len_found)
 
 double	ray_inter_sp_op(t_ray *ray, t_sp *sp)
 {
-	t_lvars	vars;
+	t_spvars	vars;
 
 	vars.a = __sq(ray->dir.x) + __sq(ray->dir.y) + __sq(ray->dir.z);
 	vars.b = 2.00 * ray->dir.x * (ray->o.x - sp->o.x) + \

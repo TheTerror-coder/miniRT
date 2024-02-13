@@ -6,26 +6,17 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 21:27:05 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/11 14:17:38 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 14:29:12 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inters.h"
-#include "limits.h"
 
-typedef struct s_localvars
-{
-	t_vec	p_ro;
-	t_coord	ray_o;
-	double	num;
-	double	denom;
-	double	length;
-}				t_lvars;
-
-t_bool	ray_inter_pl_op(t_ray *ray, t_pl *pl, t_lvars *vars, int x);
+t_bool	ray_inter_pl_op(t_ray *ray, t_pl *pl, t_plvars *vars, int x);
 
 /*
-	t_vec	p_ro; // vector between the given point of the plane and the ray origin
+	t_vec	p_ro; // vector between the given point of the plane and 
+					the ray origin
 	t_coord	ray_o; // ray origin
 	double	num; // numerator
 	double	denom; // denominator
@@ -34,7 +25,7 @@ t_bool	ray_inter_pl_op(t_ray *ray, t_pl *pl, t_lvars *vars, int x);
 
 t_bool	ray_inter_pl(t_ray *ray, t_pl *pl, int x)
 {
-	t_lvars	vars;
+	t_plvars	vars;
 
 	vars.ray_o.x = ray->o.x;
 	vars.ray_o.y = ray->o.y;
@@ -60,7 +51,7 @@ t_bool	ray_inter_pl(t_ray *ray, t_pl *pl, int x)
 	return (ray_inter_pl_op(ray, pl, &vars, x));
 }
 
-t_bool	ray_inter_pl_op(t_ray *ray, t_pl *pl, t_lvars *vars, int x)
+t_bool	ray_inter_pl_op(t_ray *ray, t_pl *pl, t_plvars *vars, int x)
 {
 	vars->length = vars->num / vars->denom;
 	if (assess_color(ray, vars->length))
