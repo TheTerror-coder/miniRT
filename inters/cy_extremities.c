@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:38:21 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/13 14:28:03 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 17:56:25 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_bool	compute_lenght_t(t_ray *ray, t_cy *cy, t_cyvars *vars)
 
 t_bool	compute_norm_vec_phpi(t_ray *ray, t_cyvars *vars)
 {
-	vars->norm_phpi = sqrt(__sq(vars->t * ray->dir.x + vars->c1) \
+	vars->norm_phpi = __sqrt(__sq(vars->t * ray->dir.x + vars->c1) \
 			+ __sq(vars->t * ray->dir.y + vars->c2) + __sq(vars->t \
 			* ray->dir.z + vars->c3));
 	return (__TRUE);

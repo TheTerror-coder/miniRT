@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 20:19:01 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/13 14:28:29 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 17:57:31 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ double	ray_inter_sp_op(t_ray *ray, t_sp *sp)
 	vars.delta = __sq(vars.b) - (4 * vars.a * vars.c);
 	if (vars.delta < 0)
 		return (vars.delta);
-	vars.s1 = (-vars.b - sqrt(vars.delta)) / (2 * vars.a);
-	vars.s2 = (-vars.b + sqrt(vars.delta)) / (2 * vars.a);
+	vars.s1 = (-vars.b - __sqrt(vars.delta)) / (2 * vars.a);
+	vars.s2 = (-vars.b + __sqrt(vars.delta)) / (2 * vars.a);
 	return (assess_the_solution(vars.s1, vars.s2));
 }
 

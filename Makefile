@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:29:00 by TheTerror         #+#    #+#              #
-#    Updated: 2024/02/13 14:03:02 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2024/02/13 15:02:25 by lmohin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ SRC_MATHTOOLS = $(addprefix $(MATHTOOLS_PATH), converts.c vectors.c subtractions
 SRC_MEMTOOLS = $(addprefix $(MEMTOOLS_PATH), initmem.c freemem.c init_elms.c free_elms.c)
 SRC_OTHERS = $(addprefix $(OTHERS_PATH), utils.c display.c)
 SRC_PARSING = $(addprefix $(PARSING_PATH), utils.c parsing.c ambient.c camera.c light.c \
-			sphere.c sphere_utils.c plane.c plane_utils.c cylindre.c cylinder_utils.c)
+			sphere.c sphere_utils.c plane.c plane_utils.c cylinder.c cylinder_utils.c)
 SRC_RAYS = $(addprefix $(RAYS_PATH), ray.c)
 SRC_LIGHTNING = $(addprefix $(LIGHTNING_PATH), lightning.c cylinder_lightning.c sphere_lightning.c plane_lightning.c shadows.c light_color.c)
 

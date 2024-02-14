@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 14:25:04 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/11 15:06:14 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 17:57:10 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_bool	setallparameters(t_ray *ray, t_cy *cy, t_params *xp)
 	setparams_term2_term3(ray, xp);
 	xp->c += xp->e - (xp->k * __sq(cy->r));
 	xp->delta = __sq(xp->b) - (4 * xp->a * xp->c);
-	xp->t1 = (-xp->b - sqrt(xp->delta)) / (2 * xp->a);
-	xp->t2 = (-xp->b + sqrt(xp->delta)) / (2 * xp->a);
+	xp->t1 = (-xp->b - __sqrt(xp->delta)) / (2 * xp->a);
+	xp->t2 = (-xp->b + __sqrt(xp->delta)) / (2 * xp->a);
 	return (__TRUE);
 }
 
@@ -94,7 +94,7 @@ double	computeheight_inters(t_ray *ray, t_cy *cy, double t)
 	op.x = p.x - cy->o.x;
 	op.y = p.y - cy->o.y;
 	op.z = p.z - cy->o.z;
-	hp = sqrt(__sq(vectornorm(&op)) - __sq(cy->r));
+	hp = __sqrt(__sq(vectornorm(&op)) - __sq(cy->r));
 	if (!vecdotvec(&op, &cy->axis))
 		hp = 0;
 	if (hp > cy->h / 2)

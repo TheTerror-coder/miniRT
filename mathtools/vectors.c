@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:30:44 by TheTerror         #+#    #+#             */
-/*   Updated: 2024/02/10 16:31:42 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 17:59:02 by lmohin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	vectornorm(t_vec *vector)
 {
-	return (sqrt(vectornormsqr(vector)));
+	return (__sqrt(vectornormsqr(vector)));
 }
 
 void	setvec_coords(t_vec *vector)
