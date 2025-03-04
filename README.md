@@ -1,4 +1,4 @@
-# Project "RAYTRACING ENGINE miniLibX"
+# RAYTRACING ENGINE miniLibX
 
 Description : Développement d’un moteur de RayTracing en C pour la génération d’images 3D à partir de scènes définies par des objets géométriques simples (sphères, plans, cylindres). Le projet inclut la gestion de la lumière (éclairage ambiant, diffuse, etc.), ainsi que des transformations sur les objets (translation, rotation). Il utilise la bibliothèque miniLibX pour l'affichage et la gestion de la fenêtre graphique.
 Compétences et technologies utilisées :
